@@ -50,7 +50,7 @@ namespace DiagramDesigner
                 {
                     sourceA = value;
                     UpdateArea();
-                    NotifyChanged("SourceA");
+                    NotifyOfPropertyChange("SourceA");
                 }
             }
         }
@@ -67,7 +67,7 @@ namespace DiagramDesigner
                 {
                     sourceB = value;
                     UpdateArea();
-                    NotifyChanged("SourceB");
+                    NotifyOfPropertyChange("SourceB");
                 }
             }
         }
@@ -83,7 +83,7 @@ namespace DiagramDesigner
                 if (connectionPoints != value)
                 {
                     connectionPoints = value;
-                    NotifyChanged("ConnectionPoints");
+                    NotifyOfPropertyChange("ConnectionPoints");
                 }
             }
         }
@@ -99,7 +99,7 @@ namespace DiagramDesigner
                 if (endPoint != value)
                 {
                     endPoint = value;
-                    NotifyChanged("EndPoint");
+                    NotifyOfPropertyChange("EndPoint");
                 }
             }
         }
@@ -116,7 +116,7 @@ namespace DiagramDesigner
                 {
                     area = value;
                     UpdateConnectionPoints();
-                    NotifyChanged("Area");
+                    NotifyOfPropertyChange("Area");
                 }
             }
         }
@@ -148,7 +148,7 @@ namespace DiagramDesigner
 
                     sourceConnectorInfo = value;
                     SourceA = PointHelper.GetPointForConnector(this.SourceConnectorInfo);
-                    NotifyChanged("SourceConnectorInfo");
+                    NotifyOfPropertyChange("SourceConnectorInfo");
                     (sourceConnectorInfo.DataItem as INotifyPropertyChanged).PropertyChanged += new WeakINPCEventHandler(ConnectorViewModel_PropertyChanged).Handler;
                 }
             }
@@ -176,7 +176,7 @@ namespace DiagramDesigner
 
                         SourceB = ((PartCreatedConnectionInfo)SinkConnectorInfo).CurrentLocation;
                     }
-                    NotifyChanged("SinkConnectorInfo");
+                    NotifyOfPropertyChange("SinkConnectorInfo");
                 }
             }
         }

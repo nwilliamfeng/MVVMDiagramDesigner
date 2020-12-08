@@ -12,7 +12,7 @@ namespace DemoApp
     /// the popup to be cancelled without applying any changes to the calling ViewModel
     /// whos data will be updated if the PopupWindow.xaml window is closed successfully
     /// </summary>
-    public class SettingsDesignerItemData : INPCBase
+    public class SettingsDesignerItemData : NotifyObject
     {
         private string setting1 = "";
 
@@ -33,7 +33,7 @@ namespace DemoApp
                 if (setting1 != value)
                 {
                     setting1 = value;
-                    NotifyChanged("Setting1");
+                    NotifyOfPropertyChange("Setting1");
                 }
             }
         }

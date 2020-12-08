@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace DiagramDesigner
 {
-    public abstract class ConnectorInfoBase : INPCBase
+    public abstract class ConnectorInfoBase : NotifyObject
     {
         private static double connectorWidth = 8;
         private static double connectorHeight = 8;

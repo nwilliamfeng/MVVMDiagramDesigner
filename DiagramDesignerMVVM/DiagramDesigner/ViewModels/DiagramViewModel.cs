@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace DiagramDesigner
 {
-    public class DiagramViewModel : INPCBase, IDiagramViewModel
+    public class DiagramViewModel : NotifyObject, IDiagramViewModel
     {
         private ObservableCollection<SelectableDesignerItemViewModelBase> items = new ObservableCollection<SelectableDesignerItemViewModelBase>();
 

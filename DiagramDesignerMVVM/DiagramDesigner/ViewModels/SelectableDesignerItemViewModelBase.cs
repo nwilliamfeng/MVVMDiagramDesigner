@@ -13,7 +13,7 @@ namespace DiagramDesigner
     }
 
 
-    public abstract class SelectableDesignerItemViewModelBase : INPCBase, ISelectItems
+    public abstract class SelectableDesignerItemViewModelBase : NotifyObject, ISelectItems
     {
         private bool isSelected;
 
@@ -50,7 +50,7 @@ namespace DiagramDesigner
                 {
                     
                     isSelected = value;
-                    NotifyChanged("IsSelected");
+                    NotifyOfPropertyChange("IsSelected");
                 }
             }
         }

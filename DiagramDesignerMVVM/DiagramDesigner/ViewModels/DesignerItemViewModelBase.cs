@@ -52,7 +52,7 @@ namespace DiagramDesigner
                 if (itemWidth != value)
                 {
                     itemWidth = value;
-                    NotifyChanged("ItemWidth");
+                    NotifyOfPropertyChange("ItemWidth");
                 }
             }
         }
@@ -68,7 +68,7 @@ namespace DiagramDesigner
                 if (itemHeight != value)
                 {
                     itemHeight = value;
-                    NotifyChanged("ItemHeight");
+                    NotifyOfPropertyChange("ItemHeight");
                 }
             }
         }
@@ -112,7 +112,7 @@ namespace DiagramDesigner
                     BottomConnector.ShowConnectors = value;
                     RightConnector.ShowConnectors = value;
                     LeftConnector.ShowConnectors = value;
-                    NotifyChanged("ShowConnectors");
+                    NotifyOfPropertyChange("ShowConnectors");
                 }
             }
         }
@@ -129,7 +129,7 @@ namespace DiagramDesigner
                 if (left != value)
                 {
                     left = value;
-                    NotifyChanged("Left");
+                    NotifyOfPropertyChange("Left");
                 }
             }
         }
@@ -145,7 +145,7 @@ namespace DiagramDesigner
                 if (top != value)
                 {
                     top = value;
-                    NotifyChanged("Top");
+                    NotifyOfPropertyChange("Top");
                 }
             }
         }

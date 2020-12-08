@@ -12,7 +12,7 @@ namespace DemoApp
     /// the popup to be cancelled without applying any changes to the calling ViewModel
     /// whos data will be updated if the PopupWindow.xaml window is closed successfully
     /// </summary>
-    public class PersistDesignerItemData: INPCBase
+    public class PersistDesignerItemData: NotifyObject
     {
         private string hostUrl = "";
 
@@ -32,7 +32,7 @@ namespace DemoApp
                 if (hostUrl != value)
                 {
                     hostUrl = value;
-                    NotifyChanged("HostUrl");
+                    NotifyOfPropertyChange("HostUrl");
                 }
             }
         }

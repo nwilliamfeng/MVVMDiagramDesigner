@@ -7,7 +7,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
-using System.Xml;
 using System.Linq;
 
 namespace DiagramDesigner

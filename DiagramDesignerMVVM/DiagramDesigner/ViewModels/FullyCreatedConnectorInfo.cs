@@ -30,7 +30,7 @@ namespace DiagramDesigner
                 if (showConnectors != value)
                 {
                     showConnectors = value;
-                    NotifyChanged("ShowConnectors");
+                    NotifyOfPropertyChange("ShowConnectors");
                 }
             }
         }

@@ -13,7 +13,7 @@ using System.Windows;
 
 namespace DemoApp
 {
-    public class Window1ViewModel : INPCBase
+    public class Window1ViewModel : NotifyObject
     {
 
         private List<int> savedDiagrams = new List<int>();
@@ -70,7 +70,7 @@ namespace DemoApp
                 if (diagramViewModel != value)
                 {
                     diagramViewModel = value;
-                    NotifyChanged("DiagramViewModel");
+                    NotifyOfPropertyChange("DiagramViewModel");
                 }
             }
         }
@@ -86,7 +86,7 @@ namespace DemoApp
                 if (isBusy != value)
                 {
                     isBusy = value;
-                    NotifyChanged("IsBusy");
+                    NotifyOfPropertyChange("IsBusy");
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace DemoApp
                 if (savedDiagrams != value)
                 {
                     savedDiagrams = value;
-                    NotifyChanged("SavedDiagrams");
+                    NotifyOfPropertyChange("SavedDiagrams");
                 }
             }
         }
@@ -119,7 +119,7 @@ namespace DemoApp
                 if (savedDiagramId != value)
                 {
                     savedDiagramId = value;
-                    NotifyChanged("SavedDiagramId");
+                    NotifyOfPropertyChange("SavedDiagramId");
                 }
             }
         }
