@@ -20,34 +20,7 @@
                     Content="New"
 					Margin="8,0,3,0"
                     Command="{Binding CreateNewDiagramCommand}"/>
-            <Button ToolTip="Save"
-                    Content="Save"
-                    Margin="8,0,3,0"
-                    Command="{Binding SaveDiagramCommand}" />
-            <Button ToolTip="Ungroup/Group"
-                    Content="Ungroup/Group"
-                    Margin="8,0,3,0"
-                    Command="{Binding GroupCommand}" />
-            <Label Margin="30,0,3,0"
-                   VerticalAlignment="Center"
-                   Content="Saved Diagrams" />
-            <ComboBox Margin="8,0,3,0"
-                     Width="200"
-                     ToolTip="Saved Diagrams"
-                      SelectedItem="{Binding SavedDiagramId}"
-                     ItemsSource="{Binding SavedDiagrams}"/>
-            <Button ToolTip="Load Selected Diagram"
-                    Content="Load"
-                    Margin="8,0,3,0"
-                    Command="{Binding LoadDiagramCommand}" />
-            <ProgressBar Margin="8,0,3,0"
-                         Visibility="{Binding Path=IsBusy, Converter={x:Static s:BoolToVisibilityConverter.Instance}}"
-                         IsIndeterminate="True"
-                         Width="150"
-                         Height="20"
-                         VerticalAlignment="Center" />
-
-
+          
         </ToolBar>
 		
 		<Grid Margin="0,5,0,0">
@@ -57,8 +30,7 @@
 			</Grid.ColumnDefinitions>
 
             <!-- ToolBox Control -->
-            <local:ToolBoxControl Grid.Column="0"
-                                  DataContext="{Binding ToolBoxViewModel}" />
+            <local:ToolBoxControl Grid.Column="0"   DataContext="{Binding ToolBoxViewModel}" />
 
             <GridSplitter Grid.Column="1"
 						  HorizontalAlignment="Left"
