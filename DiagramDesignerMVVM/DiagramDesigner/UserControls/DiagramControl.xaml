@@ -8,34 +8,23 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     
-    <Border BorderBrush="LightGray"
-            BorderThickness="1">
+    <Border BorderBrush="LightGray" BorderThickness="1">
         <Grid>
             <ScrollViewer Name="DesignerScrollViewer"
                           Background="Transparent"
                           HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Auto">
 
-                <ItemsControl ItemsSource="{Binding Items}"
-                                ItemContainerStyleSelector="{x:Static s:DesignerItemsControlItemStyleSelector.Instance}">
+                <ItemsControl ItemsSource="{Binding Items}" ItemContainerStyleSelector="{x:Static s:DesignerItemsControlItemStyleSelector.Instance}">
                     <ItemsControl.Resources>
-
-                        <Style x:Key="designerItemStyle"
-                                TargetType="{x:Type ContentPresenter}">
-                            <Setter Property="Canvas.Top"
-                                    Value="{Binding Top}" />
-                            <Setter Property="Canvas.Left"
-                                    Value="{Binding Left}" />
-                            <Setter Property="s:SelectionProps.EnabledForSelection"
-                                    Value="True" />
-                            <Setter Property="s:ItemConnectProps.EnabledForConnection"
-                                    Value="True" />
-                            <Setter Property="Width"
-                                    Value="{Binding ItemWidth}"/>
-                            <Setter Property="Height"
-                                    Value="{Binding ItemHeight}"/>
-                            <Setter Property="SnapsToDevicePixels"
-                                    Value="True" />
+                        <Style x:Key="designerItemStyle" TargetType="{x:Type ContentPresenter}">
+                            <Setter Property="Canvas.Top"  Value="{Binding Top}" />
+                            <Setter Property="Canvas.Left" Value="{Binding Left}" />
+                            <Setter Property="s:SelectionProps.EnabledForSelection" Value="True" />
+                            <Setter Property="s:ItemConnectProps.EnabledForConnection" Value="True" />
+                            <Setter Property="Width" Value="{Binding ItemWidth}"/>
+                            <Setter Property="Height" Value="{Binding ItemHeight}"/>
+                            <Setter Property="SnapsToDevicePixels" Value="True" />
                             <Setter Property="ContentTemplate">
                                 <Setter.Value>
                                     <DataTemplate>
@@ -103,18 +92,12 @@
                             </Setter>
                         </Style>
 
-                        <Style x:Key="connectorItemStyle"
-                                TargetType="{x:Type ContentPresenter}">
-                            <Setter Property="Width"
-                                    Value="{Binding Area.Width}" />
-                            <Setter Property="Height"
-                                    Value="{Binding Area.Height}" />
-                            <Setter Property="Canvas.Top"
-                                    Value="{Binding Area.Top}" />
-                            <Setter Property="Canvas.Left"
-                                    Value="{Binding Area.Left}" />
-                            <Setter Property="s:SelectionProps.EnabledForSelection"
-                                    Value="True" />
+                        <Style x:Key="connectorItemStyle" TargetType="{x:Type ContentPresenter}">
+                            <Setter Property="Width" Value="{Binding Area.Width}" />
+                            <Setter Property="Height" Value="{Binding Area.Height}" />
+                            <Setter Property="Canvas.Top" Value="{Binding Area.Top}" />
+                            <Setter Property="Canvas.Left" Value="{Binding Area.Left}" />
+                            <Setter Property="s:SelectionProps.EnabledForSelection" Value="True" />
                             <Setter Property="ContentTemplate">
                                 <Setter.Value>
                                     <DataTemplate>
@@ -126,8 +109,6 @@
                                                         Stroke="Gray"
                                                         Points="{Binding Path=ConnectionPoints, Converter={x:Static s:ConnectionPathConverter.Instance}}"
                                                         StrokeThickness="2" />
-
-
                                             <Path x:Name="arrow"
                                                     Data="M0,10 L5,0 10,10 z"
                                                     Visibility="{Binding Path=IsFullConnection, Converter={x:Static s:BoolToVisibilityConverter.Instance}}"
@@ -147,61 +128,38 @@
                                             </Path>
                                         </Canvas>
                                         <DataTemplate.Triggers>
-                                            <DataTrigger Value="True"
-                                                            Binding="{Binding IsSelected}">
-                                                <Setter TargetName="poly"
-                                                        Property="Stroke"
-                                                        Value="Black" />
-                                                <Setter TargetName="arrow"
-                                                        Property="Stroke"
-                                                        Value="Black" />
-                                                <Setter TargetName="arrow"
-                                                        Property="Fill"
-                                                        Value="Black" />
+                                            <DataTrigger Value="True" Binding="{Binding IsSelected}">
+                                                <Setter TargetName="poly"  Property="Stroke" Value="Black" />
+                                                <Setter TargetName="arrow" Property="Stroke" Value="Black" />
+                                                <Setter TargetName="arrow" Property="Fill" Value="Black" />
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=SinkConnectorInfo.Orientation}"
-                                                            Value="Left">
-                                                <Setter TargetName="arrow"
-                                                        Property="Margin"
-                                                        Value="-15,-5,0,0" />
-                                                <Setter TargetName="arrow"
-                                                        Property="RenderTransform">
+                                            <DataTrigger Binding="{Binding Path=SinkConnectorInfo.Orientation}" Value="Left">
+                                                <Setter TargetName="arrow" Property="Margin" Value="-15,-5,0,0" />
+                                                <Setter TargetName="arrow" Property="RenderTransform">
                                                     <Setter.Value>
                                                         <RotateTransform Angle="90" />
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=SinkConnectorInfo.Orientation}"
-                                                            Value="Top">
-                                                <Setter TargetName="arrow"
-                                                        Property="Margin"
-                                                        Value="-5,-15,0,0" />
-                                                <Setter TargetName="arrow"
-                                                        Property="RenderTransform">
+                                            <DataTrigger Binding="{Binding Path=SinkConnectorInfo.Orientation}" Value="Top">
+                                                <Setter TargetName="arrow" Property="Margin" Value="-5,-15,0,0" />
+                                                <Setter TargetName="arrow" Property="RenderTransform">
                                                     <Setter.Value>
                                                         <RotateTransform Angle="180" />
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=SinkConnectorInfo.Orientation}"
-                                                            Value="Right">
-                                                <Setter TargetName="arrow"
-                                                        Property="Margin"
-                                                        Value="5,-5,0,0" />
-                                                <Setter TargetName="arrow"
-                                                        Property="RenderTransform">
+                                            <DataTrigger Binding="{Binding Path=SinkConnectorInfo.Orientation}" Value="Right">
+                                                <Setter TargetName="arrow" Property="Margin" Value="5,-5,0,0" />
+                                                <Setter TargetName="arrow" Property="RenderTransform">
                                                     <Setter.Value>
                                                         <RotateTransform Angle="-90" />
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
-                                            <DataTrigger Binding="{Binding Path=SinkConnectorInfo.Orientation}"
-                                                            Value="Bottom">
-                                                <Setter TargetName="arrow"
-                                                        Property="Margin"
-                                                        Value="-5,10,0,0" />
-                                                <Setter TargetName="arrow"
-                                                        Property="RenderTransform">
+                                            <DataTrigger Binding="{Binding Path=SinkConnectorInfo.Orientation}" Value="Bottom">
+                                                <Setter TargetName="arrow" Property="Margin" Value="-5,10,0,0" />
+                                                <Setter TargetName="arrow" Property="RenderTransform">
                                                     <Setter.Value>
                                                         <RotateTransform Angle="0" />
                                                     </Setter.Value>
@@ -219,7 +177,7 @@
 
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <s:DesignerCanvas Loaded="DesignerCanvas_Loaded"
+                            <s:DesignerCanvas  
                                                 MinHeight="800"
                                                 MinWidth="1000"
                                                 Background="White"
@@ -232,12 +190,7 @@
 
 
             </ScrollViewer>
-            <s:ZoomBox x:Name="zoomBox"
-                       Width="180"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       ScrollViewer="{Binding ElementName=DesignerScrollViewer}"
-                       Margin="0,5,25,0" />
+            
 
 
         </Grid>
