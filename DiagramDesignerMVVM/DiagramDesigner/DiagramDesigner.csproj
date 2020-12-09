@@ -82,30 +82,14 @@
     <Compile Include="AttachedProperties\ItemConnectProps.cs" />
     <Compile Include="AttachedProperties\DragAndDropProps.cs" />
     <Compile Include="AttachedProperties\SelectionProps.cs" />
-    <Compile Include="Helpers\ConnectorInfo.cs" />
     <Compile Include="Converters\ConnectionPathConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Helpers\IPathFinder.cs" />
-    <Compile Include="Helpers\WeakINPCEventHandler.cs" />
-    <Compile Include="Helpers\PointHelper.cs" />
-    <Compile Include="Messenger\Mediator.cs" />
-    <Compile Include="Messenger\MediatorMessageSinkAttribute.cs" />
+    <Compile Include="Helper\DragObject.cs" />
     <Compile Include="UserControls\DiagramControl.xaml.cs">
       <DependentUpon>DiagramControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ConnectorInfoBase.cs" />
     <Compile Include="Converters\ImageUrlConverter.cs" />
-    <Compile Include="Helpers\DragObject.cs" />
-    <Compile Include="Helpers\ToolBoxData.cs" />
-    <Compile Include="ViewModels\Diagram.cs" />
-    <Compile Include="ViewModels\IDiagram.cs" />
-    <Compile Include="ViewModels\PartCreatedConnectionInfo.cs" />
     <Compile Include="StyleSelectors\DesignerItemsControlItemStyleSelector.cs" />
-    <Compile Include="ViewModels\ConnectorDesignerItem.cs" />
-    <Compile Include="ViewModels\FullyCreatedConnectorInfo.cs" />
-    <Compile Include="ViewModels\SelectableDesignerItem.cs" />
-    <Compile Include="ViewModels\DesignerItemBase.cs" />
-    <Compile Include="ViewModels\NotifyObject.cs" />
     <Page Include="Resources\Styles\DesignerItems.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,7 +103,6 @@
     <Compile Include="Controls\Connector.cs" />
     <Compile Include="Controls\DragThumb.cs" />
     <Compile Include="Controls\DesignerCanvas.cs" />
-    <Compile Include="Helpers\OrthogonalPathFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

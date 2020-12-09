@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-
+ 
 namespace DiagramDesigner
 {
     // Note: I couldn't find a useful open source library that does
@@ -366,23 +365,7 @@ namespace DiagramDesigner
             throw new Exception("Failed to retrieve orientation");
         }
 
-        private static Orientation GetOrientation(ConnectorOrientation sourceOrientation)
-        {
-            switch (sourceOrientation)
-            {
-                case ConnectorOrientation.Left:
-                    return Orientation.Horizontal;
-                case ConnectorOrientation.Top:
-                    return Orientation.Vertical;
-                case ConnectorOrientation.Right:
-                    return Orientation.Horizontal;
-                case ConnectorOrientation.Bottom:
-                    return Orientation.Vertical;
-                default:
-                    throw new Exception("Unknown ConnectorOrientation");
-            }
-        }
-
+      
         private static Point GetNearestNeighborSource(ConnectorInfo source, Point endPoint, Rect rectSource, Rect rectSink, out bool flag)
         {
             Point n1, n2; // neighbors
