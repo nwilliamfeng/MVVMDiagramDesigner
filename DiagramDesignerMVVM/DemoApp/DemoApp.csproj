@@ -39,25 +39,11 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Raven.Client.Embedded, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <HintPath>Lib\RavenDBEmbedded\Raven.Client.Embedded.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Client.Lightweight, Version=1.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <HintPath>Lib\RavenDBEmbedded\Raven.Client.Lightweight.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Storage.Esent">
-      <HintPath>Lib\RavenDBEmbedded\Raven.Storage.Esent.dll</HintPath>
-    </Reference>
-    <Reference Include="Raven.Storage.Managed">
-      <HintPath>Lib\RavenDBEmbedded\Raven.Storage.Managed.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -126,14 +112,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DemoApp.Persistence.Common\DemoApp.Persistence.Common.csproj">
-      <Project>{91AD5A26-30A4-438C-B4F0-D0DCF92140A9}</Project>
-      <Name>DemoApp.Persistence.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DemoApp.Persistence.RavenDB\DemoApp.Persistence.RavenDB.csproj">
-      <Project>{9B198EC8-182F-44C8-8E4E-2060472467E4}</Project>
-      <Name>DemoApp.Persistence.RavenDB</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DiagramDesigner\DiagramDesigner.csproj">
       <Project>{74872A86-6809-476B-95AB-6F3512317059}</Project>
       <Name>DiagramDesigner</Name>

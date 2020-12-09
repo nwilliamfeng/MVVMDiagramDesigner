@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DemoApp.Persistence.Common;
-using DemoApp.Persistence.RavenDB;
+ 
 
 
 
@@ -18,7 +17,7 @@ namespace DemoApp
     {
         IUIVisualizerService VisualizerService { get; }
         IMessageBoxService MessageBoxService { get; }
-        IDatabaseAccessService DatabaseAccessService { get; }
+        
     }
 
 
@@ -29,8 +28,7 @@ namespace DemoApp
     {
         private IUIVisualizerService visualizerService = new WPFUIVisualizerService();
         private IMessageBoxService messageBoxService = new WPFMessageBoxService();
-        private IDatabaseAccessService databaseAccessService = new DatabaseAccessService();
-
+        
         public IUIVisualizerService VisualizerService
         {
             get { return visualizerService; }
@@ -41,10 +39,7 @@ namespace DemoApp
             get { return messageBoxService; }
         }
 
-        public IDatabaseAccessService DatabaseAccessService
-        {
-            get { return databaseAccessService; }
-       }
+        
 
     }
 

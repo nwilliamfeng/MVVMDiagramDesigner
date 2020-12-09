@@ -4,7 +4,7 @@ using System.Linq;
 using DiagramDesigner;
 using System.ComponentModel;
 using System.Windows.Data;
-using DemoApp.Persistence.Common;
+ 
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -16,18 +16,15 @@ namespace DemoApp
         private List<int> _savedDiagrams = new List<int>();
         private List<SelectableDesignerItem> _itemsToRemove;
         private IMessageBoxService _messageBoxService;
-        private IDatabaseAccessService _databaseAccessService;
+    
         private Diagram _diagramViewModel = new Diagram();
 
         public Window1ViewModel()
         {
             _messageBoxService = ApplicationServicesProvider.Instance.Provider.MessageBoxService;
-            _databaseAccessService = ApplicationServicesProvider.Instance.Provider.DatabaseAccessService;
+           
 
-            foreach (var savedDiagram in _databaseAccessService.FetchAllDiagram())
-            {
-                _savedDiagrams.Add(savedDiagram.Id);
-            }
+            
 
             ToolBoxViewModel = new ToolBoxViewModel();
             DiagramViewModel = new Diagram();
