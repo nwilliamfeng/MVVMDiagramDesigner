@@ -21,11 +21,7 @@ namespace DemoApp
 
         public Window1ViewModel()
         {
-            _messageBoxService = ApplicationServicesProvider.Instance.Provider.MessageBoxService;
-           
-
-            
-
+            _messageBoxService = ApplicationServicesProvider.Instance.Provider.MessageBoxService;     
             ToolBoxViewModel = new ToolBoxViewModel();
             DiagramViewModel = new Diagram();
             
@@ -60,30 +56,8 @@ namespace DemoApp
             }
         }
  
-        private void ExecuteDeleteSelectedItemsCommand(object parameter)
-        {
-            _itemsToRemove = DiagramViewModel.SelectedItems;
-            List<SelectableDesignerItem> connectionsToAlsoRemove = new List<SelectableDesignerItem>();
+        private void ExecuteDeleteSelectedItemsCommand(object parameter)=> DiagramViewModel.DeleteSelectedItems();
 
-            foreach (var connector in DiagramViewModel.Items.OfType<ConnectorDesignerItem>())
-            {
-                if (ItemsToDeleteHasConnector(_itemsToRemove, connector.SourceConnectorInfo))
-                {
-                    connectionsToAlsoRemove.Add(connector);
-                }
-
-                if (ItemsToDeleteHasConnector(_itemsToRemove, (FullyCreatedConnectorInfo)connector.SinkConnectorInfo))
-                {
-                    connectionsToAlsoRemove.Add(connector);
-                }
-
-            }
-            _itemsToRemove.AddRange(connectionsToAlsoRemove);
-            foreach (var selectedItem in _itemsToRemove)
-            {
-                DiagramViewModel.RemoveItemCommand.Execute(selectedItem);
-            }
-        }
 
         private void ExecuteCreateNewDiagramCommand(object parameter)
         {
@@ -92,14 +66,6 @@ namespace DemoApp
            
             DiagramViewModel.CreateNewDiagramCommand.Execute(null);
         }
-
-    
-        private bool ItemsToDeleteHasConnector(List<SelectableDesignerItem> itemsToRemove, FullyCreatedConnectorInfo connector)
-        {
-            return itemsToRemove.Contains(connector.DataItem);
-        }
-
-
  
 
     }

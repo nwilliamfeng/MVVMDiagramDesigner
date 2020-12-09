@@ -14,10 +14,10 @@ namespace DiagramDesigner
         public Diagram()
         {
             AddItemCommand = new SimpleCommand(ExecuteAddItemCommand);
-            RemoveItemCommand = new SimpleCommand(ExecuteRemoveItemCommand);
+            
             ClearSelectedItemsCommand = new SimpleCommand(ExecuteClearSelectedItemsCommand);
             CreateNewDiagramCommand = new SimpleCommand(ExecuteCreateNewDiagramCommand);
-
+            RemoveItemCommand= new SimpleCommand(ExecuteRemoveItemCommand);
             Mediator.Instance.Register(this);
         }
 
@@ -32,9 +32,10 @@ namespace DiagramDesigner
             }
         }
 
+        public ICommand RemoveItemCommand { get; private set; }
 
         public ICommand AddItemCommand { get; private set; }
-        public ICommand RemoveItemCommand { get; private set; }
+        
         public ICommand ClearSelectedItemsCommand { get; private set; }
         public ICommand CreateNewDiagramCommand { get; private set; }
 
@@ -78,6 +79,31 @@ namespace DiagramDesigner
         private void ExecuteCreateNewDiagramCommand(object parameter)
         {
             Items.Clear();
+        }
+
+        public void DeleteSelectedItems()
+        {
+            var items =this.SelectedItems;
+            List<SelectableDesignerItem> connectionsToAlsoRemove = new List<SelectableDesignerItem>();
+
+            foreach (var connector in this.Items.OfType<ConnectorDesignerItem>())
+            {
+                if (items.Contains(connector.SourceConnectorInfo.DataItem))
+                {
+                    connectionsToAlsoRemove.Add(connector);
+                }
+
+                if (items.Contains(((FullyCreatedConnectorInfo)connector.SinkConnectorInfo).DataItem))
+                {
+                    connectionsToAlsoRemove.Add(connector);
+                }
+
+            }
+            items.AddRange(connectionsToAlsoRemove);
+            foreach (var selectedItem in items)
+            {
+                this.Items.Remove(selectedItem);
+            }
         }
     }
 }
