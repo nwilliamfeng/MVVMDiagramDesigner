@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace DemoApp
 {
-    public class GroupingDesignerItemViewModel : DesignerItemViewModelBase, IDiagram
+    public class GroupingDesignerItemViewModel : DesignerItemBase, IDiagram
     {
 
         private ObservableCollection<SelectableDesignerItem> items = new ObservableCollection<SelectableDesignerItem>();
@@ -29,10 +29,10 @@ namespace DemoApp
             Init();
         }
 
-        public SimpleCommand AddItemCommand { get; private set; }
-        public SimpleCommand RemoveItemCommand { get; private set; }
-        public SimpleCommand ClearSelectedItemsCommand { get; private set; }
-        public SimpleCommand CreateNewDiagramCommand { get; private set; }
+        public ICommand AddItemCommand { get; private set; }
+        public ICommand RemoveItemCommand { get; private set; }
+        public ICommand ClearSelectedItemsCommand { get; private set; }
+        public ICommand CreateNewDiagramCommand { get; private set; }
 
 
 

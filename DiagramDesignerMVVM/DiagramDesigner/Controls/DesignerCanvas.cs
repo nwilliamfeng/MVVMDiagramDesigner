@@ -14,7 +14,7 @@ namespace DiagramDesigner
     public class DesignerCanvas : Canvas
     {
 
-        private ConnectorViewModel partialConnection;
+        private ConnectorDesignerItem partialConnection;
         private List<Connector> connectorsHit = new List<Connector>();
         private Connector sourceConnector;
         private Point? rubberbandSelectionStartPoint = null;
@@ -41,7 +41,7 @@ namespace DiagramDesigner
                     Rect rectangleBounds = sourceConnector.TransformToVisual(this).TransformBounds(new Rect(sourceConnector.RenderSize));
                     Point point = new Point(rectangleBounds.Left + (rectangleBounds.Width / 2),
                                             rectangleBounds.Bottom + (rectangleBounds.Height / 2));
-                    partialConnection = new ConnectorViewModel(sourceDataItem, new PartCreatedConnectionInfo(point));
+                    partialConnection = new ConnectorDesignerItem(sourceDataItem, new PartCreatedConnectionInfo(point));
                     sourceDataItem.DataItem.Parent.AddItemCommand.Execute(partialConnection);
                 }
             }
@@ -50,7 +50,6 @@ namespace DiagramDesigner
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
             base.OnMouseDown(e);
-
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 //if we are source of event, we are rubberband selecting
@@ -68,8 +67,6 @@ namespace DiagramDesigner
                     e.Handled = true;
                 }
             }
-
-
         }
 
         protected override void OnMouseUp(MouseButtonEventArgs e)
@@ -89,7 +86,7 @@ namespace DiagramDesigner
                     int indexOfLastTempConnection = sinkDataItem.DataItem.Parent.Items.Count - 1;
                     sinkDataItem.DataItem.Parent.RemoveItemCommand.Execute(
                         sinkDataItem.DataItem.Parent.Items[indexOfLastTempConnection]);
-                    sinkDataItem.DataItem.Parent.AddItemCommand.Execute(new ConnectorViewModel(sourceDataItem, sinkDataItem));
+                    sinkDataItem.DataItem.Parent.AddItemCommand.Execute(new ConnectorDesignerItem(sourceDataItem, sinkDataItem));
                 }
                 else
                 {
@@ -196,7 +193,7 @@ namespace DiagramDesigner
 
                 (DataContext as IDiagram).ClearSelectedItemsCommand.Execute(null);
                 Point position = e.GetPosition(this);
-                DesignerItemViewModelBase itemBase = (DesignerItemViewModelBase)Activator.CreateInstance(dragObject.ContentType);
+                DesignerItemBase itemBase = (DesignerItemBase)Activator.CreateInstance(dragObject.ContentType);
                 itemBase.Left = Math.Max(0, position.X - itemBase.ItemWidth / 2);
                 itemBase.Top = Math.Max(0, position.Y - itemBase.ItemHeight / 2);
                 itemBase.IsSelected = true;

@@ -8,7 +8,10 @@ using DiagramDesigner.Helpers;
 
 namespace DiagramDesigner
 {
-    public class ConnectorViewModel : SelectableDesignerItem
+    /// <summary>
+    /// 连接器设计项
+    /// </summary>
+    public class ConnectorDesignerItem : SelectableDesignerItem
     {
         private FullyCreatedConnectorInfo sourceConnectorInfo;
         private ConnectorInfoBase sinkConnectorInfo;
@@ -19,19 +22,21 @@ namespace DiagramDesigner
         private Rect area;
 
 
-        public ConnectorViewModel(int id, IDiagram parent, 
+        public ConnectorDesignerItem(int id, IDiagram parent, 
             FullyCreatedConnectorInfo sourceConnectorInfo, FullyCreatedConnectorInfo sinkConnectorInfo) : base(id,parent)
         {
             Init(sourceConnectorInfo, sinkConnectorInfo);
         }
 
-        public ConnectorViewModel(FullyCreatedConnectorInfo sourceConnectorInfo, ConnectorInfoBase sinkConnectorInfo)
+        public ConnectorDesignerItem(FullyCreatedConnectorInfo sourceConnectorInfo, ConnectorInfoBase sinkConnectorInfo)
         {
             Init(sourceConnectorInfo, sinkConnectorInfo);
         }
 
-
-        public static IPathFinder PathFinder { get; set; }
+        /// <summary>
+        /// todo-- 默认用OrthogonalPathFinder ，需要替换
+        /// </summary>
+        public static IPathFinder PathFinder { get; set; }= new OrthogonalPathFinder();
 
         public bool IsFullConnection
         {
@@ -231,7 +236,6 @@ namespace DiagramDesigner
                         SourceB = PointHelper.GetPointForConnector((FullyCreatedConnectorInfo)this.SinkConnectorInfo);
                     }
                     break;
-
             }
         }
 

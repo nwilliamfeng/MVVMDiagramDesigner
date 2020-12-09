@@ -44,7 +44,7 @@ namespace DemoApp
             item2.Top = 300;
             window1ViewModel.DiagramViewModel.Items.Add(item2);
 
-            ConnectorViewModel con1 = new ConnectorViewModel(item1.RightConnector, item2.TopConnector);
+            ConnectorDesignerItem con1 = new ConnectorDesignerItem(item1.RightConnector, item2.TopConnector);
             con1.Parent = window1ViewModel.DiagramViewModel;
             window1ViewModel.DiagramViewModel.Items.Add(con1);
         }

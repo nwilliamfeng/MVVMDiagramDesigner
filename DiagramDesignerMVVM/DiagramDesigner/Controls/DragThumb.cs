@@ -17,7 +17,7 @@ namespace DiagramDesigner.Controls
 
         void DragThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
-            DesignerItemViewModelBase designerItem = this.DataContext as DesignerItemViewModelBase;
+            DesignerItemBase designerItem = this.DataContext as DesignerItemBase;
 
             if (designerItem != null && designerItem.IsSelected)
             {
@@ -27,7 +27,7 @@ namespace DiagramDesigner.Controls
                 // we only move DesignerItems
                 var designerItems = designerItem.SelectedItems;
 
-                foreach (DesignerItemViewModelBase item in designerItems.OfType<DesignerItemViewModelBase>())
+                foreach (DesignerItemBase item in designerItems.OfType<DesignerItemBase>())
                 {
                     double left = item.Left;
                     double top = item.Top;
@@ -40,9 +40,9 @@ namespace DiagramDesigner.Controls
                     item.Top += deltaVertical;
 
                     // prevent dragging items out of groupitem
-                    if (item.Parent is IDiagram && item.Parent is DesignerItemViewModelBase)
+                    if (item.Parent is IDiagram && item.Parent is DesignerItemBase)
                     {
-                        DesignerItemViewModelBase groupItem = (DesignerItemViewModelBase)item.Parent;
+                        DesignerItemBase groupItem = (DesignerItemBase)item.Parent;
                         if (item.Left + item.ItemWidth >= groupItem.ItemWidth) item.Left = groupItem.ItemWidth - item.ItemWidth;
                         if (item.Top + item.ItemHeight >= groupItem.ItemHeight) item.Top = groupItem.ItemHeight - item.ItemHeight;
                     }

@@ -6,8 +6,6 @@ using System.Windows.Input;
 
 namespace DiagramDesigner
 {
-
-   
     /// <summary>
     /// 支持选中的设计项
     /// </summary>
@@ -15,25 +13,22 @@ namespace DiagramDesigner
     {
         private bool isSelected;
 
-        public SelectableDesignerItem(int id, IDiagram parent)
+        public SelectableDesignerItem(int id, IDiagram parent):this()
         {
             this.Id = id;
-            this.Parent = parent;
-            Init();
+            this.Parent = parent;           
         }
 
-        public SelectableDesignerItem()
-        {
-            Init();
-        }
+        public SelectableDesignerItem()=> SelectItemCommand = new SimpleCommand(ExecuteSelectItemCommand);
 
-        public List<SelectableDesignerItem> SelectedItems
-        {
-            get { return Parent.SelectedItems; }
-        }
+
+        public List<SelectableDesignerItem> SelectedItems=> Parent.SelectedItems;
+        
 
         public IDiagram Parent { get; set; }
-        public SimpleCommand SelectItemCommand { get; private set; }
+
+        public ICommand SelectItemCommand { get; }
+
         public int Id { get; set; }
 
         public bool IsSelected
@@ -71,9 +66,6 @@ namespace DiagramDesigner
             IsSelected = select;
         }
     
-        private void Init()
-        {
-            SelectItemCommand = new SimpleCommand(ExecuteSelectItemCommand);
-        }
+        
     }
 }

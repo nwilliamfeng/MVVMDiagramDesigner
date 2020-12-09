@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using System.Collections.ObjectModel;
 
 namespace DiagramDesigner
 {
+    /// <summary>
+    /// 图接口
+    /// </summary>
     public interface IDiagram
     {
-        SimpleCommand AddItemCommand { get; }
-        SimpleCommand RemoveItemCommand { get;  }
-        SimpleCommand ClearSelectedItemsCommand { get;  }
+        ICommand AddItemCommand { get; }
+
+        ICommand RemoveItemCommand { get;  }
+
+        ICommand ClearSelectedItemsCommand { get;  }
+
         List<SelectableDesignerItem> SelectedItems { get; }
+
         ObservableCollection<SelectableDesignerItem> Items { get; }
     }
 }

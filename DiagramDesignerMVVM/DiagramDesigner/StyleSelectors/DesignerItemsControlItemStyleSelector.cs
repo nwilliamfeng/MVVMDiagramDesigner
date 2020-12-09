@@ -27,13 +27,13 @@ namespace DiagramDesigner
             if (itemsControl == null)
                 throw new InvalidOperationException("DesignerItemsControlItemStyleSelector : Could not find ItemsControl");
 
-            if(item is DesignerItemViewModelBase)
+            if(item is DesignerItemBase)
             {
 
                 return (Style)itemsControl.FindResource("designerItemStyle");
             }
             
-            if (item is ConnectorViewModel)
+            if (item is ConnectorDesignerItem)
             {
                 return (Style)itemsControl.FindResource("connectorItemStyle");
             }

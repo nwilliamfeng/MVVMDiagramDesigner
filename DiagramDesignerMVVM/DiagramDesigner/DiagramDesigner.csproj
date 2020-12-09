@@ -97,14 +97,14 @@
     <Compile Include="Converters\ImageUrlConverter.cs" />
     <Compile Include="Helpers\DragObject.cs" />
     <Compile Include="Helpers\ToolBoxData.cs" />
-    <Compile Include="ViewModels\DiagramViewModel.cs" />
+    <Compile Include="ViewModels\Diagram.cs" />
     <Compile Include="ViewModels\IDiagram.cs" />
     <Compile Include="ViewModels\PartCreatedConnectionInfo.cs" />
     <Compile Include="StyleSelectors\DesignerItemsControlItemStyleSelector.cs" />
-    <Compile Include="ViewModels\ConnectorViewModel.cs" />
+    <Compile Include="ViewModels\ConnectorDesignerItem.cs" />
     <Compile Include="ViewModels\FullyCreatedConnectorInfo.cs" />
     <Compile Include="ViewModels\SelectableDesignerItem.cs" />
-    <Compile Include="ViewModels\DesignerItemViewModelBase.cs" />
+    <Compile Include="ViewModels\DesignerItemBase.cs" />
     <Compile Include="ViewModels\NotifyObject.cs" />
     <Compile Include="ViewModels\SimpleCommand.cs" />
     <Page Include="Resources\Styles\DesignerItems.xaml">

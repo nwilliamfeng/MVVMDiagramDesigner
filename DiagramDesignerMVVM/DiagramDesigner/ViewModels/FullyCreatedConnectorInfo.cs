@@ -10,14 +10,14 @@ namespace DiagramDesigner
     {
         private bool showConnectors = false;
 
-        public FullyCreatedConnectorInfo(DesignerItemViewModelBase dataItem, ConnectorOrientation orientation)
+        public FullyCreatedConnectorInfo(DesignerItemBase dataItem, ConnectorOrientation orientation)
             : base(orientation)
         {
             this.DataItem = dataItem;
         }
 
 
-        public DesignerItemViewModelBase DataItem { get; private set; }
+        public DesignerItemBase DataItem { get; private set; }
 
         public bool ShowConnectors
         {

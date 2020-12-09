@@ -10,7 +10,7 @@
     
     <Border BorderBrush="LightGray" BorderThickness="1">
         <Grid>
-            <ScrollViewer Name="DesignerScrollViewer"
+            <ScrollViewer  
                           Background="Transparent"
                           HorizontalScrollBarVisibility="Auto"
                           VerticalScrollBarVisibility="Auto">

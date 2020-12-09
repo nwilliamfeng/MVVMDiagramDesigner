@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
-
+using System.Windows.Input;
 
 namespace DiagramDesigner
 {
-    public class DiagramViewModel : NotifyObject, IDiagram
+    public class Diagram : NotifyObject, IDiagram
     {
         private ObservableCollection<SelectableDesignerItem> items = new ObservableCollection<SelectableDesignerItem>();
 
-        public DiagramViewModel()
+        public Diagram()
         {
             AddItemCommand = new SimpleCommand(ExecuteAddItemCommand);
             RemoveItemCommand = new SimpleCommand(ExecuteRemoveItemCommand);
@@ -26,17 +26,17 @@ namespace DiagramDesigner
         [MediatorMessageSink("DoneDrawingMessage")]
         public void OnDoneDrawingMessage(bool dummy)
         {
-            foreach (var item in Items.OfType<DesignerItemViewModelBase>())
+            foreach (var item in Items.OfType<DesignerItemBase>())
             {
                 item.ShowConnectors = false;
             }
         }
 
 
-        public SimpleCommand AddItemCommand { get; private set; }
-        public SimpleCommand RemoveItemCommand { get; private set; }
-        public SimpleCommand ClearSelectedItemsCommand { get; private set; }
-        public SimpleCommand CreateNewDiagramCommand { get; private set; }
+        public ICommand AddItemCommand { get; private set; }
+        public ICommand RemoveItemCommand { get; private set; }
+        public ICommand ClearSelectedItemsCommand { get; private set; }
+        public ICommand CreateNewDiagramCommand { get; private set; }
 
         public ObservableCollection<SelectableDesignerItem> Items
         {

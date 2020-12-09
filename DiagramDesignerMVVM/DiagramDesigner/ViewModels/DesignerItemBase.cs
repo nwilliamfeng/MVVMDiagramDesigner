@@ -9,8 +9,10 @@ namespace DiagramDesigner
 
 
 
-
-    public abstract class DesignerItemViewModelBase : SelectableDesignerItem
+    /// <summary>
+    /// 所有显示在图上的设计项基类
+    /// </summary>
+    public abstract class DesignerItemBase : SelectableDesignerItem
     {
         private double left;
         private double top;
@@ -20,14 +22,14 @@ namespace DiagramDesigner
         private double itemWidth = 65;
         private double itemHeight = 65;
 
-        public DesignerItemViewModelBase(int id, IDiagram parent, double left, double top) : base(id, parent)
+        public DesignerItemBase(int id, IDiagram parent, double left, double top) : base(id, parent)
         {
             this.left = left;
             this.top = top;
             Init();
         }
 
-        public DesignerItemViewModelBase(int id, IDiagram parent, double left, double top, double itemWidth, double itemHeight) : base(id, parent)
+        public DesignerItemBase(int id, IDiagram parent, double left, double top, double itemWidth, double itemHeight) : base(id, parent)
         {
             this.left = left;
             this.top = top;
@@ -36,7 +38,7 @@ namespace DiagramDesigner
             Init();
         }
 
-        public DesignerItemViewModelBase(): base()
+        public DesignerItemBase(): base()
         {
             Init();
         }

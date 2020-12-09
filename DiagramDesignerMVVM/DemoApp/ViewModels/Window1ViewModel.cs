@@ -21,7 +21,7 @@ namespace DemoApp
         private List<SelectableDesignerItem> itemsToRemove;
         private IMessageBoxService messageBoxService;
         private IDatabaseAccessService databaseAccessService;
-        private DiagramViewModel diagramViewModel = new DiagramViewModel();
+        private Diagram diagramViewModel = new Diagram();
         private bool isBusy = false;
 
 
@@ -36,7 +36,7 @@ namespace DemoApp
             }
 
             ToolBoxViewModel = new ToolBoxViewModel();
-            DiagramViewModel = new DiagramViewModel();
+            DiagramViewModel = new Diagram();
 
             DeleteSelectedItemsCommand = new SimpleCommand(ExecuteDeleteSelectedItemsCommand);
             CreateNewDiagramCommand = new SimpleCommand(ExecuteCreateNewDiagramCommand);
@@ -46,7 +46,7 @@ namespace DemoApp
 
             //OrthogonalPathFinder is a pretty bad attempt at finding path points, it just shows you, you can swap this out with relative
             //ease if you wish just create a new IPathFinder class and pass it in right here
-            ConnectorViewModel.PathFinder = new OrthogonalPathFinder();
+          ConnectorDesignerItem.PathFinder = new OrthogonalPathFinder();
 
         }
 
@@ -59,7 +59,7 @@ namespace DemoApp
         public ToolBoxViewModel ToolBoxViewModel { get; private set; }
 
 
-        public DiagramViewModel DiagramViewModel
+        public Diagram DiagramViewModel
         {
             get
             {
@@ -131,7 +131,7 @@ namespace DemoApp
             itemsToRemove = DiagramViewModel.SelectedItems;
             List<SelectableDesignerItem> connectionsToAlsoRemove = new List<SelectableDesignerItem>();
 
-            foreach (var connector in DiagramViewModel.Items.OfType<ConnectorViewModel>())
+            foreach (var connector in DiagramViewModel.Items.OfType<ConnectorDesignerItem>())
             {
                 if (ItemsToDeleteHasConnector(itemsToRemove, connector.SourceConnectorInfo))
                 {
@@ -245,7 +245,7 @@ namespace DemoApp
                 wholeDiagramToSave.DesignerItems.Add(new DiagramItemData(groupDesignerItem.Id, typeof(GroupDesignerItem)));
             }
             //Save all connections which should now have their Connection.DataItems filled in with correct Ids
-            foreach (var connectionVM in diagramViewModel.Items.OfType<ConnectorViewModel>())
+            foreach (var connectionVM in diagramViewModel.Items.OfType<ConnectorDesignerItem>())
             {
                 FullyCreatedConnectorInfo sinkConnector = connectionVM.SinkConnectorInfo as FullyCreatedConnectorInfo;
 
@@ -273,11 +273,11 @@ namespace DemoApp
                 return;
             }
 
-            Task<DiagramViewModel> task = Task.Factory.StartNew<DiagramViewModel>(() =>
+            Task<Diagram> task = Task.Factory.StartNew<Diagram>(() =>
             {
                 //ensure that itemsToRemove is cleared ready for any new changes within a session
                 itemsToRemove = new List<SelectableDesignerItem>();
-                DiagramViewModel diagramViewModel = new DiagramViewModel();
+                Diagram diagramViewModel = new Diagram();
 
                 wholeDiagramToLoad = databaseAccessService.FetchDiagram((int)SavedDiagramId.Value);
 
@@ -330,15 +330,15 @@ namespace DemoApp
             {
                 Connection connection = databaseAccessService.FetchConnection(connectionId);
 
-                DesignerItemViewModelBase sourceItem = GetConnectorDataItem(diagramViewModel, connection.SourceId, connection.SourceType);
+                DiagramDesigner.DesignerItemBase sourceItem = GetConnectorDataItem(diagramViewModel, connection.SourceId, connection.SourceType);
                 ConnectorOrientation sourceConnectorOrientation = GetOrientationForConnector(connection.SourceOrientation);
                 FullyCreatedConnectorInfo sourceConnectorInfo = GetFullConnectorInfo(connection.Id, sourceItem, sourceConnectorOrientation);
 
-                DesignerItemViewModelBase sinkItem = GetConnectorDataItem(diagramViewModel, connection.SinkId, connection.SinkType);
+                DiagramDesigner.DesignerItemBase sinkItem = GetConnectorDataItem(diagramViewModel, connection.SinkId, connection.SinkType);
                 ConnectorOrientation sinkConnectorOrientation = GetOrientationForConnector(connection.SinkOrientation);
                 FullyCreatedConnectorInfo sinkConnectorInfo = GetFullConnectorInfo(connection.Id, sinkItem, sinkConnectorOrientation);
 
-                ConnectorViewModel connectionVM = new ConnectorViewModel(connection.Id, diagramViewModel, sourceConnectorInfo, sinkConnectorInfo);
+                ConnectorDesignerItem connectionVM = new ConnectorDesignerItem(connection.Id, diagramViewModel, sourceConnectorInfo, sinkConnectorInfo);
                 diagramViewModel.Items.Add(connectionVM);
             }
         }
@@ -354,9 +354,9 @@ namespace DemoApp
                     foreach (var item in groupObject.Items)
                     {
 
-                        if (item is DesignerItemViewModelBase)
+                        if (item is DiagramDesigner.DesignerItemBase)
                         {
-                            DesignerItemViewModelBase tmp = (DesignerItemViewModelBase)item;
+                            DiagramDesigner.DesignerItemBase tmp = (DiagramDesigner.DesignerItemBase)item;
                             tmp.Top += groupObject.Top;
                             tmp.Left += groupObject.Left;
                         }
@@ -366,7 +366,7 @@ namespace DemoApp
 
                     // "cut" connections between DiagramItems and the Group
                     List<SelectableDesignerItem> GroupedItemsToRemove = new List<SelectableDesignerItem>();
-                    foreach (var connector in DiagramViewModel.Items.OfType<ConnectorViewModel>())
+                    foreach (var connector in DiagramViewModel.Items.OfType<ConnectorDesignerItem>())
                     {
                         if (groupObject == connector.SourceConnectorInfo.DataItem)
                         {
@@ -395,9 +395,9 @@ namespace DemoApp
                     groupItem.ItemHeight = rekt.Height;
                     foreach (var item in diagramViewModel.SelectedItems)
                     {
-                        if (item is DesignerItemViewModelBase)
+                        if (item is DiagramDesigner.DesignerItemBase)
                         {
-                            DesignerItemViewModelBase tmp = (DesignerItemViewModelBase)item;
+                            DiagramDesigner.DesignerItemBase tmp = (DiagramDesigner.DesignerItemBase)item;
                             tmp.Top -= rekt.Top;
                             tmp.Left -= rekt.Left;
                         }
@@ -411,7 +411,7 @@ namespace DemoApp
                     List<SelectableDesignerItem> GroupedItemsToRemove = DiagramViewModel.SelectedItems;
                     List<SelectableDesignerItem> connectionsToAlsoRemove = new List<SelectableDesignerItem>();
 
-                    foreach (var connector in DiagramViewModel.Items.OfType<ConnectorViewModel>())
+                    foreach (var connector in DiagramViewModel.Items.OfType<ConnectorDesignerItem>())
                     {
                         if (ItemsToDeleteHasConnector(GroupedItemsToRemove, connector.SourceConnectorInfo))
                         {
@@ -444,7 +444,7 @@ namespace DemoApp
             double x2 = Double.MinValue;
             double y2 = Double.MinValue;
 
-            foreach (DesignerItemViewModelBase item in items.OfType<DesignerItemViewModelBase>())
+            foreach (DiagramDesigner.DesignerItemBase item in items.OfType<DiagramDesigner.DesignerItemBase>())
             {
                 x1 = Math.Min(item.Left - margin, x1);
                 y1 = Math.Min(item.Top - margin, y1);
@@ -456,7 +456,7 @@ namespace DemoApp
             return new Rect(new Point(x1, y1), new Point(x2, y2));
         }
 
-        private FullyCreatedConnectorInfo GetFullConnectorInfo(int connectorId, DesignerItemViewModelBase dataItem, ConnectorOrientation connectorOrientation)
+        private FullyCreatedConnectorInfo GetFullConnectorInfo(int connectorId, DiagramDesigner.DesignerItemBase dataItem, ConnectorOrientation connectorOrientation)
         {
             switch (connectorOrientation)
             {
@@ -475,7 +475,7 @@ namespace DemoApp
             }
         }
 
-        private Type GetTypeOfDiagramItem(DesignerItemViewModelBase vmType)
+        private Type GetTypeOfDiagramItem(DiagramDesigner.DesignerItemBase vmType)
         {
             if (vmType is PersistDesignerItemViewModel)
                 return typeof(PersistDesignerItem);
@@ -492,9 +492,9 @@ namespace DemoApp
 
         }
 
-        private DesignerItemViewModelBase GetConnectorDataItem(IDiagram diagramViewModel, int conectorDataItemId, Type connectorDataItemType)
+        private DiagramDesigner.DesignerItemBase GetConnectorDataItem(IDiagram diagramViewModel, int conectorDataItemId, Type connectorDataItemType)
         {
-            DesignerItemViewModelBase dataItem = null;
+            DiagramDesigner.DesignerItemBase dataItem = null;
 
             if (connectorDataItemType == typeof(PersistDesignerItem))
             {
@@ -579,7 +579,7 @@ namespace DemoApp
                 wholeDiagramToAdjust.DesignerItems.Remove(diagramItemToRemoveFromParent);
                 databaseAccessService.DeleteSettingDesignerItem(itemToDelete.Id);
             }
-            if (itemToDelete is ConnectorViewModel)
+            if (itemToDelete is ConnectorDesignerItem)
             {
                 wholeDiagramToAdjust.ConnectionIds.Remove(itemToDelete.Id);
                 databaseAccessService.DeleteConnection(itemToDelete.Id);
