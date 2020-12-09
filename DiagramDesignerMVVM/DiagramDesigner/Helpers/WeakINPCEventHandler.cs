@@ -9,7 +9,7 @@ using System.Text;
 namespace DiagramDesigner.Helpers
 {
     //[DebuggerNonUserCode]
-    public sealed class WeakINPCEventHandler 
+     sealed class WeakINPCEventHandler 
     {
         private readonly WeakReference _targetReference;
         private readonly MethodInfo _method;

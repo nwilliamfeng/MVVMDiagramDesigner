@@ -6,7 +6,7 @@ using System.Windows;
 
 namespace DiagramDesigner
 {
-    public struct ConnectorInfo
+    internal struct ConnectorInfo
     {
         public double DesignerItemLeft { get; set; }
         public double DesignerItemTop { get; set; }

@@ -106,7 +106,6 @@
     <Compile Include="ViewModels\SelectableDesignerItem.cs" />
     <Compile Include="ViewModels\DesignerItemBase.cs" />
     <Compile Include="ViewModels\NotifyObject.cs" />
-    <Compile Include="ViewModels\SimpleCommand.cs" />
     <Page Include="Resources\Styles\DesignerItems.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -162,6 +161,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DiagramDesigner.Core\DiagramDesigner.Core.csproj">
+      <Project>{c8cf3279-25c1-43b1-b054-e61595d4373b}</Project>
+      <Name>DiagramDesigner.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

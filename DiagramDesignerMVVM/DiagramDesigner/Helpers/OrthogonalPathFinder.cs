@@ -11,7 +11,7 @@ namespace DiagramDesigner
     // I will keep on searching.
 
     // Helper class to provide an orthogonal connection path
-    public class OrthogonalPathFinder : IPathFinder
+     class OrthogonalPathFinder : IPathFinder
     {
         private const int margin = 10;
 

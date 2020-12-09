@@ -112,6 +112,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DiagramDesigner.Core\DiagramDesigner.Core.csproj">
+      <Project>{c8cf3279-25c1-43b1-b054-e61595d4373b}</Project>
+      <Name>DiagramDesigner.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DiagramDesigner\DiagramDesigner.csproj">
       <Project>{74872A86-6809-476B-95AB-6F3512317059}</Project>
       <Name>DiagramDesigner</Name>

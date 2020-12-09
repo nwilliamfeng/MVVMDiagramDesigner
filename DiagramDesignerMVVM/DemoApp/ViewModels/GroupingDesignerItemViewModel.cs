@@ -11,7 +11,7 @@ namespace DemoApp
     public class GroupingDesignerItemViewModel : DesignerItemBase, IDiagram
     {
 
-        private ObservableCollection<SelectableDesignerItem> items = new ObservableCollection<SelectableDesignerItem>();
+       
 
         public GroupingDesignerItemViewModel(int id, IDiagram parent, double left, double top)
             : base(id, parent, left, top)
@@ -36,10 +36,8 @@ namespace DemoApp
 
 
 
-        public ObservableCollection<SelectableDesignerItem> Items
-        {
-            get { return items; }
-        }
+        public ObservableCollection<SelectableDesignerItem> Items { get; private set; } = new ObservableCollection<SelectableDesignerItem>();
+       
 
         new public List<SelectableDesignerItem> SelectedItems
         {
@@ -52,7 +50,7 @@ namespace DemoApp
             {
                 SelectableDesignerItem item = (SelectableDesignerItem)parameter;
                 item.Parent = this;
-                items.Add(item);
+                Items.Add(item);
             }
         }
 
@@ -61,7 +59,7 @@ namespace DemoApp
             if (parameter is SelectableDesignerItem)
             {
                 SelectableDesignerItem item = (SelectableDesignerItem)parameter;
-                items.Remove(item);
+                Items.Remove(item);
             }
         }
 

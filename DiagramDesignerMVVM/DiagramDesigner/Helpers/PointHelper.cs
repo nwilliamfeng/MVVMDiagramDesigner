@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 
 namespace DiagramDesigner
 {
-    public class PointHelper
+    class PointHelper
     {
         public static Point GetPointForConnector(FullyCreatedConnectorInfo connector)
         {

@@ -36,7 +36,7 @@ namespace DiagramDesigner
         /// <summary>
         /// todo-- 默认用OrthogonalPathFinder ，需要替换
         /// </summary>
-        public static IPathFinder PathFinder { get; set; }= new OrthogonalPathFinder();
+        internal static IPathFinder PathFinder { get; set; }= new OrthogonalPathFinder();
 
         public bool IsFullConnection
         {
@@ -126,7 +126,7 @@ namespace DiagramDesigner
             }
         }
 
-        public ConnectorInfo ConnectorInfo(ConnectorOrientation orientation, double left, double top, Point position)
+        internal ConnectorInfo ConnectorInfo(ConnectorOrientation orientation, double left, double top, Point position)
         {
 
             return new ConnectorInfo()
