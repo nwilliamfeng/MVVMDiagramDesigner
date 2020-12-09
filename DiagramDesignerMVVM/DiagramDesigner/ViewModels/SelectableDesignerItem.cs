@@ -7,34 +7,32 @@ using System.Windows.Input;
 namespace DiagramDesigner
 {
 
-    public interface ISelectItems
-    {
-        SimpleCommand SelectItemCommand { get;  }
-    }
-
-
-    public abstract class SelectableDesignerItemViewModelBase : NotifyObject, ISelectItems
+   
+    /// <summary>
+    /// 支持选中的设计项
+    /// </summary>
+    public abstract class SelectableDesignerItem : NotifyObject
     {
         private bool isSelected;
 
-        public SelectableDesignerItemViewModelBase(int id, IDiagramViewModel parent)
+        public SelectableDesignerItem(int id, IDiagram parent)
         {
             this.Id = id;
             this.Parent = parent;
             Init();
         }
 
-        public SelectableDesignerItemViewModelBase()
+        public SelectableDesignerItem()
         {
             Init();
         }
 
-        public List<SelectableDesignerItemViewModelBase> SelectedItems
+        public List<SelectableDesignerItem> SelectedItems
         {
             get { return Parent.SelectedItems; }
         }
 
-        public IDiagramViewModel Parent { get; set; }
+        public IDiagram Parent { get; set; }
         public SimpleCommand SelectItemCommand { get; private set; }
         public int Id { get; set; }
 

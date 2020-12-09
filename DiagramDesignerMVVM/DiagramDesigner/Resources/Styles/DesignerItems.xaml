@@ -6,24 +6,18 @@
   
     <!-- Connector Style -->
     <Style TargetType="{x:Type s:Connector}">
-        <Setter Property="Width"
-                Value="8" />
-        <Setter Property="Height"
-                Value="8" />
-        <Setter Property="Cursor"
-                Value="Cross" />
-        <Setter Property="SnapsToDevicePixels"
-                Value="true" />
+        <Setter Property="Width" Value="8" />
+        <Setter Property="Height"  Value="8" />
+        <Setter Property="Cursor" Value="Cross" />
+        <Setter Property="SnapsToDevicePixels"  Value="true" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type s:Connector}">
                     <Grid>
                         <!-- transparent extra space makes connector easier to hit -->
-                        <Rectangle Fill="Transparent"
-                                   Margin="-2" />
-                        <Rectangle Fill="Lavender"
-                                   StrokeThickness="1"
-                                   Stroke="#AA000080" />
+                        <Rectangle Fill="Transparent" Margin="-2" />
+                        <!--方框颜色-->
+                        <Rectangle Fill="Lavender" StrokeThickness="1" Stroke="#AA000080" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -31,8 +25,7 @@
     </Style>
 
     <!-- ConnectorDecoratorTemplate Default Template -->
-    <ControlTemplate x:Key="ConnectorDecoratorTemplate"
-                     TargetType="{x:Type Control}">
+    <ControlTemplate x:Key="ConnectorDecoratorTemplate" TargetType="{x:Type Control}">
         <Grid Margin="-5">
             <s:Connector x:Name="Left"
                          Orientation="Left"

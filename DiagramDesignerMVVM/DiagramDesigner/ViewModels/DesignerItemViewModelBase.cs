@@ -10,7 +10,7 @@ namespace DiagramDesigner
 
 
 
-    public abstract class DesignerItemViewModelBase : SelectableDesignerItemViewModelBase
+    public abstract class DesignerItemViewModelBase : SelectableDesignerItem
     {
         private double left;
         private double top;
@@ -20,14 +20,14 @@ namespace DiagramDesigner
         private double itemWidth = 65;
         private double itemHeight = 65;
 
-        public DesignerItemViewModelBase(int id, IDiagramViewModel parent, double left, double top) : base(id, parent)
+        public DesignerItemViewModelBase(int id, IDiagram parent, double left, double top) : base(id, parent)
         {
             this.left = left;
             this.top = top;
             Init();
         }
 
-        public DesignerItemViewModelBase(int id, IDiagramViewModel parent, double left, double top, double itemWidth, double itemHeight) : base(id, parent)
+        public DesignerItemViewModelBase(int id, IDiagram parent, double left, double top, double itemWidth, double itemHeight) : base(id, parent)
         {
             this.left = left;
             this.top = top;

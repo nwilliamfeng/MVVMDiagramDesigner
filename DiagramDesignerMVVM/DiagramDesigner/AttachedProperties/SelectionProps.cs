@@ -43,8 +43,8 @@ namespace DiagramDesigner
 
         static void Fe_PreviewMouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            SelectableDesignerItemViewModelBase selectableDesignerItemViewModelBase =
-                (SelectableDesignerItemViewModelBase)((FrameworkElement)sender).DataContext;
+            SelectableDesignerItem selectableDesignerItemViewModelBase =
+                (SelectableDesignerItem)((FrameworkElement)sender).DataContext;
 
             if(selectableDesignerItemViewModelBase != null)
             {
@@ -62,29 +62,29 @@ namespace DiagramDesigner
                 }
                 else if (!selectableDesignerItemViewModelBase.IsSelected)
                 {
-                    foreach (SelectableDesignerItemViewModelBase item in selectableDesignerItemViewModelBase.Parent.SelectedItems)
+                    foreach (SelectableDesignerItem item in selectableDesignerItemViewModelBase.Parent.SelectedItems)
                     {
 
-                        if (item is IDiagramViewModel)
+                        if (item is IDiagram)
                         {
-                            IDiagramViewModel tmp = (IDiagramViewModel)item;
-                            foreach (SelectableDesignerItemViewModelBase gItem in tmp.Items)
+                            IDiagram tmp = (IDiagram)item;
+                            foreach (SelectableDesignerItem gItem in tmp.Items)
                             {
                                 gItem.IsSelected = false;
                             }
 
                         }
-                        if (selectableDesignerItemViewModelBase.Parent is SelectableDesignerItemViewModelBase)
+                        if (selectableDesignerItemViewModelBase.Parent is SelectableDesignerItem)
                         {
-                            SelectableDesignerItemViewModelBase tmp = (SelectableDesignerItemViewModelBase)selectableDesignerItemViewModelBase.Parent;
+                            SelectableDesignerItem tmp = (SelectableDesignerItem)selectableDesignerItemViewModelBase.Parent;
                             tmp.IsSelected = false;
                         }
                         item.IsSelected = false;
                     }
-                    if (selectableDesignerItemViewModelBase is IDiagramViewModel)
+                    if (selectableDesignerItemViewModelBase is IDiagram)
                     {
-                        IDiagramViewModel tmp = (IDiagramViewModel)selectableDesignerItemViewModelBase;
-                        foreach (SelectableDesignerItemViewModelBase gItem in tmp.Items)
+                        IDiagram tmp = (IDiagram)selectableDesignerItemViewModelBase;
+                        foreach (SelectableDesignerItem gItem in tmp.Items)
                         {
                             gItem.IsSelected = false;
                         }

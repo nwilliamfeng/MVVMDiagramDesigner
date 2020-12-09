@@ -8,12 +8,12 @@ using System.Collections.ObjectModel;
 
 namespace DemoApp
 {
-    public class GroupingDesignerItemViewModel : DesignerItemViewModelBase, IDiagramViewModel
+    public class GroupingDesignerItemViewModel : DesignerItemViewModelBase, IDiagram
     {
 
-        private ObservableCollection<SelectableDesignerItemViewModelBase> items = new ObservableCollection<SelectableDesignerItemViewModelBase>();
+        private ObservableCollection<SelectableDesignerItem> items = new ObservableCollection<SelectableDesignerItem>();
 
-        public GroupingDesignerItemViewModel(int id, IDiagramViewModel parent, double left, double top)
+        public GroupingDesignerItemViewModel(int id, IDiagram parent, double left, double top)
             : base(id, parent, left, top)
         {
             Init();
@@ -24,7 +24,7 @@ namespace DemoApp
             Init();
         }
 
-        public GroupingDesignerItemViewModel(int id, IDiagramViewModel parent, double left, double top, double itemWidth, double itemHeight) : base(id, parent, left, top, itemWidth, itemHeight)
+        public GroupingDesignerItemViewModel(int id, IDiagram parent, double left, double top, double itemWidth, double itemHeight) : base(id, parent, left, top, itemWidth, itemHeight)
         {
             Init();
         }
@@ -36,21 +36,21 @@ namespace DemoApp
 
 
 
-        public ObservableCollection<SelectableDesignerItemViewModelBase> Items
+        public ObservableCollection<SelectableDesignerItem> Items
         {
             get { return items; }
         }
 
-        new public List<SelectableDesignerItemViewModelBase> SelectedItems
+        new public List<SelectableDesignerItem> SelectedItems
         {
             get { return Items.Where(x => x.IsSelected).ToList(); }
         }
 
         private void ExecuteAddItemCommand(object parameter)
         {
-            if (parameter is SelectableDesignerItemViewModelBase)
+            if (parameter is SelectableDesignerItem)
             {
-                SelectableDesignerItemViewModelBase item = (SelectableDesignerItemViewModelBase)parameter;
+                SelectableDesignerItem item = (SelectableDesignerItem)parameter;
                 item.Parent = this;
                 items.Add(item);
             }
@@ -58,16 +58,16 @@ namespace DemoApp
 
         private void ExecuteRemoveItemCommand(object parameter)
         {
-            if (parameter is SelectableDesignerItemViewModelBase)
+            if (parameter is SelectableDesignerItem)
             {
-                SelectableDesignerItemViewModelBase item = (SelectableDesignerItemViewModelBase)parameter;
+                SelectableDesignerItem item = (SelectableDesignerItem)parameter;
                 items.Remove(item);
             }
         }
 
         private void ExecuteClearSelectedItemsCommand(object parameter)
         {
-            foreach (SelectableDesignerItemViewModelBase item in Items)
+            foreach (SelectableDesignerItem item in Items)
             {
                 item.IsSelected = false;
             }

@@ -98,12 +98,12 @@
     <Compile Include="Helpers\DragObject.cs" />
     <Compile Include="Helpers\ToolBoxData.cs" />
     <Compile Include="ViewModels\DiagramViewModel.cs" />
-    <Compile Include="ViewModels\IDiagramViewModel.cs" />
+    <Compile Include="ViewModels\IDiagram.cs" />
     <Compile Include="ViewModels\PartCreatedConnectionInfo.cs" />
     <Compile Include="StyleSelectors\DesignerItemsControlItemStyleSelector.cs" />
     <Compile Include="ViewModels\ConnectorViewModel.cs" />
     <Compile Include="ViewModels\FullyCreatedConnectorInfo.cs" />
-    <Compile Include="ViewModels\SelectableDesignerItemViewModelBase.cs" />
+    <Compile Include="ViewModels\SelectableDesignerItem.cs" />
     <Compile Include="ViewModels\DesignerItemViewModelBase.cs" />
     <Compile Include="ViewModels\NotifyObject.cs" />
     <Compile Include="ViewModels\SimpleCommand.cs" />
@@ -112,30 +112,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\DiagramControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Styles\Expander.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Styles\GroupBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Styles\Shared.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\Styles\ToolTip.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

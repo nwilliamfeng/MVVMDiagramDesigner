@@ -12,7 +12,6 @@ namespace DiagramDesigner
         private Point? startPoint;
         private Point? endPoint;
         private Pen rubberbandPen;
-
         private DesignerCanvas designerCanvas;
 
         public RubberbandAdorner(DesignerCanvas designerCanvas, Point? dragStartPoint)
@@ -83,13 +82,13 @@ namespace DiagramDesigner
 
         private void UpdateSelection()
         {
-            IDiagramViewModel vm = (designerCanvas.DataContext as IDiagramViewModel);
+            IDiagram vm = (designerCanvas.DataContext as IDiagram);
             Rect rubberBand = new Rect(startPoint.Value, endPoint.Value);
             ItemsControl itemsControl = GetParent<ItemsControl>(typeof (ItemsControl), designerCanvas);
 
-            foreach (SelectableDesignerItemViewModelBase item in vm.Items)
+            foreach (SelectableDesignerItem item in vm.Items)
             {
-                if (item is SelectableDesignerItemViewModelBase)
+                if (item is SelectableDesignerItem)
                 {
                     DependencyObject container = itemsControl.ItemContainerGenerator.ContainerFromItem(item);
 

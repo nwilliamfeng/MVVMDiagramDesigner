@@ -8,7 +8,7 @@ using DiagramDesigner.Helpers;
 
 namespace DiagramDesigner
 {
-    public class ConnectorViewModel : SelectableDesignerItemViewModelBase
+    public class ConnectorViewModel : SelectableDesignerItem
     {
         private FullyCreatedConnectorInfo sourceConnectorInfo;
         private ConnectorInfoBase sinkConnectorInfo;
@@ -19,7 +19,7 @@ namespace DiagramDesigner
         private Rect area;
 
 
-        public ConnectorViewModel(int id, IDiagramViewModel parent, 
+        public ConnectorViewModel(int id, IDiagram parent, 
             FullyCreatedConnectorInfo sourceConnectorInfo, FullyCreatedConnectorInfo sinkConnectorInfo) : base(id,parent)
         {
             Init(sourceConnectorInfo, sinkConnectorInfo);

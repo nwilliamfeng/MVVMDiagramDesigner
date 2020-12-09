@@ -18,7 +18,7 @@ namespace DemoApp
 
         private List<int> savedDiagrams = new List<int>();
         private int? savedDiagramId;
-        private List<SelectableDesignerItemViewModelBase> itemsToRemove;
+        private List<SelectableDesignerItem> itemsToRemove;
         private IMessageBoxService messageBoxService;
         private IDatabaseAccessService databaseAccessService;
         private DiagramViewModel diagramViewModel = new DiagramViewModel();
@@ -129,7 +129,7 @@ namespace DemoApp
         private void ExecuteDeleteSelectedItemsCommand(object parameter)
         {
             itemsToRemove = DiagramViewModel.SelectedItems;
-            List<SelectableDesignerItemViewModelBase> connectionsToAlsoRemove = new List<SelectableDesignerItemViewModelBase>();
+            List<SelectableDesignerItem> connectionsToAlsoRemove = new List<SelectableDesignerItem>();
 
             foreach (var connector in DiagramViewModel.Items.OfType<ConnectorViewModel>())
             {
@@ -154,7 +154,7 @@ namespace DemoApp
         private void ExecuteCreateNewDiagramCommand(object parameter)
         {
             //ensure that itemsToRemove is cleared ready for any new changes within a session
-            itemsToRemove = new List<SelectableDesignerItemViewModelBase>();
+            itemsToRemove = new List<SelectableDesignerItem>();
             SavedDiagramId = null;
             DiagramViewModel.CreateNewDiagramCommand.Execute(null);
         }
@@ -194,7 +194,7 @@ namespace DemoApp
                 }
 
                 //ensure that itemsToRemove is cleared ready for any new changes within a session
-                itemsToRemove = new List<SelectableDesignerItemViewModelBase>();
+                itemsToRemove = new List<SelectableDesignerItem>();
 
                 SavePersistDesignerItem(wholeDiagramToSave, DiagramViewModel);
 
@@ -217,7 +217,7 @@ namespace DemoApp
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
         }
 
-        private void SavePersistDesignerItem(IDiagramItem wholeDiagramToSave, IDiagramViewModel diagramViewModel)
+        private void SavePersistDesignerItem(IDiagramItem wholeDiagramToSave, IDiagram diagramViewModel)
         {
             //Save all PersistDesignerItemViewModel
             foreach (var persistItemVM in diagramViewModel.Items.OfType<PersistDesignerItemViewModel>())
@@ -276,7 +276,7 @@ namespace DemoApp
             Task<DiagramViewModel> task = Task.Factory.StartNew<DiagramViewModel>(() =>
             {
                 //ensure that itemsToRemove is cleared ready for any new changes within a session
-                itemsToRemove = new List<SelectableDesignerItemViewModelBase>();
+                itemsToRemove = new List<SelectableDesignerItem>();
                 DiagramViewModel diagramViewModel = new DiagramViewModel();
 
                 wholeDiagramToLoad = databaseAccessService.FetchDiagram((int)SavedDiagramId.Value);
@@ -294,7 +294,7 @@ namespace DemoApp
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
         }
 
-        private void LoadPerstistDesignerItems(IDiagramItem wholeDiagramToLoad, IDiagramViewModel diagramViewModel)
+        private void LoadPerstistDesignerItems(IDiagramItem wholeDiagramToLoad, IDiagram diagramViewModel)
         {
             //load diagram items
             foreach (DiagramItemData diagramItemData in wholeDiagramToLoad.DesignerItems)
@@ -365,7 +365,7 @@ namespace DemoApp
                     }
 
                     // "cut" connections between DiagramItems and the Group
-                    List<SelectableDesignerItemViewModelBase> GroupedItemsToRemove = new List<SelectableDesignerItemViewModelBase>();
+                    List<SelectableDesignerItem> GroupedItemsToRemove = new List<SelectableDesignerItem>();
                     foreach (var connector in DiagramViewModel.Items.OfType<ConnectorViewModel>())
                     {
                         if (groupObject == connector.SourceConnectorInfo.DataItem)
@@ -408,8 +408,8 @@ namespace DemoApp
 
                     // "cut" connections between DiagramItems which are going to be grouped and
                     // Diagramitems which are not going to be grouped
-                    List<SelectableDesignerItemViewModelBase> GroupedItemsToRemove = DiagramViewModel.SelectedItems;
-                    List<SelectableDesignerItemViewModelBase> connectionsToAlsoRemove = new List<SelectableDesignerItemViewModelBase>();
+                    List<SelectableDesignerItem> GroupedItemsToRemove = DiagramViewModel.SelectedItems;
+                    List<SelectableDesignerItem> connectionsToAlsoRemove = new List<SelectableDesignerItem>();
 
                     foreach (var connector in DiagramViewModel.Items.OfType<ConnectorViewModel>())
                     {
@@ -437,7 +437,7 @@ namespace DemoApp
 
         }
 
-        private static Rect GetBoundingRectangle(IEnumerable<SelectableDesignerItemViewModelBase> items, double margin)
+        private static Rect GetBoundingRectangle(IEnumerable<SelectableDesignerItem> items, double margin)
         {
             double x1 = Double.MaxValue;
             double y1 = Double.MaxValue;
@@ -492,7 +492,7 @@ namespace DemoApp
 
         }
 
-        private DesignerItemViewModelBase GetConnectorDataItem(IDiagramViewModel diagramViewModel, int conectorDataItemId, Type connectorDataItemType)
+        private DesignerItemViewModelBase GetConnectorDataItem(IDiagram diagramViewModel, int conectorDataItemId, Type connectorDataItemType)
         {
             DesignerItemViewModelBase dataItem = null;
 
@@ -556,14 +556,14 @@ namespace DemoApp
             return result;
         }
 
-        private bool ItemsToDeleteHasConnector(List<SelectableDesignerItemViewModelBase> itemsToRemove, FullyCreatedConnectorInfo connector)
+        private bool ItemsToDeleteHasConnector(List<SelectableDesignerItem> itemsToRemove, FullyCreatedConnectorInfo connector)
         {
             return itemsToRemove.Contains(connector.DataItem);
         }
 
 
 
-        private void DeleteFromDatabase(DiagramItem wholeDiagramToAdjust, SelectableDesignerItemViewModelBase itemToDelete)
+        private void DeleteFromDatabase(DiagramItem wholeDiagramToAdjust, SelectableDesignerItem itemToDelete)
         {
 
             //make sure the item is removes from Diagram as well as removing them as individual items from database

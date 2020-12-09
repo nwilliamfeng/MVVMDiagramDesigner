@@ -40,7 +40,7 @@ namespace DiagramDesigner.Controls
                     item.Top += deltaVertical;
 
                     // prevent dragging items out of groupitem
-                    if (item.Parent is IDiagramViewModel && item.Parent is DesignerItemViewModelBase)
+                    if (item.Parent is IDiagram && item.Parent is DesignerItemViewModelBase)
                     {
                         DesignerItemViewModelBase groupItem = (DesignerItemViewModelBase)item.Parent;
                         if (item.Left + item.ItemWidth >= groupItem.ItemWidth) item.Left = groupItem.ItemWidth - item.ItemWidth;

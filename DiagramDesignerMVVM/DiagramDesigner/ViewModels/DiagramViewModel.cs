@@ -7,9 +7,9 @@ using System.Collections.ObjectModel;
 
 namespace DiagramDesigner
 {
-    public class DiagramViewModel : NotifyObject, IDiagramViewModel
+    public class DiagramViewModel : NotifyObject, IDiagram
     {
-        private ObservableCollection<SelectableDesignerItemViewModelBase> items = new ObservableCollection<SelectableDesignerItemViewModelBase>();
+        private ObservableCollection<SelectableDesignerItem> items = new ObservableCollection<SelectableDesignerItem>();
 
         public DiagramViewModel()
         {
@@ -38,21 +38,21 @@ namespace DiagramDesigner
         public SimpleCommand ClearSelectedItemsCommand { get; private set; }
         public SimpleCommand CreateNewDiagramCommand { get; private set; }
 
-        public ObservableCollection<SelectableDesignerItemViewModelBase> Items
+        public ObservableCollection<SelectableDesignerItem> Items
         {
             get { return items; }
         }
 
-        public List<SelectableDesignerItemViewModelBase> SelectedItems
+        public List<SelectableDesignerItem> SelectedItems
         {
             get { return Items.Where(x => x.IsSelected).ToList(); }
         }
 
         private void ExecuteAddItemCommand(object parameter)
         {
-            if (parameter is SelectableDesignerItemViewModelBase)
+            if (parameter is SelectableDesignerItem)
             {
-                SelectableDesignerItemViewModelBase item = (SelectableDesignerItemViewModelBase)parameter;
+                SelectableDesignerItem item = (SelectableDesignerItem)parameter;
                 item.Parent = this;
                 items.Add(item);
             }
@@ -60,16 +60,16 @@ namespace DiagramDesigner
 
         private void ExecuteRemoveItemCommand(object parameter)
         {
-            if (parameter is SelectableDesignerItemViewModelBase)
+            if (parameter is SelectableDesignerItem)
             {
-                SelectableDesignerItemViewModelBase item = (SelectableDesignerItemViewModelBase)parameter;
+                SelectableDesignerItem item = (SelectableDesignerItem)parameter;
                 items.Remove(item);
             }
         }
 
         private void ExecuteClearSelectedItemsCommand(object parameter)
         {
-            foreach (SelectableDesignerItemViewModelBase item in Items)
+            foreach (SelectableDesignerItem item in Items)
             {
                 item.IsSelected = false;
             }

@@ -6,12 +6,12 @@ using System.Collections.ObjectModel;
 
 namespace DiagramDesigner
 {
-    public interface IDiagramViewModel
+    public interface IDiagram
     {
         SimpleCommand AddItemCommand { get; }
         SimpleCommand RemoveItemCommand { get;  }
         SimpleCommand ClearSelectedItemsCommand { get;  }
-        List<SelectableDesignerItemViewModelBase> SelectedItems { get; }
-        ObservableCollection<SelectableDesignerItemViewModelBase> Items { get; }
+        List<SelectableDesignerItem> SelectedItems { get; }
+        ObservableCollection<SelectableDesignerItem> Items { get; }
     }
 }

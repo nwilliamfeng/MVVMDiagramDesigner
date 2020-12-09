@@ -60,7 +60,7 @@ namespace DiagramDesigner
                     // drag operation we cache the start point
                     rubberbandSelectionStartPoint = e.GetPosition(this);
 
-                    IDiagramViewModel vm = (this.DataContext as IDiagramViewModel);
+                    IDiagram vm = (this.DataContext as IDiagram);
                     if (!(Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
                     {
                         vm.ClearSelectedItemsCommand.Execute(null);
@@ -194,13 +194,13 @@ namespace DiagramDesigner
             if (dragObject != null)
             {
 
-                (DataContext as IDiagramViewModel).ClearSelectedItemsCommand.Execute(null);
+                (DataContext as IDiagram).ClearSelectedItemsCommand.Execute(null);
                 Point position = e.GetPosition(this);
                 DesignerItemViewModelBase itemBase = (DesignerItemViewModelBase)Activator.CreateInstance(dragObject.ContentType);
                 itemBase.Left = Math.Max(0, position.X - itemBase.ItemWidth / 2);
                 itemBase.Top = Math.Max(0, position.Y - itemBase.ItemHeight / 2);
                 itemBase.IsSelected = true;
-                (DataContext as IDiagramViewModel).AddItemCommand.Execute(itemBase);
+                (DataContext as IDiagram).AddItemCommand.Execute(itemBase);
             }
             e.Handled = true;
         }

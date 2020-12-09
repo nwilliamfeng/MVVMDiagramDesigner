@@ -12,7 +12,7 @@ namespace DemoApp
     {
         private IUIVisualizerService visualiserService;
 
-        public SettingsDesignerItemViewModel(int id, IDiagramViewModel parent, double left, double top, string setting1)
+        public SettingsDesignerItemViewModel(int id, IDiagram parent, double left, double top, string setting1)
             : base(id, parent, left, top)
         {
 
@@ -20,7 +20,7 @@ namespace DemoApp
             Init();
         }
 
-        public SettingsDesignerItemViewModel(int id, IDiagramViewModel parent, double left, double top, double itemWidth, double itemHeight, string setting1)
+        public SettingsDesignerItemViewModel(int id, IDiagram parent, double left, double top, double itemWidth, double itemHeight, string setting1)
              : base(id, parent, left, top, itemWidth, itemHeight)
         {
 
