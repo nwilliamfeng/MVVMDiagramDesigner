@@ -86,9 +86,9 @@ namespace DiagramDesigner
             Rect rubberBand = new Rect(startPoint.Value, endPoint.Value);
             ItemsControl itemsControl = GetParent<ItemsControl>(typeof (ItemsControl), designerCanvas);
 
-            foreach (SelectableDesignerItem item in vm.Items)
+            foreach (DesignerItemBase item in vm.Items)
             {
-                if (item is SelectableDesignerItem)
+                if (item is DesignerItemBase)
                 {
                     DependencyObject container = itemsControl.ItemContainerGenerator.ContainerFromItem(item);
 

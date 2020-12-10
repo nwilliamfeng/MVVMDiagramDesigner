@@ -14,7 +14,7 @@ namespace DemoApp
     {
 
         private List<int> _savedDiagrams = new List<int>();
-        private List<SelectableDesignerItem> _itemsToRemove;
+        private List<DesignerItemBase> _itemsToRemove;
         private IMessageBoxService _messageBoxService;
     
         private Diagram _diagramViewModel = new Diagram();
@@ -27,11 +27,23 @@ namespace DemoApp
             
             DeleteSelectedItemsCommand = new SimpleCommand(ExecuteDeleteSelectedItemsCommand);
             CreateNewDiagramCommand = new SimpleCommand(ExecuteCreateNewDiagramCommand);
-           // SaveDiagramCommand = new SimpleCommand(ExecuteSaveDiagramCommand);
+            // SaveDiagramCommand = new SimpleCommand(ExecuteSaveDiagramCommand);
             //LoadDiagramCommand = new SimpleCommand(ExecuteLoadDiagramCommand);
-          //  GroupCommand = new SimpleCommand(ExecuteGroupCommand);
+            //  GroupCommand = new SimpleCommand(ExecuteGroupCommand);
 
-          
+            SettingsDesignerItemViewModel item1 = new SettingsDesignerItemViewModel();
+            item1.Parent = DiagramViewModel;
+            item1.Left = 100;
+            item1.Top = 100;
+            DiagramViewModel.Items.Add(item1);
+
+            PersistDesignerItemViewModel item2 = new PersistDesignerItemViewModel();
+            item2.Parent = DiagramViewModel;
+            item2.Left = 300;
+            item2.Top = 300;
+            DiagramViewModel.Items.Add(item2);
+
+            item1.Connect(item2, ConnectorOrientation.Right, ConnectorOrientation.Left);
         }
 
 
@@ -62,7 +74,7 @@ namespace DemoApp
         private void ExecuteCreateNewDiagramCommand(object parameter)
         {
             //ensure that itemsToRemove is cleared ready for any new changes within a session
-            _itemsToRemove = new List<SelectableDesignerItem>();
+            _itemsToRemove = new List<DesignerItemBase>();
            
             DiagramViewModel.CreateNewDiagramCommand.Execute(null);
         }

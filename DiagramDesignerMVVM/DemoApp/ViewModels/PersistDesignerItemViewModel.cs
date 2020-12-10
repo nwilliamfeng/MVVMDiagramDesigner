@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace DemoApp
 {
-    public class PersistDesignerItemViewModel : DesignerItemBase, ISupportDataChanges
+    public class PersistDesignerItemViewModel : ElementDesignerItem, ISupportDataChanges
     {
         private IUIVisualizerService visualiserService;
 

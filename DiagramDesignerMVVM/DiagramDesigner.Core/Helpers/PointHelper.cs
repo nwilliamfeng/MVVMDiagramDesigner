@@ -12,6 +12,13 @@ namespace DiagramDesigner
 {
     class PointHelper
     {
+        /// <summary>
+        /// 连接器的Size，默认Width和Height都为8
+        /// </summary>
+        public static readonly Size ConnectorSize = new Size(8,8);
+
+     
+
         public static Point GetPointForConnector(FullyCreatedConnectorInfo connector)
         {
             Point point = new Point();
@@ -19,16 +26,16 @@ namespace DiagramDesigner
             switch (connector.Orientation)
             {
                 case ConnectorOrientation.Top:
-                    point = new Point(connector.DataItem.Left + (connector.DataItem.ItemWidth / 2), connector.DataItem.Top - (ConnectorInfoBase.ConnectorHeight));
+                    point = new Point(connector.DataItem.Left + (connector.DataItem.ItemWidth / 2), connector.DataItem.Top - (ConnectorSize.Height));
                     break;
                 case ConnectorOrientation.Bottom:
-                    point = new Point(connector.DataItem.Left + (connector.DataItem.ItemWidth / 2), (connector.DataItem.Top + connector.DataItem.ItemHeight) + (ConnectorInfoBase.ConnectorHeight / 2));
+                    point = new Point(connector.DataItem.Left + (connector.DataItem.ItemWidth / 2), (connector.DataItem.Top + connector.DataItem.ItemHeight) + (ConnectorSize.Height / 2));
                     break;
                 case ConnectorOrientation.Right:
-                    point = new Point(connector.DataItem.Left + connector.DataItem.ItemWidth + (ConnectorInfoBase.ConnectorWidth), connector.DataItem.Top + (connector.DataItem.ItemHeight / 2));
+                    point = new Point(connector.DataItem.Left + connector.DataItem.ItemWidth + (ConnectorSize.Width), connector.DataItem.Top + (connector.DataItem.ItemHeight / 2));
                     break;
                 case ConnectorOrientation.Left:
-                    point = new Point(connector.DataItem.Left - ConnectorInfoBase.ConnectorWidth, connector.DataItem.Top + (connector.DataItem.ItemHeight / 2));
+                    point = new Point(connector.DataItem.Left - ConnectorSize.Width, connector.DataItem.Top + (connector.DataItem.ItemHeight / 2));
                     break;
             }
 

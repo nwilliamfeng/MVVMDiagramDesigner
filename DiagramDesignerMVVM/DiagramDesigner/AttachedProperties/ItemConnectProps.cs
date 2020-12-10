@@ -45,9 +45,9 @@ namespace DiagramDesigner
 
         static void Fe_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (((FrameworkElement)sender).DataContext is DesignerItemBase)
+            if (((FrameworkElement)sender).DataContext is ElementDesignerItem)
             {
-                DesignerItemBase designerItem = (DesignerItemBase)((FrameworkElement)sender).DataContext;
+                ElementDesignerItem designerItem = (ElementDesignerItem)((FrameworkElement)sender).DataContext;
                 designerItem.ShowConnectors = true;
             }
         }

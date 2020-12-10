@@ -8,7 +8,7 @@ using System.Collections.ObjectModel;
 
 namespace DemoApp
 {
-    public class GroupingDesignerItemViewModel : DesignerItemBase, IDiagram
+    public class GroupingDesignerItemViewModel : ElementDesignerItem, IDiagram
     {
 
        
@@ -36,19 +36,19 @@ namespace DemoApp
 
 
 
-        public ObservableCollection<SelectableDesignerItem> Items { get; private set; } = new ObservableCollection<SelectableDesignerItem>();
+        public ObservableCollection<DesignerItemBase> Items { get; private set; } = new ObservableCollection<DesignerItemBase>();
        
 
-        new public List<SelectableDesignerItem> SelectedItems
+        new public List<DesignerItemBase> SelectedItems
         {
             get { return Items.Where(x => x.IsSelected).ToList(); }
         }
 
         private void ExecuteAddItemCommand(object parameter)
         {
-            if (parameter is SelectableDesignerItem)
+            if (parameter is DesignerItemBase)
             {
-                SelectableDesignerItem item = (SelectableDesignerItem)parameter;
+                DesignerItemBase item = (DesignerItemBase)parameter;
                 item.Parent = this;
                 Items.Add(item);
             }
@@ -56,16 +56,16 @@ namespace DemoApp
 
         private void ExecuteRemoveItemCommand(object parameter)
         {
-            if (parameter is SelectableDesignerItem)
+            if (parameter is DesignerItemBase)
             {
-                SelectableDesignerItem item = (SelectableDesignerItem)parameter;
+                DesignerItemBase item = (DesignerItemBase)parameter;
                 Items.Remove(item);
             }
         }
 
         private void ExecuteClearSelectedItemsCommand(object parameter)
         {
-            foreach (SelectableDesignerItem item in Items)
+            foreach (DesignerItemBase item in Items)
             {
                 item.IsSelected = false;
             }

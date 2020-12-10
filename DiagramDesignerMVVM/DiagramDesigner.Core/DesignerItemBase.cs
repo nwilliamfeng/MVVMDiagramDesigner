@@ -6,103 +6,66 @@ using System.Windows.Input;
 
 namespace DiagramDesigner
 {
-
-
-
     /// <summary>
-    /// 所有显示在图上的设计项基类
+    ///  设计项基类
     /// </summary>
-    public abstract class DesignerItemBase : SelectableDesignerItem
+    public abstract class DesignerItemBase : NotifyObject
     {
-        private double _left;
-        private double _top;
-        private bool showConnectors = false;
-        private List<FullyCreatedConnectorInfo> connectors = new List<FullyCreatedConnectorInfo>();
+        private bool isSelected;
 
-        private double _itemWidth = 65;
-        private double _itemHeight = 65;
-
-        public DesignerItemBase(int id, IDiagram parent, double left, double top) : base(id, parent)
+        public DesignerItemBase(int id, IDiagram parent):this()
         {
-            this._left = left;
-            this._top = top;
-            Init();
+            this.Id = id;
+            this.Parent = parent;           
         }
 
-        public DesignerItemBase(int id, IDiagram parent, double left, double top, double itemWidth, double itemHeight) : base(id, parent)
-        {
-            this._left = left;
-            this._top = top;
-            this._itemWidth = itemWidth;
-            this._itemHeight = itemHeight;
-            Init();
-        }
+        public DesignerItemBase()=> SelectItemCommand = new SimpleCommand(ExecuteSelectItemCommand);
 
-        public DesignerItemBase(): base()
-        {
-            Init();
-        }
 
-        public double ItemWidth
-        {
-            get => _itemWidth;
-            set => this.Set(ref _itemWidth, value);
-        }
+        public List<DesignerItemBase> SelectedItems=> Parent.SelectedItems;
+        
 
-        public double ItemHeight
-        {
-            get => _itemHeight;
-            set => this.Set(ref _itemHeight, value);            
-        }
+        public IDiagram Parent { get; set; }
 
-        public FullyCreatedConnectorInfo TopConnector=> connectors[0];
+        public ICommand SelectItemCommand { get; }
 
-        public FullyCreatedConnectorInfo BottomConnector=> connectors[1];
+        public int Id { get; set; }
 
-        public FullyCreatedConnectorInfo LeftConnector => connectors[2];
-
-        public FullyCreatedConnectorInfo RightConnector=> connectors[3];
-
-        public bool ShowConnectors
+        public bool IsSelected
         {
             get
             {
-                return showConnectors;
+                return isSelected;
             }
             set
             {
-                if (showConnectors != value)
+                if (isSelected != value)
                 {
-                    showConnectors = value;
-                    TopConnector.ShowConnectors = value;
-                    BottomConnector.ShowConnectors = value;
-                    RightConnector.ShowConnectors = value;
-                    LeftConnector.ShowConnectors = value;
-                    NotifyOfPropertyChange("ShowConnectors");
+                    
+                    isSelected = value;
+                    NotifyOfPropertyChange("IsSelected");
                 }
             }
         }
 
-        public double Left
+        private void ExecuteSelectItemCommand(object param)
         {
-            get => _left;
-            set => this.Set(ref _left, value);          
+            SelectItem((bool)param, !IsSelected);
         }
-
-        public double Top
+        
+        private void SelectItem(bool newselect, bool select)
         {
-            get => _top;
-            set => this.Set(ref _top, value);           
+            if (newselect)
+            {
+                foreach (var designerItemViewModelBase in Parent.SelectedItems.ToList())
+                {
+                    designerItemViewModelBase.isSelected = false;
+                }
+            }
+
+            IsSelected = select;
         }
-
-
-        private void Init()
-        {
-            connectors.Add(new FullyCreatedConnectorInfo(this, ConnectorOrientation.Top));
-            connectors.Add(new FullyCreatedConnectorInfo(this, ConnectorOrientation.Bottom));
-            connectors.Add(new FullyCreatedConnectorInfo(this, ConnectorOrientation.Left));
-            connectors.Add(new FullyCreatedConnectorInfo(this, ConnectorOrientation.Right));
-        }
-
+    
+        
     }
 }

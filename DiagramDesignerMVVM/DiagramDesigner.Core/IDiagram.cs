@@ -18,8 +18,8 @@ namespace DiagramDesigner
 
         ICommand ClearSelectedItemsCommand { get;  }
 
-        List<SelectableDesignerItem> SelectedItems { get; }
+        List<DesignerItemBase> SelectedItems { get; }
 
-        ObservableCollection<SelectableDesignerItem> Items { get; }
+        ObservableCollection<DesignerItemBase> Items { get; }
     }
 }

@@ -27,7 +27,7 @@ namespace DiagramDesigner
             if (itemsControl == null)
                 throw new InvalidOperationException("DesignerItemsControlItemStyleSelector : Could not find ItemsControl");
 
-            if(item is DesignerItemBase)
+            if(item is ElementDesignerItem)
             {
 
                 return (Style)itemsControl.FindResource("designerItemStyle");

@@ -11,15 +11,15 @@ namespace DiagramDesigner
     /// <summary>
     /// 连接器设计项
     /// </summary>
-    public class ConnectorDesignerItem : SelectableDesignerItem
+    public class ConnectorDesignerItem : DesignerItemBase
     {
-        private FullyCreatedConnectorInfo sourceConnectorInfo;
-        private ConnectorInfoBase sinkConnectorInfo;
-        private Point sourceB;
-        private Point sourceA;
-        private List<Point> connectionPoints;
-        private Point endPoint;
-        private Rect area;
+        private FullyCreatedConnectorInfo _sourceConnectorInfo;
+        private ConnectorInfoBase _sinkConnectorInfo;
+        private Point _sourceB;
+        private Point _sourceA;
+        private List<Point> _connectionPoints;
+        private Point _endPoint;
+        private Rect _area;
 
 
         public ConnectorDesignerItem(int id, IDiagram parent, 
@@ -38,24 +38,22 @@ namespace DiagramDesigner
         /// </summary>
         internal static IPathFinder PathFinder { get; set; }= new OrthogonalPathFinder();
 
-        public bool IsFullConnection
-        {
-            get { return sinkConnectorInfo is FullyCreatedConnectorInfo; }
-        }
+        public bool IsFullConnection => _sinkConnectorInfo is FullyCreatedConnectorInfo;
+
 
         public Point SourceA
         {
             get
             {
-                return sourceA;
+                return _sourceA;
             }
             set
             {
-                if (sourceA != value)
+                if (_sourceA != value)
                 {
-                    sourceA = value;
+                    _sourceA = value;
                     UpdateArea();
-                    NotifyOfPropertyChange("SourceA");
+                    NotifyOfPropertyChange(()=>SourceA);
                 }
             }
         }
@@ -64,97 +62,74 @@ namespace DiagramDesigner
         {
             get
             {
-                return sourceB;
+                return _sourceB;
             }
             set
             {
-                if (sourceB != value)
+                if (_sourceB != value)
                 {
-                    sourceB = value;
+                    _sourceB = value;
                     UpdateArea();
-                    NotifyOfPropertyChange("SourceB");
+                    NotifyOfPropertyChange(()=>SourceB);
                 }
             }
         }
 
         public List<Point> ConnectionPoints
         {
-            get
-            {
-                return connectionPoints;
-            }
-            private set
-            {
-                if (connectionPoints != value)
-                {
-                    connectionPoints = value;
-                    NotifyOfPropertyChange("ConnectionPoints");
-                }
-            }
+            get => _connectionPoints;
+            private set => this.Set(ref _connectionPoints, value);          
         }
 
         public Point EndPoint
         {
-            get
-            {
-                return endPoint;
-            }
-            private set
-            {
-                if (endPoint != value)
-                {
-                    endPoint = value;
-                    NotifyOfPropertyChange("EndPoint");
-                }
-            }
+            get => _endPoint;
+            private set => this.Set(ref _endPoint, value);          
         }
 
         public Rect Area
         {
             get
             {
-                return area;
+                return _area;
             }
             private set
             {
-                if (area != value)
+                if (_area != value)
                 {
-                    area = value;
+                    _area = value;
                     UpdateConnectionPoints();
-                    NotifyOfPropertyChange("Area");
+                    NotifyOfPropertyChange(()=>Area);
                 }
             }
         }
 
-        internal ConnectorInfo ConnectorInfo(ConnectorOrientation orientation, double left, double top, Point position)
-        {
-
-            return new ConnectorInfo()
+        internal ConnectorInfo ConnectorInfo(ConnectorOrientation orientation, double left, double top, Point position)=>
+            new ConnectorInfo()
             {
                 Orientation = orientation,
-                DesignerItemSize = new Size(sourceConnectorInfo.DataItem.ItemWidth, sourceConnectorInfo.DataItem.ItemHeight),
+                DesignerItemSize = new Size(_sourceConnectorInfo.DataItem.ItemWidth, _sourceConnectorInfo.DataItem.ItemHeight),
                 DesignerItemLeft = left,
                 DesignerItemTop = top,
                 Position = position
-
             };
-        }
+
 
         public FullyCreatedConnectorInfo SourceConnectorInfo
         {
             get
             {
-                return sourceConnectorInfo;
+                return _sourceConnectorInfo;
             }
             set
             {
-                if (sourceConnectorInfo != value)
+                if (_sourceConnectorInfo != value)
                 {
 
-                    sourceConnectorInfo = value;
+                    _sourceConnectorInfo = value;
                     SourceA = PointHelper.GetPointForConnector(this.SourceConnectorInfo);
-                    NotifyOfPropertyChange("SourceConnectorInfo");
-                    (sourceConnectorInfo.DataItem as INotifyPropertyChanged).PropertyChanged += new WeakINPCEventHandler(ConnectorViewModel_PropertyChanged).Handler;
+                    NotifyOfPropertyChange(()=>SourceConnectorInfo);
+                    (_sourceConnectorInfo.DataItem as INotifyPropertyChanged).PropertyChanged += new WeakINPCEventHandler(ConnectorViewModel_PropertyChanged).Handler;
                 }
             }
         }
@@ -163,25 +138,25 @@ namespace DiagramDesigner
         {
             get
             {
-                return sinkConnectorInfo;
+                return _sinkConnectorInfo;
             }
             set
             {
-                if (sinkConnectorInfo != value)
+                if (_sinkConnectorInfo != value)
                 {
 
-                    sinkConnectorInfo = value;
+                    _sinkConnectorInfo = value;
                     if (SinkConnectorInfo is FullyCreatedConnectorInfo)
                     {
                         SourceB = PointHelper.GetPointForConnector((FullyCreatedConnectorInfo)SinkConnectorInfo);
-                        (((FullyCreatedConnectorInfo)sinkConnectorInfo).DataItem as INotifyPropertyChanged).PropertyChanged += new WeakINPCEventHandler(ConnectorViewModel_PropertyChanged).Handler;
+                        (((FullyCreatedConnectorInfo)_sinkConnectorInfo).DataItem as INotifyPropertyChanged).PropertyChanged += new WeakINPCEventHandler(ConnectorViewModel_PropertyChanged).Handler;
                     }
                     else
                     {
 
                         SourceB = ((PartCreatedConnectionInfo)SinkConnectorInfo).CurrentLocation;
                     }
-                    NotifyOfPropertyChange("SinkConnectorInfo");
+                    NotifyOfPropertyChange(()=>SinkConnectorInfo);
                 }
             }
         }
@@ -194,8 +169,7 @@ namespace DiagramDesigner
         private void UpdateConnectionPoints()
         {
             ConnectionPoints = new List<Point>()
-                                   {
-                                       
+                                   {                                       
                                        new Point( SourceA.X  <  SourceB.X ? 0d : Area.Width, SourceA.Y  <  SourceB.Y ? 0d : Area.Height ), 
                                        new Point(SourceA.X  >  SourceB.X ? 0d : Area.Width, SourceA.Y  >  SourceB.Y ? 0d : Area.Height)
                                    };
