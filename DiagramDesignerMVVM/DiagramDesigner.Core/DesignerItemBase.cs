@@ -14,27 +14,27 @@ namespace DiagramDesigner
     /// </summary>
     public abstract class DesignerItemBase : SelectableDesignerItem
     {
-        private double left;
-        private double top;
+        private double _left;
+        private double _top;
         private bool showConnectors = false;
         private List<FullyCreatedConnectorInfo> connectors = new List<FullyCreatedConnectorInfo>();
 
-        private double itemWidth = 65;
-        private double itemHeight = 65;
+        private double _itemWidth = 65;
+        private double _itemHeight = 65;
 
         public DesignerItemBase(int id, IDiagram parent, double left, double top) : base(id, parent)
         {
-            this.left = left;
-            this.top = top;
+            this._left = left;
+            this._top = top;
             Init();
         }
 
         public DesignerItemBase(int id, IDiagram parent, double left, double top, double itemWidth, double itemHeight) : base(id, parent)
         {
-            this.left = left;
-            this.top = top;
-            this.itemWidth = itemWidth;
-            this.itemHeight = itemHeight;
+            this._left = left;
+            this._top = top;
+            this._itemWidth = itemWidth;
+            this._itemHeight = itemHeight;
             Init();
         }
 
@@ -45,59 +45,23 @@ namespace DiagramDesigner
 
         public double ItemWidth
         {
-            get
-            {
-                return itemWidth;
-            }
-            set
-            {
-                if (itemWidth != value)
-                {
-                    itemWidth = value;
-                    NotifyOfPropertyChange("ItemWidth");
-                }
-            }
+            get => _itemWidth;
+            set => this.Set(ref _itemWidth, value);
         }
 
         public double ItemHeight
         {
-            get
-            {
-                return itemHeight;
-            }
-            set
-            {
-                if (itemHeight != value)
-                {
-                    itemHeight = value;
-                    NotifyOfPropertyChange("ItemHeight");
-                }
-            }
+            get => _itemHeight;
+            set => this.Set(ref _itemHeight, value);            
         }
 
-        public FullyCreatedConnectorInfo TopConnector
-        {
-            get { return connectors[0]; }
-        }
+        public FullyCreatedConnectorInfo TopConnector=> connectors[0];
 
+        public FullyCreatedConnectorInfo BottomConnector=> connectors[1];
 
-        public FullyCreatedConnectorInfo BottomConnector
-        {
-            get { return connectors[1]; }
-        }
+        public FullyCreatedConnectorInfo LeftConnector => connectors[2];
 
-
-        public FullyCreatedConnectorInfo LeftConnector
-        {
-            get { return connectors[2]; }
-        }
-
-
-        public FullyCreatedConnectorInfo RightConnector
-        {
-            get { return connectors[3]; }
-        }
-
+        public FullyCreatedConnectorInfo RightConnector=> connectors[3];
 
         public bool ShowConnectors
         {
@@ -119,37 +83,16 @@ namespace DiagramDesigner
             }
         }
 
-
         public double Left
         {
-            get
-            {
-                return left;
-            }
-            set
-            {
-                if (left != value)
-                {
-                    left = value;
-                    NotifyOfPropertyChange("Left");
-                }
-            }
+            get => _left;
+            set => this.Set(ref _left, value);          
         }
 
         public double Top
         {
-            get
-            {
-                return top;
-            }
-            set
-            {
-                if (top != value)
-                {
-                    top = value;
-                    NotifyOfPropertyChange("Top");
-                }
-            }
+            get => _top;
+            set => this.Set(ref _top, value);           
         }
 
 

@@ -25,6 +25,15 @@ namespace DiagramDesigner
             OnPropertyChanged(new PropertyChangedEventArgs(propertyName));
         }
 
+        public virtual bool Set<T>(ref T oldValue, T newValue, [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(oldValue, newValue))
+                return false;
+            oldValue = newValue;
+            NotifyOfPropertyChange(propertyName ?? string.Empty);
+            return true;
+        }
+
 
         public void NotifyOfPropertyChange<TProperty>(Expression<Func<TProperty>> property)
         {
