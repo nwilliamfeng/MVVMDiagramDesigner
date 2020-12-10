@@ -9,12 +9,12 @@ using System.Text;
 namespace DiagramDesigner.Helpers
 {
     //[DebuggerNonUserCode]
-     sealed class WeakINPCEventHandler 
+     sealed class WeakPropertyEventHandler 
     {
         private readonly WeakReference _targetReference;
         private readonly MethodInfo _method;
 
-        public WeakINPCEventHandler(PropertyChangedEventHandler callback)
+        public WeakPropertyEventHandler(PropertyChangedEventHandler callback)
         {
             _method = callback.Method;
             _targetReference = new WeakReference(callback.Target, true);

@@ -8,7 +8,7 @@ namespace DiagramDesigner
 {
      interface IPathFinder
     {
-        List<Point> GetConnectionLine(ConnectorInfo source, ConnectorInfo sink, bool showLastLine);
-        List<Point> GetConnectionLine(ConnectorInfo source, Point sinkPoint, ConnectorOrientation preferredOrientation);
+        List<Point> GetConnectionLine(ConnectorInfoMeta source, ConnectorInfoMeta sink, bool showLastLine);
+        List<Point> GetConnectionLine(ConnectorInfoMeta source, Point sinkPoint, ConnectorOrientation preferredOrientation);
     }
 }

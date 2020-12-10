@@ -14,7 +14,7 @@ namespace DiagramDesigner
     {
         private const int margin = 10;
 
-        public List<Point> GetConnectionLine(ConnectorInfo source, ConnectorInfo sink, bool showLastLine)
+        public List<Point> GetConnectionLine(ConnectorInfoMeta source, ConnectorInfoMeta sink, bool showLastLine)
         {
             List<Point> linePoints = new List<Point>();
 
@@ -205,7 +205,7 @@ namespace DiagramDesigner
             return linePoints;
         }
 
-        public List<Point> GetConnectionLine(ConnectorInfo source, Point sinkPoint, ConnectorOrientation preferredOrientation)
+        public List<Point> GetConnectionLine(ConnectorInfoMeta source, Point sinkPoint, ConnectorOrientation preferredOrientation)
         {
             List<Point> linePoints = new List<Point>();
             Rect rectSource = GetRectWithMargin(source, 10);
@@ -366,7 +366,7 @@ namespace DiagramDesigner
         }
 
       
-        private static Point GetNearestNeighborSource(ConnectorInfo source, Point endPoint, Rect rectSource, Rect rectSink, out bool flag)
+        private static Point GetNearestNeighborSource(ConnectorInfoMeta source, Point endPoint, Rect rectSource, Rect rectSink, out bool flag)
         {
             Point n1, n2; // neighbors
             GetNeighborCorners(source.Orientation, rectSource, out n1, out n2);
@@ -395,7 +395,7 @@ namespace DiagramDesigner
             }
         }
 
-        private static Point GetNearestNeighborSource(ConnectorInfo source, Point endPoint, Rect rectSource, out bool flag)
+        private static Point GetNearestNeighborSource(ConnectorInfoMeta source, Point endPoint, Rect rectSource, out bool flag)
         {
             Point n1, n2; // neighbors
             GetNeighborCorners(source.Orientation, rectSource, out n1, out n2);
@@ -412,7 +412,7 @@ namespace DiagramDesigner
             }
         }
 
-        private static Point GetNearestVisibleNeighborSink(Point currentPoint, Point endPoint, ConnectorInfo sink, Rect rectSource, Rect rectSink)
+        private static Point GetNearestVisibleNeighborSink(Point currentPoint, Point endPoint, ConnectorInfoMeta sink, Rect rectSource, Rect rectSink)
         {
             Point s1, s2; // neighbors on sink side
             GetNeighborCorners(sink.Orientation, rectSink, out s1, out s2);
@@ -534,7 +534,7 @@ namespace DiagramDesigner
             return Point.Subtract(p1, p2).Length;
         }
 
-        private static Rect GetRectWithMargin(ConnectorInfo connectorThumb, double margin)
+        private static Rect GetRectWithMargin(ConnectorInfoMeta connectorThumb, double margin)
         {
             Rect rect = new Rect(connectorThumb.DesignerItemLeft,
                                  connectorThumb.DesignerItemTop,
@@ -546,7 +546,7 @@ namespace DiagramDesigner
             return rect;
         }
 
-        private static Point GetOffsetPoint(ConnectorInfo connector, Rect rect)
+        private static Point GetOffsetPoint(ConnectorInfoMeta connector, Rect rect)
         {
             Point offsetPoint = new Point();
 
@@ -571,7 +571,7 @@ namespace DiagramDesigner
             return offsetPoint;
         }
 
-        private static void CheckPathEnd(ConnectorInfo source, ConnectorInfo sink, bool showLastLine, List<Point> linePoints)
+        private static void CheckPathEnd(ConnectorInfoMeta source, ConnectorInfoMeta sink, bool showLastLine, List<Point> linePoints)
         {
             if (showLastLine)
             {

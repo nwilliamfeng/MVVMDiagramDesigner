@@ -104,8 +104,8 @@ namespace DiagramDesigner
             }
         }
 
-        internal ConnectorInfo ConnectorInfo(ConnectorOrientation orientation, double left, double top, Point position)=>
-            new ConnectorInfo()
+        internal ConnectorInfoMeta ConnectorInfo(ConnectorOrientation orientation, double left, double top, Point position)=>
+            new ConnectorInfoMeta()
             {
                 Orientation = orientation,
                 DesignerItemSize = new Size(_sourceConnectorInfo.DataItem.ItemWidth, _sourceConnectorInfo.DataItem.ItemHeight),
@@ -129,7 +129,7 @@ namespace DiagramDesigner
                     _sourceConnectorInfo = value;
                     SourceA = PointHelper.GetPointForConnector(this.SourceConnectorInfo);
                     NotifyOfPropertyChange(()=>SourceConnectorInfo);
-                    (_sourceConnectorInfo.DataItem as INotifyPropertyChanged).PropertyChanged += new WeakINPCEventHandler(ConnectorViewModel_PropertyChanged).Handler;
+                    (_sourceConnectorInfo.DataItem as INotifyPropertyChanged).PropertyChanged += new WeakPropertyEventHandler(ConnectorViewModel_PropertyChanged).Handler;
                 }
             }
         }
@@ -149,7 +149,7 @@ namespace DiagramDesigner
                     if (SinkConnectorInfo is FullyCreatedConnectorInfo)
                     {
                         SourceB = PointHelper.GetPointForConnector((FullyCreatedConnectorInfo)SinkConnectorInfo);
-                        (((FullyCreatedConnectorInfo)_sinkConnectorInfo).DataItem as INotifyPropertyChanged).PropertyChanged += new WeakINPCEventHandler(ConnectorViewModel_PropertyChanged).Handler;
+                        (((FullyCreatedConnectorInfo)_sinkConnectorInfo).DataItem as INotifyPropertyChanged).PropertyChanged += new WeakPropertyEventHandler(ConnectorViewModel_PropertyChanged).Handler;
                     }
                     else
                     {
@@ -174,7 +174,7 @@ namespace DiagramDesigner
                                        new Point(SourceA.X  >  SourceB.X ? 0d : Area.Width, SourceA.Y  >  SourceB.Y ? 0d : Area.Height)
                                    };
 
-            ConnectorInfo sourceInfo = ConnectorInfo(SourceConnectorInfo.Orientation,
+            ConnectorInfoMeta sourceInfo = ConnectorInfo(SourceConnectorInfo.Orientation,
                                             ConnectionPoints[0].X,
                                             ConnectionPoints[0].Y,
                                             ConnectionPoints[0]);
@@ -182,7 +182,7 @@ namespace DiagramDesigner
             if(IsFullConnection)
             {
                 EndPoint = ConnectionPoints.Last();
-                ConnectorInfo sinkInfo = ConnectorInfo(SinkConnectorInfo.Orientation,
+                ConnectorInfoMeta sinkInfo = ConnectorInfo(SinkConnectorInfo.Orientation,
                                   ConnectionPoints[1].X,
                                   ConnectionPoints[1].Y,
                                   ConnectionPoints[1]);
