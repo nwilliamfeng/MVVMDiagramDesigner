@@ -3,17 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:s="clr-namespace:DiagramDesigner"
+            xmlns:s="clr-namespace:DiagramDesigner"
              xmlns:c="clr-namespace:DiagramDesigner.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
+
     <Border BorderBrush="LightGray" BorderThickness="1">
-        <Grid>
-            <ScrollViewer  
-                          Background="Transparent"
-                          HorizontalScrollBarVisibility="Auto"
-                          VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Background="Transparent" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
 
                 <ItemsControl ItemsSource="{Binding Items}" ItemContainerStyleSelector="{x:Static s:DesignerItemsControlItemStyleSelector.Instance}">
                     <ItemsControl.Resources>
@@ -35,22 +31,22 @@
                                                                 VerticalAlignment="Stretch"
                                                                 Content="{TemplateBinding Content}" />
                                             <Grid Margin="-5" x:Name="PART_ConnectorDecorator">
-                                                <s:Connector DataContext="{Binding LeftConnector}"
+                                                <c:ConnectorControl DataContext="{Binding LeftConnector}"
                                                                 Orientation="Left"
                                                                 VerticalAlignment="Center"
                                                                 HorizontalAlignment="Left"
                                                                 Visibility="{Binding Path=ShowConnectors, Converter={x:Static s:BoolToVisibilityConverter.Instance}}" />
-                                                <s:Connector DataContext="{Binding TopConnector}"
+                                                <c:ConnectorControl DataContext="{Binding TopConnector}"
                                                                 Orientation="Top"
                                                                 VerticalAlignment="Top"
                                                                 HorizontalAlignment="Center"
                                                                 Visibility="{Binding Path=ShowConnectors, Converter={x:Static s:BoolToVisibilityConverter.Instance}}" />
-                                                <s:Connector DataContext="{Binding RightConnector}"
+                                                <c:ConnectorControl DataContext="{Binding RightConnector}"
                                                                 Orientation="Right"
                                                                 VerticalAlignment="Center"
                                                                 HorizontalAlignment="Right"
                                                                 Visibility="{Binding Path=ShowConnectors, Converter={x:Static s:BoolToVisibilityConverter.Instance}}" />
-                                                <s:Connector DataContext="{Binding BottomConnector}"
+                                                <c:ConnectorControl DataContext="{Binding BottomConnector}"
                                                                 Orientation="Bottom"
                                                                 VerticalAlignment="Bottom"
                                                                 HorizontalAlignment="Center"
@@ -163,12 +159,12 @@
 
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <s:DesignerCanvas  
+                            <c:DesignerCanvas  
                                                 MinHeight="800"
                                                 MinWidth="1000"
                                                 Background="White"
                                                 AllowDrop="True">
-                            </s:DesignerCanvas>
+                            </c:DesignerCanvas>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
 
@@ -177,8 +173,5 @@
 
             </ScrollViewer>
             
-
-
-        </Grid>
     </Border>
 </UserControl>

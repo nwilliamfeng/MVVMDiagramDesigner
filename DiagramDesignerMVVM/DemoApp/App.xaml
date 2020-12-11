@@ -7,9 +7,8 @@
             <ResourceDictionary.MergedDictionaries>
 
                 <!-- DiagramDesigner Dll resources, you need all of these -->
-               
-            
-                <ResourceDictionary Source="pack://application:,,,/DiagramDesigner;component/Resources/Styles/DesignerItems.xaml" />
+              
+                <ResourceDictionary Source="pack://application:,,,/DiagramDesigner;component/Resources/Styles.xaml" />
 
                 <!-- Common DemoApp Styles -->
                 <ResourceDictionary Source="Resources/Styles.xaml" />

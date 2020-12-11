@@ -9,14 +9,14 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Linq;
 
-namespace DiagramDesigner
+namespace DiagramDesigner.Controls
 {
     public class DesignerCanvas : Canvas
     {
 
         private ConnectorDesignerItem partialConnection;
-        private List<Connector> connectorsHit = new List<Connector>();
-        private Connector sourceConnector;
+        private List<ConnectorControl> connectorsHit = new List<ConnectorControl>();
+        private ConnectorControl sourceConnector;
         private Point? rubberbandSelectionStartPoint = null;
 
         public DesignerCanvas()
@@ -26,7 +26,7 @@ namespace DiagramDesigner
         }
 
 
-        public Connector SourceConnector
+        public ConnectorControl SourceConnector
         {
             get { return sourceConnector; }
             set
@@ -80,7 +80,7 @@ namespace DiagramDesigner
                 FullyCreatedConnectorInfo sourceDataItem = sourceConnector.DataContext as FullyCreatedConnectorInfo;
                 if (connectorsHit.Count() == 2)
                 {
-                    Connector sinkConnector = connectorsHit.Last();
+                    ConnectorControl sinkConnector = connectorsHit.Last();
                     FullyCreatedConnectorInfo sinkDataItem = sinkConnector.DataContext as FullyCreatedConnectorInfo;
 
                     int indexOfLastTempConnection = sinkDataItem.DataItem.Parent.Items.Count - 1;
@@ -96,7 +96,7 @@ namespace DiagramDesigner
                         sourceDataItem.DataItem.Parent.Items[indexOfLastTempConnection]);
                 }
             }
-            connectorsHit = new List<Connector>();
+            connectorsHit = new List<ConnectorControl>();
             sourceConnector = null;
         }
 
@@ -173,10 +173,10 @@ namespace DiagramDesigner
             while (hitObject != null &&
                     hitObject.GetType() != typeof(DesignerCanvas))
             {
-                if (hitObject is Connector)
+                if (hitObject is ConnectorControl)
                 {
-                    if (!connectorsHit.Contains(hitObject as Connector))
-                        connectorsHit.Add(hitObject as Connector);
+                    if (!connectorsHit.Contains(hitObject as ConnectorControl))
+                        connectorsHit.Add(hitObject as ConnectorControl);
                 }
                 hitObject = VisualTreeHelper.GetParent(hitObject);
             }

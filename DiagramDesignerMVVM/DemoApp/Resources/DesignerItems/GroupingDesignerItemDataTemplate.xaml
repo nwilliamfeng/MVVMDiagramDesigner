@@ -13,7 +13,7 @@
                           >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <s:DesignerCanvas AllowDrop="True"  />
+                        <c:DesignerCanvas AllowDrop="True"  />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>

@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace DiagramDesigner
+namespace DiagramDesigner.Controls
 {
-    public class Connector : Control
+    /// <summary>
+    /// 连接器控件
+    /// </summary>
+    public class ConnectorControl : Control
     {
+        public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(nameof(Orientation)
+            , typeof(ConnectorOrientation)
+            , typeof(ConnectorControl), new PropertyMetadata(ConnectorOrientation.None));
+
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
@@ -22,7 +28,11 @@ namespace DiagramDesigner
             }
         }
 
-        public ConnectorOrientation Orientation { get; set; }
+        public ConnectorOrientation Orientation
+        {
+            get => (ConnectorOrientation)this.GetValue(OrientationProperty);
+            set => this.SetValue(OrientationProperty, value);
+        }
 
         // iterate through visual tree to get parent DesignerCanvas
         private DesignerCanvas GetDesignerCanvas(DependencyObject element)
@@ -35,13 +45,4 @@ namespace DiagramDesigner
 
     }
 
-
-    //public enum ConnectorOrientation
-    //{
-    //    None    =   0,
-    //    Left    =   1,
-    //    Top     =   2,
-    //    Right   =   3,
-    //    Bottom  =   4
-    //}
 }
