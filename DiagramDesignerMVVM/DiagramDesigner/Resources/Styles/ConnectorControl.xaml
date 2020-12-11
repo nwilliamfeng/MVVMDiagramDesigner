@@ -3,25 +3,23 @@
                     xmlns:c="clr-namespace:DiagramDesigner.Controls"
                    >
 
+    <ControlTemplate TargetType="{x:Type c:ConnectorControl}" x:Key="ConnectorControlTemplate">
+        <Grid>
+            <!-- transparent extra space makes connector easier to hit -->
+            <Rectangle Fill="Transparent" Margin="-2" />
+            <!--方框颜色-->
+            <Rectangle Fill="Lavender" StrokeThickness="1" Stroke="#AA000080" />
+        </Grid>
+    </ControlTemplate>
   
-    <!-- Connector Style -->
+    <!-- 连接器样式 Style -->
     <Style TargetType="{x:Type c:ConnectorControl}">
         <Setter Property="Width" Value="8" />
         <Setter Property="Height"  Value="8" />
         <Setter Property="Cursor" Value="Cross" />
         <Setter Property="SnapsToDevicePixels"  Value="true" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type c:ConnectorControl}">
-                    <Grid>
-                        <!-- transparent extra space makes connector easier to hit -->
-                        <Rectangle Fill="Transparent" Margin="-2" />
-                        <!--方框颜色-->
-                        <Rectangle Fill="Lavender" StrokeThickness="1" Stroke="#AA000080" />
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Template" Value="{StaticResource ConnectorControlTemplate}"/>
+
     </Style>
  
     

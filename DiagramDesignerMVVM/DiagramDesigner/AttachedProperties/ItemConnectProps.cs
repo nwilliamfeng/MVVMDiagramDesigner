@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace DiagramDesigner
@@ -29,8 +30,7 @@ namespace DiagramDesigner
         private static void OnEnabledForConnectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             FrameworkElement fe = (FrameworkElement)d;
-
-
+  
             if ((bool)e.NewValue)
             {
                 fe.MouseEnter += Fe_MouseEnter;

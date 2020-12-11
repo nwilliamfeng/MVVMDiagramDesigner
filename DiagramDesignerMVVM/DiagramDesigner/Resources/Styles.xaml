@@ -2,11 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     >
     <ResourceDictionary.MergedDictionaries>
-
-
         <ResourceDictionary Source="Styles/DragThumb.xaml" />
         <ResourceDictionary Source="Styles/ConnectorControl.xaml" />
-
-       
+        <ResourceDictionary Source="Styles/DesignerItemControl.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
