@@ -11,7 +11,7 @@ namespace DiagramDesigner
     /// <summary>
     /// 连接器设计项
     /// </summary>
-    public class Connector : DesignerItemBase
+    public class Connector : VisualElement 
     {
         private FullyCreatedConnectorInfo _sourceConnectorInfo;
         private ConnectorInfoBase _sinkConnectorInfo;

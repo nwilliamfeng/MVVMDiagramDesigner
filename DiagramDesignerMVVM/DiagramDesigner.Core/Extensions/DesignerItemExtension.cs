@@ -15,7 +15,7 @@ namespace DiagramDesigner
         /// <param name="to"></param>
         /// <param name="fromOrientation"></param>
         /// <param name="toOrientation"></param>
-        public static void Connect(this ElementDesignerItem from, ElementDesignerItem to, ConnectorOrientation fromOrientation, ConnectorOrientation toOrientation)
+        public static void Connect(this DesignerElement from, DesignerElement to, ConnectorOrientation fromOrientation, ConnectorOrientation toOrientation)
         {
             Connector con = new Connector(from.GetConnectorInfo(fromOrientation), to.GetConnectorInfo(toOrientation));
             con.Parent = from.Parent;

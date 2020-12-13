@@ -14,14 +14,14 @@ namespace DiagramDesigner
     {
         private bool _showConnectors = false;
 
-        public FullyCreatedConnectorInfo(ElementDesignerItem dataItem, ConnectorOrientation orientation)
+        public FullyCreatedConnectorInfo(DesignerElement dataItem, ConnectorOrientation orientation)
             : base(orientation)
         {
             this.DataItem = dataItem;
         }
 
 
-        public ElementDesignerItem DataItem { get; private set; }
+        public DesignerElement DataItem { get; private set; }
 
         public bool ShowConnectors
         {

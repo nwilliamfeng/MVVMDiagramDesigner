@@ -6,13 +6,15 @@
     <!-- DataTemplate for DesignerCanvas look and feel -->
     <DataTemplate DataType="{x:Type local:PersistDesignerItemViewModel}">
         <Grid>
-            <Image IsHitTestVisible="False"
+            <Image IsHitTestVisible="false"
                    Stretch="Fill"
                    Source="../../Images/Persist.png"
                    Tag="setting" />
             <Button HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     Margin="5"
+                    Background="Transparent"
+                    Cursor="Hand"
                     Template="{StaticResource infoButtonTemplate}" 
                     Command="{Binding ShowDataChangeWindowCommand}" />
         </Grid>

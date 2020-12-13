@@ -4,7 +4,7 @@
                     xmlns:s="clr-namespace:DiagramDesigner"
                    >
     <BooleanToVisibilityConverter x:Key="boolToVisibleConverter"/>
-    <ControlTemplate TargetType="{x:Type c:DesignerItemControl}" x:Key="DesignerItemControlTemplate">
+    <ControlTemplate TargetType="{x:Type c:DesignerElementControl}" x:Key="DesignerItemControlTemplate">
         <Grid x:Name="selectedGrid" >
             <c:DragThumb x:Name="PART_DragThumb" Cursor="SizeAll" />
             <ContentPresenter x:Name="PART_ContentPresenter"
@@ -24,7 +24,7 @@
             <DataTrigger Value="True" Binding="{Binding IsSelected}">
                 <Setter TargetName="selectedGrid" Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect BlurRadius="30" ShadowDepth="0" Color="Black" Opacity="1.0" />
+                        <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="Black"  />
                     </Setter.Value>
                 </Setter>
             </DataTrigger>
@@ -33,7 +33,7 @@
     </ControlTemplate>
 
     <!-- 连接器样式 Style -->
-    <Style TargetType="{x:Type c:DesignerItemControl}">
+    <Style TargetType="{x:Type c:DesignerElementControl}">
         <Setter Property="Cursor" Value="Cross" />
         <Setter Property="SnapsToDevicePixels"  Value="true" />
         <Setter Property="Template" Value="{StaticResource DesignerItemControlTemplate}"/>

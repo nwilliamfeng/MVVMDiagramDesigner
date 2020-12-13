@@ -43,7 +43,7 @@
                                   DataContext="{Binding DiagramViewModel}"
                                   Margin="3,1,0,0" Visibility="Collapsed" />
 
-            <control:DesignerItemControl Content="abdfafasdfsadfc" Grid.Column="1" VerticalAlignment="Center"  Visibility="Collapsed" />
+            <control:DesignerElementControl Content="abdfafasdfsadfc" Grid.Column="1" VerticalAlignment="Center"  Visibility="Collapsed" />
 
             <control:DiagramControl Grid.Column="1" 
                                   DataContext="{Binding DiagramViewModel}"

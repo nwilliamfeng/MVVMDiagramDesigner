@@ -21,7 +21,7 @@
                             <Setter Property="ContentTemplate">
                                 <Setter.Value>
                                     <DataTemplate>
-                                        <c:DesignerItemControl ShowConnectors="{Binding ShowConnectors}" 
+                                        <c:DesignerElementControl ShowConnectors="{Binding ShowConnectors}" 
                                                                LeftConnector="{Binding LeftConnector}"
                                                                RightConnector="{Binding RightConnector}"
                                                                TopConnector="{Binding TopConnector}"

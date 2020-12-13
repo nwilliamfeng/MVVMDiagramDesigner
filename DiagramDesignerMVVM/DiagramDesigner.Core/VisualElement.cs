@@ -7,22 +7,22 @@ using System.Windows.Input;
 namespace DiagramDesigner
 {
     /// <summary>
-    ///  设计项基类
+    ///  可视化基类
     /// </summary>
-    public abstract class DesignerItemBase : NotifyObject
+    public abstract class VisualElement : NotifyObject
     {
         private bool isSelected;
 
-        public DesignerItemBase(int id, IDiagram parent):this()
+        public VisualElement(int id, IDiagram parent):this()
         {
             this.Id = id;
             this.Parent = parent;           
         }
 
-        public DesignerItemBase()=> SelectItemCommand = new SimpleCommand(ExecuteSelectItemCommand);
+        public VisualElement()=> SelectItemCommand = new SimpleCommand(ExecuteSelectItemCommand);
 
 
-        public List<DesignerItemBase> SelectedItems=> Parent.SelectedItems;
+        public List<VisualElement> SelectedItems=> Parent.SelectedItems;
         
 
         public IDiagram Parent { get; set; }

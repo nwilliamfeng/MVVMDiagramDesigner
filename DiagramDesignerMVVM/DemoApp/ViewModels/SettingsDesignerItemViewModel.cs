@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace DemoApp
 {
-    public class SettingsDesignerItemViewModel : ElementDesignerItem, ISupportDataChanges
+    public class SettingsDesignerItemViewModel : DesignerElement, ISupportDataChanges
     {
         private IUIVisualizerService visualiserService;
 

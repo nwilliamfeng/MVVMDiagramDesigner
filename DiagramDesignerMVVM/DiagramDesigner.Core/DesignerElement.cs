@@ -8,7 +8,7 @@ namespace DiagramDesigner
     /// <summary>
     /// 元件设计项基类
     /// </summary>
-    public abstract class ElementDesignerItem : DesignerItemBase
+    public abstract class DesignerElement : VisualElement
     {
         private double _left;
         private double _top;
@@ -18,14 +18,14 @@ namespace DiagramDesigner
         private double _itemWidth = 65;
         private double _itemHeight = 65;
 
-        public ElementDesignerItem(int id, IDiagram parent, double left, double top) : base(id, parent)
+        public DesignerElement(int id, IDiagram parent, double left, double top) : base(id, parent)
         {
             this._left = left;
             this._top = top;
             Init();
         }
 
-        public ElementDesignerItem(int id, IDiagram parent, double left, double top, double itemWidth, double itemHeight) : base(id, parent)
+        public DesignerElement(int id, IDiagram parent, double left, double top, double itemWidth, double itemHeight) : base(id, parent)
         {
             this._left = left;
             this._top = top;
@@ -34,7 +34,7 @@ namespace DiagramDesigner
             Init();
         }
 
-        public ElementDesignerItem() : base()
+        public DesignerElement() : base()
         {
             Init();
         }

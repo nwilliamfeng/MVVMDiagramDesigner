@@ -83,7 +83,7 @@
     <Compile Include="AttachedProperties\DragAndDropProps.cs" />
     <Compile Include="AttachedProperties\SelectionProps.cs" />
     <Compile Include="Controls\ConnectorControl.cs" />
-    <Compile Include="Controls\DesignerItemControl.cs" />
+    <Compile Include="Controls\DesignerElementControl.cs" />
     <Compile Include="Controls\DiagramControl.cs" />
     <Compile Include="Converters\ConnectionPathConverter.cs" />
     <Compile Include="Helper\DragObject.cs" />
@@ -158,7 +158,7 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="Resources\Styles\DesignerItemControl.xaml">
+    <Page Include="Resources\Styles\DesignerElementControl.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>

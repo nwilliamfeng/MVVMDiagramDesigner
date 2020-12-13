@@ -11,28 +11,28 @@ namespace DiagramDesigner.Controls
     /// <summary>
     /// 设计器控件
     /// </summary>
-    public class DesignerItemControl:ContentControl
+    public class DesignerElementControl:ContentControl
     {
         public static readonly DependencyProperty ShowConnectorsProperty = DependencyProperty.Register(nameof(ShowConnectors)
             , typeof(bool)
-            , typeof(DesignerItemControl), new  FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+            , typeof(DesignerElementControl), new  FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
 
         public static readonly DependencyProperty TopConnectorProperty = DependencyProperty.Register(nameof(TopConnector)
             , typeof(FullyCreatedConnectorInfo)
-            , typeof(DesignerItemControl));
+            , typeof(DesignerElementControl));
 
         public static readonly DependencyProperty LeftConnectorProperty = DependencyProperty.Register(nameof(LeftConnector)
             , typeof(FullyCreatedConnectorInfo)
-            , typeof(DesignerItemControl));
+            , typeof(DesignerElementControl));
 
         public static readonly DependencyProperty RightConnectorProperty = DependencyProperty.Register(nameof(RightConnector)
           , typeof(FullyCreatedConnectorInfo)
-          , typeof(DesignerItemControl));
+          , typeof(DesignerElementControl));
 
         public static readonly DependencyProperty BottomConnectorProperty = DependencyProperty.Register(nameof(BottomConnector)
           , typeof(FullyCreatedConnectorInfo)
-          , typeof(DesignerItemControl));
+          , typeof(DesignerElementControl));
 
 
         /// <summary>

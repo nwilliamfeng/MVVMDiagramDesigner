@@ -14,7 +14,7 @@ namespace DemoApp
     {
 
         private List<int> _savedDiagrams = new List<int>();
-        private List<DesignerItemBase> _itemsToRemove;
+        private List<VisualElement> _itemsToRemove;
         private IMessageBoxService _messageBoxService;
     
         private Diagram _diagramViewModel = new Diagram();
@@ -74,7 +74,7 @@ namespace DemoApp
         private void ExecuteCreateNewDiagramCommand(object parameter)
         {
             //ensure that itemsToRemove is cleared ready for any new changes within a session
-            _itemsToRemove = new List<DesignerItemBase>();
+            _itemsToRemove = new List<VisualElement>();
            
             DiagramViewModel.CreateNewDiagramCommand.Execute(null);
         }

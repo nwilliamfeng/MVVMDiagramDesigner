@@ -9,7 +9,7 @@ namespace DiagramDesigner
 {
     public class Diagram : NotifyObject, IDiagram
     {
-        private ObservableCollection<DesignerItemBase> items = new ObservableCollection<DesignerItemBase>();
+        private ObservableCollection<VisualElement> items = new ObservableCollection<VisualElement>();
 
         public Diagram()
         {
@@ -26,7 +26,7 @@ namespace DiagramDesigner
         [MediatorMessageSink("DoneDrawingMessage")]
         public void OnDoneDrawingMessage(bool dummy)
         {
-            foreach (var item in Items.OfType<ElementDesignerItem>())
+            foreach (var item in Items.OfType<DesignerElement>())
             {
                 item.ShowConnectors = false;
             }
@@ -39,21 +39,21 @@ namespace DiagramDesigner
         public ICommand ClearSelectedItemsCommand { get; private set; }
         public ICommand CreateNewDiagramCommand { get; private set; }
 
-        public ObservableCollection<DesignerItemBase> Items
+        public ObservableCollection<VisualElement> Items
         {
             get { return items; }
         }
 
-        public List<DesignerItemBase> SelectedItems
+        public List<VisualElement> SelectedItems
         {
             get { return Items.Where(x => x.IsSelected).ToList(); }
         }
 
         private void ExecuteAddItemCommand(object parameter)
         {
-            if (parameter is DesignerItemBase)
+            if (parameter is VisualElement)
             {
-                DesignerItemBase item = (DesignerItemBase)parameter;
+                VisualElement item = (VisualElement)parameter;
                 item.Parent = this;
                 items.Add(item);
             }
@@ -61,16 +61,16 @@ namespace DiagramDesigner
 
         private void ExecuteRemoveItemCommand(object parameter)
         {
-            if (parameter is DesignerItemBase)
+            if (parameter is VisualElement)
             {
-                DesignerItemBase item = (DesignerItemBase)parameter;
+                VisualElement item = (VisualElement)parameter;
                 items.Remove(item);
             }
         }
 
         private void ExecuteClearSelectedItemsCommand(object parameter)
         {
-            foreach (DesignerItemBase item in Items)
+            foreach (VisualElement item in Items)
             {
                 item.IsSelected = false;
             }
@@ -84,7 +84,7 @@ namespace DiagramDesigner
         public void DeleteSelectedItems()
         {
             var items =this.SelectedItems;
-            List<DesignerItemBase> connectionsToAlsoRemove = new List<DesignerItemBase>();
+            List<VisualElement> connectionsToAlsoRemove = new List<VisualElement>();
 
             foreach (var connector in this.Items.OfType<Connector>())
             {
