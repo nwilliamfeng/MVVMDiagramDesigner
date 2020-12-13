@@ -15,7 +15,25 @@ namespace DiagramDesigner.Controls
     {
         public static readonly DependencyProperty ShowConnectorsProperty = DependencyProperty.Register(nameof(ShowConnectors)
             , typeof(bool)
-            , typeof(DesignerItemControl), new PropertyMetadata(false));
+            , typeof(DesignerItemControl), new  FrameworkPropertyMetadata(false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+
+        public static readonly DependencyProperty TopConnectorProperty = DependencyProperty.Register(nameof(TopConnector)
+            , typeof(FullyCreatedConnectorInfo)
+            , typeof(DesignerItemControl));
+
+        public static readonly DependencyProperty LeftConnectorProperty = DependencyProperty.Register(nameof(LeftConnector)
+            , typeof(FullyCreatedConnectorInfo)
+            , typeof(DesignerItemControl));
+
+        public static readonly DependencyProperty RightConnectorProperty = DependencyProperty.Register(nameof(RightConnector)
+          , typeof(FullyCreatedConnectorInfo)
+          , typeof(DesignerItemControl));
+
+        public static readonly DependencyProperty BottomConnectorProperty = DependencyProperty.Register(nameof(BottomConnector)
+          , typeof(FullyCreatedConnectorInfo)
+          , typeof(DesignerItemControl));
+
 
         /// <summary>
         /// 是否显示连接器
@@ -26,18 +44,43 @@ namespace DiagramDesigner.Controls
             set => this.SetValue(ShowConnectorsProperty, value);
         }
 
+
+        public FullyCreatedConnectorInfo TopConnector
+        {
+            get => (FullyCreatedConnectorInfo)this.GetValue(TopConnectorProperty);
+            set => this.SetValue(TopConnectorProperty, value);
+        }
+
+        public FullyCreatedConnectorInfo LeftConnector
+        {
+            get => (FullyCreatedConnectorInfo)this.GetValue(LeftConnectorProperty);
+            set => this.SetValue(LeftConnectorProperty, value);
+        }
+
+        public FullyCreatedConnectorInfo RightConnector
+        {
+            get => (FullyCreatedConnectorInfo)this.GetValue(RightConnectorProperty);
+            set => this.SetValue(RightConnectorProperty, value);
+        }
+
+        public FullyCreatedConnectorInfo BottomConnector
+        {
+            get => (FullyCreatedConnectorInfo)this.GetValue(BottomConnectorProperty);
+            set => this.SetValue(BottomConnectorProperty, value);
+        }
+
+
         public override void OnApplyTemplate()
         {
             base.OnApplyTemplate();
-            this.MouseMove -= DiagramControl_MouseMove;
-            this.MouseMove += DiagramControl_MouseMove;
-            this.mouseho
+            this.MouseEnter -= DesignerItemControl_MouseEnter;
+            this.MouseEnter += DesignerItemControl_MouseEnter;
         }
+ 
 
-        private void DiagramControl_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        private void DesignerItemControl_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {
             this.ShowConnectors = true;
-            
         }
     }
 }

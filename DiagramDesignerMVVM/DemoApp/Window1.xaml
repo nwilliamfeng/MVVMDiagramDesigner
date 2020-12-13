@@ -39,11 +39,17 @@
 						  Width="3" />
         
             <!-- Diagram Control -->
-            <s:MyDiagramControl Grid.Column="1" Visibility="Collapsed"
+            <s:MyDiagramControl Grid.Column="1" 
                                   DataContext="{Binding DiagramViewModel}"
+                                  Margin="3,1,0,0" Visibility="Collapsed" />
+
+            <control:DesignerItemControl Content="abdfafasdfsadfc" Grid.Column="1" VerticalAlignment="Center"  Visibility="Collapsed" />
+
+            <control:DiagramControl Grid.Column="1" 
+                                  DataContext="{Binding DiagramViewModel}"
+                                    ItemsSource="{Binding Items}"
                                   Margin="3,1,0,0" />
 
-            <control:DesignerItemControl Content="abdfafasdfsadfc" Grid.Column="1" VerticalAlignment="Center"/>
         </Grid>
 	</DockPanel>    
 	

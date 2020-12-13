@@ -39,7 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectorOrientation.cs" />
-    <Compile Include="ConnectorDesignerItem.cs" />
+    <Compile Include="Connector.cs" />
     <Compile Include="ConnectorInfoBase.cs" />
     <Compile Include="ElementDesignerItem.cs" />
     <Compile Include="Diagram.cs" />

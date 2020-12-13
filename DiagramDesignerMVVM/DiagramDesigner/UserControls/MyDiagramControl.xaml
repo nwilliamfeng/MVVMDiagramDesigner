@@ -32,22 +32,22 @@
                                                                 VerticalAlignment="Stretch"
                                                                 Content="{TemplateBinding Content}" />
                                             <Grid Margin="-5" x:Name="PART_ConnectorDecorator">
-                                                <c:ConnectorControl DataContext="{Binding LeftConnector}"
+                                                <c:ConnectorPort DataContext="{Binding LeftConnector}"
                                                                 Orientation="Left"
                                                                 VerticalAlignment="Center"
                                                                 HorizontalAlignment="Left"
                                                                 Visibility="{Binding Path=ShowConnectors, Converter={StaticResource boolToVisibleConverter}}" />
-                                                <c:ConnectorControl DataContext="{Binding TopConnector}"
+                                                <c:ConnectorPort DataContext="{Binding TopConnector}"
                                                                 Orientation="Top"
                                                                 VerticalAlignment="Top"
                                                                 HorizontalAlignment="Center"
                                                                 Visibility="{Binding Path=ShowConnectors, Converter={StaticResource boolToVisibleConverter}}" />
-                                                <c:ConnectorControl DataContext="{Binding RightConnector}"
+                                                <c:ConnectorPort DataContext="{Binding RightConnector}"
                                                                 Orientation="Right"
                                                                 VerticalAlignment="Center"
                                                                 HorizontalAlignment="Right"
                                                                 Visibility="{Binding Path=ShowConnectors, Converter={StaticResource boolToVisibleConverter}}" />
-                                                <c:ConnectorControl DataContext="{Binding BottomConnector}"
+                                                <c:ConnectorPort DataContext="{Binding BottomConnector}"
                                                                 Orientation="Bottom"
                                                                 VerticalAlignment="Bottom"
                                                                 HorizontalAlignment="Center"
@@ -55,9 +55,9 @@
                                             </Grid>
                                         </Grid>
                                         <DataTemplate.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="true">
+                                            <!--<Trigger Property="IsMouseOver" Value="true">
                                                 <Setter TargetName="PART_ConnectorDecorator" Property="Visibility" Value="Visible" />
-                                            </Trigger>
+                                            </Trigger>-->
 
                                             <DataTrigger Value="True" Binding="{Binding RelativeSource={RelativeSource Self},Path=IsDragConnectionOver}">
                                                 <Setter TargetName="PART_ConnectorDecorator" Property="Visibility" Value="Visible" />

@@ -14,9 +14,9 @@ namespace DiagramDesigner.Controls
     public class DesignerCanvas : Canvas
     {
 
-        private ConnectorDesignerItem partialConnection;
-        private List<ConnectorControl> connectorsHit = new List<ConnectorControl>();
-        private ConnectorControl sourceConnector;
+        private Connector partialConnection;
+        private List<ConnectorPort> connectorsHit = new List<ConnectorPort>();
+        private ConnectorPort sourceConnector;
         private Point? rubberbandSelectionStartPoint = null;
 
         public DesignerCanvas()
@@ -26,7 +26,7 @@ namespace DiagramDesigner.Controls
         }
 
 
-        public ConnectorControl SourceConnector
+        public ConnectorPort SourceConnector
         {
             get { return sourceConnector; }
             set
@@ -36,12 +36,12 @@ namespace DiagramDesigner.Controls
                     sourceConnector = value;
                     connectorsHit.Add(sourceConnector);
                     FullyCreatedConnectorInfo sourceDataItem = sourceConnector.DataContext as FullyCreatedConnectorInfo;
-                    
+                    if (sourceDataItem == null) return;
 
                     Rect rectangleBounds = sourceConnector.TransformToVisual(this).TransformBounds(new Rect(sourceConnector.RenderSize));
                     Point point = new Point(rectangleBounds.Left + (rectangleBounds.Width / 2),
                                             rectangleBounds.Bottom + (rectangleBounds.Height / 2));
-                    partialConnection = new ConnectorDesignerItem(sourceDataItem, new PartCreatedConnectionInfo(point));
+                    partialConnection = new Connector(sourceDataItem, new PartCreatedConnectionInfo(point));
                     sourceDataItem.DataItem.Parent.AddItemCommand.Execute(partialConnection);
                 }
             }
@@ -80,13 +80,13 @@ namespace DiagramDesigner.Controls
                 FullyCreatedConnectorInfo sourceDataItem = sourceConnector.DataContext as FullyCreatedConnectorInfo;
                 if (connectorsHit.Count() == 2)
                 {
-                    ConnectorControl sinkConnector = connectorsHit.Last();
+                    ConnectorPort sinkConnector = connectorsHit.Last();
                     FullyCreatedConnectorInfo sinkDataItem = sinkConnector.DataContext as FullyCreatedConnectorInfo;
 
                     int indexOfLastTempConnection = sinkDataItem.DataItem.Parent.Items.Count - 1;
                     sinkDataItem.DataItem.Parent.RemoveItemCommand.Execute(
                         sinkDataItem.DataItem.Parent.Items[indexOfLastTempConnection]);
-                    sinkDataItem.DataItem.Parent.AddItemCommand.Execute(new ConnectorDesignerItem(sourceDataItem, sinkDataItem));
+                    sinkDataItem.DataItem.Parent.AddItemCommand.Execute(new Connector(sourceDataItem, sinkDataItem));
                 }
                 else
                 {
@@ -96,7 +96,7 @@ namespace DiagramDesigner.Controls
                         sourceDataItem.DataItem.Parent.Items[indexOfLastTempConnection]);
                 }
             }
-            connectorsHit = new List<ConnectorControl>();
+            connectorsHit = new List<ConnectorPort>();
             sourceConnector = null;
         }
 
@@ -173,10 +173,10 @@ namespace DiagramDesigner.Controls
             while (hitObject != null &&
                     hitObject.GetType() != typeof(DesignerCanvas))
             {
-                if (hitObject is ConnectorControl)
+                if (hitObject is ConnectorPort)
                 {
-                    if (!connectorsHit.Contains(hitObject as ConnectorControl))
-                        connectorsHit.Add(hitObject as ConnectorControl);
+                    if (!connectorsHit.Contains(hitObject as ConnectorPort))
+                        connectorsHit.Add(hitObject as ConnectorPort);
                 }
                 hitObject = VisualTreeHelper.GetParent(hitObject);
             }

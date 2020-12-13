@@ -1,48 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
 
 namespace DiagramDesigner.Controls
 {
-    /// <summary>
-    /// 连接器控件
-    /// </summary>
-    public class ConnectorControl : Control
+    public class ConnectorControl:Control
     {
-        public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(nameof(Orientation)
-            , typeof(ConnectorOrientation)
-            , typeof(ConnectorControl), new PropertyMetadata(ConnectorOrientation.None));
+        public static readonly DependencyProperty AreaProperty = DependencyProperty.Register(nameof(Area)
+         , typeof(Rect)
+         , typeof(ConnectorControl), new PropertyMetadata(default(Rect)));
 
 
-        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        public static readonly DependencyProperty PointsProperty = DependencyProperty.Register(nameof(Points)
+        , typeof(List<Point>)
+        , typeof(ConnectorControl), new PropertyMetadata(default(List<Point>)));
+
+        public static readonly DependencyProperty EndPointProperty = DependencyProperty.Register(nameof(EndPoint)
+      , typeof(Point)
+      , typeof(ConnectorControl), new PropertyMetadata(default(Point)));
+
+
+        public static readonly DependencyProperty IsSelectedProperty = DependencyProperty.Register(nameof(IsSelected)
+       , typeof(bool)
+       , typeof(ConnectorControl), new PropertyMetadata(false));
+
+        public Rect Area
         {
-            base.OnMouseLeftButtonDown(e);
-            DesignerCanvas canvas = GetDesignerCanvas(this);
-            if (canvas != null)
-            {
-                canvas.SourceConnector = this;
-            }
+            get => (Rect)this.GetValue(AreaProperty);
+            set => this.SetValue(AreaProperty, value);
         }
 
-        public ConnectorOrientation Orientation
+        public bool IsSelected
         {
-            get => (ConnectorOrientation)this.GetValue(OrientationProperty);
-            set => this.SetValue(OrientationProperty, value);
+            get => (bool)GetValue(IsSelectedProperty);
+            set => this.SetValue(IsSelectedProperty, value);
         }
 
-        // iterate through visual tree to get parent DesignerCanvas
-        private DesignerCanvas GetDesignerCanvas(DependencyObject element)
-        {
-            while (element != null && !(element is DesignerCanvas))
-                element = VisualTreeHelper.GetParent(element);
 
-            return element as DesignerCanvas;
+        public List<Point> Points
+        {
+            get => (List<Point>)this.GetValue(PointsProperty);
+            set => this.SetValue(PointsProperty, value);
         }
 
+        public  Point  EndPoint
+        {
+            get => (Point)this.GetValue(EndPointProperty);
+            set => this.SetValue(EndPointProperty, value);
+        }
     }
-
 }

@@ -51,6 +51,7 @@ namespace DiagramDesigner
             set => this.Set(ref _itemHeight, value);
         }
 
+     
         public FullyCreatedConnectorInfo TopConnector => _connectors[0];
 
         public FullyCreatedConnectorInfo BottomConnector => _connectors[1];

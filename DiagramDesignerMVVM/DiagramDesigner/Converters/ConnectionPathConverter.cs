@@ -25,7 +25,10 @@ namespace DiagramDesigner
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            
             List<Point> points = (List<Point>)value;
+            if (points == null)
+                return DependencyProperty.UnsetValue;
             PointCollection pointCollection = new PointCollection();
             foreach (Point point in points)
             {

@@ -11,7 +11,7 @@ namespace DiagramDesigner
     /// <summary>
     /// 连接器设计项
     /// </summary>
-    public class ConnectorDesignerItem : DesignerItemBase
+    public class Connector : DesignerItemBase
     {
         private FullyCreatedConnectorInfo _sourceConnectorInfo;
         private ConnectorInfoBase _sinkConnectorInfo;
@@ -22,13 +22,13 @@ namespace DiagramDesigner
         private Rect _area;
 
 
-        public ConnectorDesignerItem(int id, IDiagram parent, 
+        public Connector(int id, IDiagram parent, 
             FullyCreatedConnectorInfo sourceConnectorInfo, FullyCreatedConnectorInfo sinkConnectorInfo) : base(id,parent)
         {
             Init(sourceConnectorInfo, sinkConnectorInfo);
         }
 
-        public ConnectorDesignerItem(FullyCreatedConnectorInfo sourceConnectorInfo, ConnectorInfoBase sinkConnectorInfo)
+        public Connector(FullyCreatedConnectorInfo sourceConnectorInfo, ConnectorInfoBase sinkConnectorInfo)
         {
             Init(sourceConnectorInfo, sinkConnectorInfo);
         }
@@ -215,6 +215,8 @@ namespace DiagramDesigner
 
         private void Init(FullyCreatedConnectorInfo sourceConnectorInfo, ConnectorInfoBase sinkConnectorInfo)
         {
+            if (sourceConnectorInfo == null)
+                return;
             this.Parent = sourceConnectorInfo.DataItem.Parent;
             this.SourceConnectorInfo = sourceConnectorInfo;
             this.SinkConnectorInfo = sinkConnectorInfo;

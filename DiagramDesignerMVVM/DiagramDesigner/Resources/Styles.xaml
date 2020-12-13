@@ -3,7 +3,9 @@
                     >
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Styles/DragThumb.xaml" />
+        <ResourceDictionary Source="Styles/ConnectorPort.xaml" />
         <ResourceDictionary Source="Styles/ConnectorControl.xaml" />
         <ResourceDictionary Source="Styles/DesignerItemControl.xaml" />
+        <ResourceDictionary Source="Styles/DiagramControl.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

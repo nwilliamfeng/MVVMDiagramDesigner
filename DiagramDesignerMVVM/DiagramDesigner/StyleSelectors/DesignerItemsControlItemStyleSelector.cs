@@ -33,7 +33,7 @@ namespace DiagramDesigner
                 return (Style)itemsControl.FindResource("designerItemStyle");
             }
             
-            if (item is ConnectorDesignerItem)
+            if (item is Connector)
             {
                 return (Style)itemsControl.FindResource("connectorItemStyle");
             }

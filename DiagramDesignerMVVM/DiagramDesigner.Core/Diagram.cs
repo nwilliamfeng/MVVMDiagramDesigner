@@ -86,7 +86,7 @@ namespace DiagramDesigner
             var items =this.SelectedItems;
             List<DesignerItemBase> connectionsToAlsoRemove = new List<DesignerItemBase>();
 
-            foreach (var connector in this.Items.OfType<ConnectorDesignerItem>())
+            foreach (var connector in this.Items.OfType<Connector>())
             {
                 if (items.Contains(connector.SourceConnectorInfo.DataItem))
                 {
