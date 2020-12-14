@@ -20,7 +20,7 @@ namespace DiagramDesigner
         private Point _endPoint;
         private Rect _area;
         private double _lineThickness=3;
-        private ConnectorLineType _lineType ;
+        private ConnectorLineType _lineType = ConnectorLineType.DynamicDash;
         private bool _showArrow = false;
 
 

@@ -21,6 +21,9 @@ namespace DiagramDesigner
         /// </summary>
         Dash=1,
 
-       
+        /// <summary>
+        /// 支持动画的虚线
+        /// </summary>
+        DynamicDash=2,
     }
 }

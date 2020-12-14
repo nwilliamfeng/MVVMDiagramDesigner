@@ -11,15 +11,15 @@ using DiagramDesigner;
 
 namespace DemoApp
 {
-    public partial class Window1 : Window
+    public partial class ShellView : Window
     {
-        private Window1ViewModel window1ViewModel;
+        private ShellViewModel window1ViewModel;
 
-        public Window1()
+        public ShellView()
         {
             InitializeComponent();
 
-            window1ViewModel = new Window1ViewModel();
+            window1ViewModel = new ShellViewModel();
             this.DataContext = window1ViewModel;
             
         }

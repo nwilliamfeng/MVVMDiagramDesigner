@@ -1,4 +1,4 @@
-﻿<Window x:Class="DemoApp.Window1"
+﻿<Window x:Class="DemoApp.ShellView"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:s="clr-namespace:DiagramDesigner;assembly=DiagramDesigner"
@@ -46,7 +46,7 @@
             <control:DesignerElementControl Content="abdfafasdfsadfc" Grid.Column="1" VerticalAlignment="Center"  Visibility="Collapsed" />
 
             <control:DiagramControl Grid.Column="1" 
-                                  DataContext="{Binding DiagramViewModel}"
+                                  DataContext="{Binding Diagram}"
                                     ItemsSource="{Binding Items}"
                                   Margin="3,1,0,0" />
 

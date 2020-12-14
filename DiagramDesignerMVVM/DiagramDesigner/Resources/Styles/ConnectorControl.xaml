@@ -37,11 +37,34 @@
         </Canvas>
         <ControlTemplate.Triggers>
             <Trigger Value="True" Property="IsSelected">
-                <Setter TargetName="poly"  Property="Stroke" Value="Black" />
+                <Setter TargetName="poly"  Property="Stroke" Value="{Binding Foreground,RelativeSource={RelativeSource AncestorType=c:ConnectorControl}}" />
+                <Setter TargetName="arrow" Property="Stroke" Value="{Binding Foreground,RelativeSource={RelativeSource AncestorType=c:ConnectorControl}}"/>
             </Trigger>
             <Trigger Property="LineType" Value="Dash">
                 <Setter Property="StrokeDashArray" TargetName="poly" Value="2 2"/>
             </Trigger>
+
+            <Trigger Property="LineType" Value="DynamicDash">
+                <Setter Property="StrokeDashArray" TargetName="poly" Value="2 2"/>
+                <Trigger.EnterActions>
+                    <BeginStoryboard Name="Dash_SB">
+                        <BeginStoryboard.Storyboard>
+                            <Storyboard>
+                                <DoubleAnimation  To="-20"  
+                                                  Duration="0:0:3"  
+                                                  RepeatBehavior="Forever"   
+                                                  By="2" 
+                                                  Storyboard.TargetName="poly"
+                                                  Storyboard.TargetProperty="StrokeDashOffset" />
+                            </Storyboard>
+                        </BeginStoryboard.Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <StopStoryboard BeginStoryboardName="Dash_SB"/>
+                </Trigger.ExitActions>
+            </Trigger>
+            
             <Trigger Property="ShowArrow" Value="False">
                 <Setter Property="Visibility" TargetName="arrow" Value="Collapsed"/>
             </Trigger>
@@ -83,6 +106,7 @@
 
 
     <Style TargetType="{x:Type c:ConnectorControl}">
+        <Setter Property="Foreground" Value="Black"/>
         <Setter Property="SnapsToDevicePixels"  Value="true" />
         <Setter Property="Template" Value="{StaticResource ConnectorControlTemplate}"/>
     </Style>
