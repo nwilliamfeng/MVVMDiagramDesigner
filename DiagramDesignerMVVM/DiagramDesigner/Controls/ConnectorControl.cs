@@ -19,6 +19,7 @@ namespace DiagramDesigner.Controls
         , typeof(List<Point>)
         , typeof(ConnectorControl), new PropertyMetadata(default(List<Point>)));
 
+      
         public static readonly DependencyProperty EndPointProperty = DependencyProperty.Register(nameof(EndPoint)
       , typeof(Point)
       , typeof(ConnectorControl), new PropertyMetadata(default(Point)));
@@ -28,12 +29,68 @@ namespace DiagramDesigner.Controls
        , typeof(bool)
        , typeof(ConnectorControl), new PropertyMetadata(false));
 
+
+        public static readonly DependencyProperty LineThicknessProperty = DependencyProperty.Register(nameof(LineThickness)
+            , typeof(double)
+            , typeof(ConnectorControl), new PropertyMetadata(2.0));
+
+        public static readonly DependencyProperty LineTypeProperty = DependencyProperty.Register(nameof(LineType)
+           , typeof(ConnectorLineType)
+           , typeof(ConnectorControl), new PropertyMetadata(ConnectorLineType.Solid));
+
+        public static readonly DependencyProperty ArrowOrientationProperty = DependencyProperty.Register(nameof(ArrowOrientation)
+        , typeof(ConnectorOrientation)
+        , typeof(ConnectorControl), new PropertyMetadata(ConnectorOrientation.None));
+
+        public static readonly DependencyProperty ShowArrowProperty = DependencyProperty.Register(nameof(ShowArrow)
+      , typeof(bool)
+      , typeof(ConnectorControl), new PropertyMetadata(false));
+
         public Rect Area
         {
             get => (Rect)this.GetValue(AreaProperty);
             set => this.SetValue(AreaProperty, value);
         }
 
+        /// <summary>
+        /// 显示箭头
+        /// </summary>
+        public bool ShowArrow
+        {
+            get =>(bool) this.GetValue(ShowArrowProperty);
+            set => this.SetValue(ShowArrowProperty, value);
+        }
+
+        /// <summary>
+        /// 连接线厚度，默认为2
+        /// </summary>
+        public double LineThickness
+        {
+            get => (double)GetValue(LineThicknessProperty);
+            set => this.SetValue(LineThicknessProperty, value);
+        }
+
+        /// <summary>
+        /// 连接线类型
+        /// </summary>
+        public ConnectorLineType LineType
+        {
+            get => (ConnectorLineType)GetValue(LineTypeProperty);
+            set => this.SetValue(LineTypeProperty, value);
+        }
+
+        /// <summary>
+        /// 箭头方向
+        /// </summary>
+        public ConnectorOrientation ArrowOrientation
+        {
+            get => (ConnectorOrientation)GetValue(ArrowOrientationProperty);
+            set => this.SetValue(ArrowOrientationProperty, value);
+        }
+
+        /// <summary>
+        /// 是否选中
+        /// </summary>
         public bool IsSelected
         {
             get => (bool)GetValue(IsSelectedProperty);

@@ -38,6 +38,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectorLineType.cs" />
     <Compile Include="ConnectorOrientation.cs" />
     <Compile Include="Connector.cs" />
     <Compile Include="ConnectorInfoBase.cs" />

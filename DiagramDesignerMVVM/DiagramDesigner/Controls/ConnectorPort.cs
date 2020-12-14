@@ -16,8 +16,7 @@ namespace DiagramDesigner.Controls
         public static readonly DependencyProperty OrientationProperty = DependencyProperty.Register(nameof(Orientation)
             , typeof(ConnectorOrientation)
             , typeof(ConnectorPort), new PropertyMetadata(ConnectorOrientation.None));
-
-
+   
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);

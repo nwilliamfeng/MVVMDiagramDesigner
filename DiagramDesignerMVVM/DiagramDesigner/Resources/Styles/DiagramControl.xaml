@@ -25,7 +25,7 @@
                                                                LeftConnector="{Binding LeftConnector}"
                                                                RightConnector="{Binding RightConnector}"
                                                                TopConnector="{Binding TopConnector}"
-                                                               BottomConnector="{Binding BottomConnector}"
+                                                               BottomConnector="{Binding BottomConnector}"                                                               
                                                                Content="{Binding}"/>
                                     </DataTemplate>
                                 </Setter.Value>
@@ -35,12 +35,18 @@
                         <!--连接器的样式-->
                         <Style x:Key="connectorItemStyle" TargetType="{x:Type ContentPresenter}">
                             <Setter Property="s:SelectionProps.EnabledForSelection" Value="True" />
+                            <Setter Property="Canvas.Top" Value="{Binding Area.Top}" />
+                            <Setter Property="Canvas.Left" Value="{Binding Area.Left}" />
                             <Setter Property="ContentTemplate">
                                 <Setter.Value>
                                     <DataTemplate>
-                                        <c:ConnectorControl Area="{Binding Area}"  
-                                                            IsSelected="{Binding IsSelected }" 
+                                        <c:ConnectorControl  IsSelected="{Binding IsSelected }" 
+                                                            ShowArrow="{Binding ShowArrow}"
+                                                            LineThickness="{Binding LineThickness}"
+                                                            LineType="{Binding LineType}"
                                                             Points="{Binding ConnectionPoints}"
+                                                            EndPoint="{Binding EndPoint}"
+                                                            ArrowOrientation="{Binding SinkConnectorInfo.Orientation}"
                                                             />
                                     </DataTemplate>
                                 </Setter.Value>
@@ -53,12 +59,7 @@
                             <c:DesignerCanvas MinHeight="800" MinWidth="1000" Background="White" AllowDrop="True" IsItemsHost="True"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-       
-
-                    
-
                 </ItemsControl>
-
 
             </ScrollViewer>
 

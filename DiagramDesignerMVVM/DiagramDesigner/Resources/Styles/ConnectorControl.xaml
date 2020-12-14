@@ -2,6 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:c="clr-namespace:DiagramDesigner.Controls"
                     xmlns:s="clr-namespace:DiagramDesigner"
+                    xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" 
                    >
 
     <ControlTemplate TargetType="{x:Type c:ConnectorControl}" x:Key="ConnectorControlTemplate">
@@ -10,27 +11,80 @@
                 HorizontalAlignment="Stretch"                
                 VerticalAlignment="Stretch"
                 >
-            <Polyline x:Name="poly" Stroke="Gray" 
-                      Canvas.Top="{Binding Area.Top ,RelativeSource={RelativeSource AncestorType=c:ConnectorControl}}"
-                       Canvas.Left="{Binding Area.Left ,RelativeSource={RelativeSource AncestorType=c:ConnectorControl}}"                      
-                      Points="{TemplateBinding Points, Converter={x:Static s:ConnectionPathConverter.Instance}}" 
-                      StrokeThickness="2" />
+            <Polyline x:Name="poly"                                      
+                      Points="{TemplateBinding Points, Converter={x:Static s:ConnectionPathConverter.Instance}}"                        
+                      StrokeThickness="{TemplateBinding LineThickness}" >
+                <Polyline.Stroke>
+                    <SolidColorBrush Color="Gray" />
+                </Polyline.Stroke>
+            </Polyline>
+            <Path x:Name="arrow"
+                  Data="M0,10 L5,0 10,10 z"                
+                  Fill="Gray"
+                  HorizontalAlignment="Left"
+                  Height="10"
+                  Canvas.Left="{Binding EndPoint.X,RelativeSource={RelativeSource AncestorType=c:ConnectorControl}}"
+                  Canvas.Top="{Binding EndPoint.Y,RelativeSource={RelativeSource AncestorType=c:ConnectorControl}}"
+                  Stretch="Fill"
+                  Stroke="Gray"
+                  VerticalAlignment="Top"
+                  Width="10"
+                  RenderTransformOrigin="0.5,0.5">
+                <Path.RenderTransform>
+                    <RotateTransform x:Name="rot" />
+                </Path.RenderTransform>
+            </Path>
         </Canvas>
         <ControlTemplate.Triggers>
             <Trigger Value="True" Property="IsSelected">
                 <Setter TargetName="poly"  Property="Stroke" Value="Black" />
             </Trigger>
+            <Trigger Property="LineType" Value="Dash">
+                <Setter Property="StrokeDashArray" TargetName="poly" Value="2 2"/>
+            </Trigger>
+            <Trigger Property="ShowArrow" Value="False">
+                <Setter Property="Visibility" TargetName="arrow" Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="ArrowOrientation" Value="Top">
+                <Setter TargetName="arrow" Property="Margin" Value="-5,-15,0,0" />
+                <Setter TargetName="arrow" Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="180" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="ArrowOrientation"  Value="Right">
+                <Setter TargetName="arrow" Property="Margin" Value="5,-5,0,0" />
+                <Setter TargetName="arrow" Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="-90" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="ArrowOrientation" Value="Bottom">
+                <Setter TargetName="arrow" Property="Margin" Value="-5,10,0,0" />
+                <Setter TargetName="arrow" Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="0" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="ArrowOrientation" Value="Left">
+                <Setter TargetName="arrow" Property="Margin" Value="-15,-5,0,0" />
+                <Setter TargetName="arrow" Property="RenderTransform">
+                    <Setter.Value>
+                        <RotateTransform Angle="90" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
         </ControlTemplate.Triggers>
 
     </ControlTemplate>
 
-   
+
     <Style TargetType="{x:Type c:ConnectorControl}">
-      
-     
         <Setter Property="SnapsToDevicePixels"  Value="true" />
         <Setter Property="Template" Value="{StaticResource ConnectorControlTemplate}"/>
-
     </Style>
 
 

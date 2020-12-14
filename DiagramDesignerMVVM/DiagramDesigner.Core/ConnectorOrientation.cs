@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+ 
 
 namespace DiagramDesigner
 {
+    /// <summary>
+    /// 连接方向
+    /// </summary>
     public enum ConnectorOrientation
     {
         None = 0,

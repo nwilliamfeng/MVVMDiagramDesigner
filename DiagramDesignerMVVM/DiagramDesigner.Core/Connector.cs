@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using DiagramDesigner.Helpers;
 
@@ -20,10 +19,13 @@ namespace DiagramDesigner
         private List<Point> _connectionPoints;
         private Point _endPoint;
         private Rect _area;
+        private double _lineThickness=3;
+        private ConnectorLineType _lineType ;
+        private bool _showArrow = false;
 
 
-        public Connector(int id, IDiagram parent, 
-            FullyCreatedConnectorInfo sourceConnectorInfo, FullyCreatedConnectorInfo sinkConnectorInfo) : base(id,parent)
+        public Connector(int id, IDiagram parent, FullyCreatedConnectorInfo sourceConnectorInfo
+            , FullyCreatedConnectorInfo sinkConnectorInfo) : base(id,parent)
         {
             Init(sourceConnectorInfo, sinkConnectorInfo);
         }
@@ -40,13 +42,37 @@ namespace DiagramDesigner
 
         public bool IsFullConnection => _sinkConnectorInfo is FullyCreatedConnectorInfo;
 
-
-        public Point SourceA
+        /// <summary>
+        /// 线厚度
+        /// </summary>
+        public double LineThickness
         {
-            get
-            {
-                return _sourceA;
-            }
+            get => _lineThickness;
+            set => this.Set(ref _lineThickness, value);
+        }
+
+        /// <summary>
+        /// 是否显示箭头
+        /// </summary>
+        public bool ShowArrow
+        {
+            get => _showArrow;
+            set => this.Set(ref _showArrow, value);
+        }
+
+        /// <summary>
+        /// 线类型
+        /// </summary>
+        public ConnectorLineType LineType
+        {
+            get => _lineType;
+            set => this.Set(ref _lineType, value);
+        }
+
+
+        internal Point SourceA
+        {
+            get => _sourceA;
             set
             {
                 if (_sourceA != value)
@@ -58,12 +84,9 @@ namespace DiagramDesigner
             }
         }
 
-        public Point SourceB
+        internal Point SourceB
         {
-            get
-            {
-                return _sourceB;
-            }
+            get => _sourceB;
             set
             {
                 if (_sourceB != value)
@@ -89,10 +112,7 @@ namespace DiagramDesigner
 
         public Rect Area
         {
-            get
-            {
-                return _area;
-            }
+            get=> _area;
             private set
             {
                 if (_area != value)
@@ -117,15 +137,11 @@ namespace DiagramDesigner
 
         public FullyCreatedConnectorInfo SourceConnectorInfo
         {
-            get
-            {
-                return _sourceConnectorInfo;
-            }
+            get => _sourceConnectorInfo;
             set
             {
                 if (_sourceConnectorInfo != value)
                 {
-
                     _sourceConnectorInfo = value;
                     SourceA = PointHelper.GetPointForConnector(this.SourceConnectorInfo);
                     NotifyOfPropertyChange(()=>SourceConnectorInfo);
@@ -136,15 +152,11 @@ namespace DiagramDesigner
 
         public ConnectorInfoBase SinkConnectorInfo
         {
-            get
-            {
-                return _sinkConnectorInfo;
-            }
+            get => _sinkConnectorInfo;
             set
             {
                 if (_sinkConnectorInfo != value)
                 {
-
                     _sinkConnectorInfo = value;
                     if (SinkConnectorInfo is FullyCreatedConnectorInfo)
                     {
@@ -153,7 +165,6 @@ namespace DiagramDesigner
                     }
                     else
                     {
-
                         SourceB = ((PartCreatedConnectionInfo)SinkConnectorInfo).CurrentLocation;
                     }
                     NotifyOfPropertyChange(()=>SinkConnectorInfo);
@@ -200,15 +211,13 @@ namespace DiagramDesigner
         {
             switch (e.PropertyName)
             {
-                case "ItemHeight":
-                case "ItemWidth":
-                case "Left":
-                case "Top":
+                case nameof(DesignerElement.ItemHeight):
+                case nameof(DesignerElement.ItemWidth):
+                case nameof(DesignerElement.Left):
+                case nameof(DesignerElement.Top):
                     SourceA = PointHelper.GetPointForConnector(this.SourceConnectorInfo);
                     if (this.SinkConnectorInfo is FullyCreatedConnectorInfo)
-                    {
                         SourceB = PointHelper.GetPointForConnector((FullyCreatedConnectorInfo)this.SinkConnectorInfo);
-                    }
                     break;
             }
         }

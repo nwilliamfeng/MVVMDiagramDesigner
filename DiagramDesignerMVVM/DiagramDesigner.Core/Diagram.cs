@@ -89,15 +89,10 @@ namespace DiagramDesigner
             foreach (var connector in this.Items.OfType<Connector>())
             {
                 if (items.Contains(connector.SourceConnectorInfo.DataItem))
-                {
                     connectionsToAlsoRemove.Add(connector);
-                }
 
                 if (items.Contains(((FullyCreatedConnectorInfo)connector.SinkConnectorInfo).DataItem))
-                {
                     connectionsToAlsoRemove.Add(connector);
-                }
-
             }
             items.AddRange(connectionsToAlsoRemove);
             foreach (var selectedItem in items)

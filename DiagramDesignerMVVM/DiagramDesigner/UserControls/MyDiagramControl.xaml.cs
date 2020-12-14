@@ -17,6 +17,7 @@ namespace DiagramDesigner
     /// <summary>
     /// Interaction logic for DiagramControl.xaml
     /// </summary>
+    [Obsolete]
     public partial class MyDiagramControl : UserControl
     {
         public MyDiagramControl()
