@@ -11,7 +11,7 @@ namespace DiagramDesigner
     /// </summary>
     public abstract class VisualElement : NotifyObject
     {
-        private bool isSelected;
+        private bool _isSelected;
 
         public VisualElement(int id, IDiagram parent):this()
         {
@@ -19,9 +19,23 @@ namespace DiagramDesigner
             this.Parent = parent;           
         }
 
-        public VisualElement()=> SelectItemCommand = new SimpleCommand(ExecuteSelectItemCommand);
+        protected VisualElement()
+        {
+            SelectItemCommand = new InnerCommand(ExecuteSelectItemCommand);
+            DoubleClickCommand = new InnerCommand(x => OnDoubleClick());
+        }
 
+        /// <summary>
+        /// 双击时处理，默认不处理
+        /// </summary>
+        protected virtual void OnDoubleClick()
+        {
 
+        }
+
+        /// <summary>
+        /// 获取Diagram的所有项
+        /// </summary>
         public List<VisualElement> SelectedItems=> Parent.SelectedItems;
         
 
@@ -29,23 +43,29 @@ namespace DiagramDesigner
 
         public ICommand SelectItemCommand { get; }
 
-        public int Id { get; set; }
+        public ICommand DoubleClickCommand { get; }
 
+        private object _doubleClickCommandParameter;
+
+        public object DoubleClickCommandParameter
+        {
+            get => _doubleClickCommandParameter;
+            set => this.Set(ref _doubleClickCommandParameter, value);
+        }
+
+        /// <summary>
+        /// 获取Id
+        /// </summary>
+        public int Id { get;  }
+
+        /// <summary>
+        /// 获取或设置是否被选中
+        /// </summary>
         public bool IsSelected
         {
-            get
-            {
-                return isSelected;
-            }
-            set
-            {
-                if (isSelected != value)
-                {
-                    
-                    isSelected = value;
-                    NotifyOfPropertyChange("IsSelected");
-                }
-            }
+            get => _isSelected;
+            set => this.Set(ref _isSelected, value);
+            
         }
 
         private void ExecuteSelectItemCommand(object param)
@@ -59,7 +79,7 @@ namespace DiagramDesigner
             {
                 foreach (var designerItemViewModelBase in Parent.SelectedItems.ToList())
                 {
-                    designerItemViewModelBase.isSelected = false;
+                    designerItemViewModelBase._isSelected = false;
                 }
             }
 

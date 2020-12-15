@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace DiagramDesigner.Controls
 {
@@ -34,6 +35,13 @@ namespace DiagramDesigner.Controls
           , typeof(FullyCreatedConnectorInfo)
           , typeof(DesignerElementControl));
 
+        public static readonly DependencyProperty DoubleClickCommandProperty = DependencyProperty.Register(nameof(DoubleClickCommand)
+          , typeof(ICommand)
+          , typeof(DesignerElementControl));
+
+        public static readonly DependencyProperty DoubleClickCommandParameterProperty = DependencyProperty.Register(nameof(DoubleClickCommandParameter)
+        , typeof(object)
+        , typeof(DesignerElementControl));
 
         /// <summary>
         /// 是否显示连接器
@@ -44,6 +52,23 @@ namespace DiagramDesigner.Controls
             set => this.SetValue(ShowConnectorsProperty, value);
         }
 
+        /// <summary>
+        /// 鼠标双击命令
+        /// </summary>
+        public ICommand DoubleClickCommand
+        {
+            get => (ICommand)this.GetValue(DoubleClickCommandProperty);
+            set => this.SetValue(DoubleClickCommandProperty, value);
+        }
+
+        /// <summary>
+        /// 鼠标双击命令参数
+        /// </summary>
+        public object DoubleClickCommandParameter
+        {
+            get => this.GetValue(DoubleClickCommandParameterProperty);
+            set => this.SetValue(DoubleClickCommandParameterProperty, value);
+        }
 
         public FullyCreatedConnectorInfo TopConnector
         {
@@ -75,8 +100,16 @@ namespace DiagramDesigner.Controls
             base.OnApplyTemplate();
             this.MouseEnter -= DesignerItemControl_MouseEnter;
             this.MouseEnter += DesignerItemControl_MouseEnter;
+            this.MouseDoubleClick -= DesignerElementControl_MouseDoubleClick;
+            this.MouseDoubleClick += DesignerElementControl_MouseDoubleClick;
         }
- 
+
+        private void DesignerElementControl_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (this.DoubleClickCommand == null) return;
+            if (this.DoubleClickCommand.CanExecute(this.DoubleClickCommandParameter))
+                this.DoubleClickCommand.Execute(this.DoubleClickCommandParameter);
+        }
 
         private void DesignerItemControl_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
         {

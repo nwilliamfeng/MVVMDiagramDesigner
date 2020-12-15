@@ -2,9 +2,16 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:DemoApp"
+             xmlns:core="clr-namespace:DiagramDesigner;assembly=DiagramDesigner.Core"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              >
     <Application.Resources>
         <ResourceDictionary>
+            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="lineTypes">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="core:ConnectorLineType"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
                     <local:MefBootstrapper x:Key="bootstrapper"/>

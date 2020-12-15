@@ -79,10 +79,10 @@ namespace DemoApp
 
         private void Init()
         {
-            AddItemCommand = new SimpleCommand(ExecuteAddItemCommand);
-            RemoveItemCommand = new SimpleCommand(ExecuteRemoveItemCommand);
-            ClearSelectedItemsCommand = new SimpleCommand(ExecuteClearSelectedItemsCommand);
-            CreateNewDiagramCommand = new SimpleCommand(ExecuteCreateNewDiagramCommand);
+            AddItemCommand = new RelayCommand<object>(ExecuteAddItemCommand);
+            RemoveItemCommand = new RelayCommand<object>(ExecuteRemoveItemCommand);
+            ClearSelectedItemsCommand = new RelayCommand<object>(ExecuteClearSelectedItemsCommand);
+            CreateNewDiagramCommand = new RelayCommand<object>(ExecuteCreateNewDiagramCommand);
 
             this.ShowConnectors = false;
         }

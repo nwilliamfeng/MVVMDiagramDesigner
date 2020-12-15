@@ -36,7 +36,7 @@ namespace DemoApp
         public String Setting1 { get; set; }
         public ICommand ShowDataChangeWindowCommand { get; private set; }
 
-        public void ExecuteShowDataChangeWindowCommand(object parameter)
+        public void ExecuteShowDataChangeWindowCommand( )
         {
             SettingsDesignerItemData data = new SettingsDesignerItemData(Setting1);
             if (visualiserService.ShowDialog(data) == true)
@@ -48,7 +48,7 @@ namespace DemoApp
         private void Init()
         {
             visualiserService = ApplicationServicesProvider.Instance.Provider.VisualizerService;
-            ShowDataChangeWindowCommand = new SimpleCommand(ExecuteShowDataChangeWindowCommand);
+            ShowDataChangeWindowCommand = new RelayCommand(ExecuteShowDataChangeWindowCommand);
             this.ShowConnectors = false;
         }
     }

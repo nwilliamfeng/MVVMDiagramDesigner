@@ -59,7 +59,7 @@
     <Compile Include="PartCreatedConnectionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VisualElement.cs" />
-    <Compile Include="SimpleCommand.cs" />
+    <Compile Include="InnerCommand.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

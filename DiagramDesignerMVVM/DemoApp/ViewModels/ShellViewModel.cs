@@ -28,8 +28,8 @@ namespace DemoApp
             ToolBoxViewModel = new ToolBoxViewModel();
             Diagram = new Diagram();
             
-            DeleteSelectedItemsCommand = new SimpleCommand(ExecuteDeleteSelectedItemsCommand);
-            CreateNewDiagramCommand = new SimpleCommand(ExecuteCreateNewDiagramCommand);
+            DeleteSelectedItemsCommand = new RelayCommand(ExecuteDeleteSelectedItemsCommand);
+            CreateNewDiagramCommand = new RelayCommand(ExecuteCreateNewDiagramCommand);
             // SaveDiagramCommand = new SimpleCommand(ExecuteSaveDiagramCommand);
             //LoadDiagramCommand = new SimpleCommand(ExecuteLoadDiagramCommand);
             //  GroupCommand = new SimpleCommand(ExecuteGroupCommand);
@@ -50,11 +50,11 @@ namespace DemoApp
         }
 
 
-        public SimpleCommand DeleteSelectedItemsCommand { get; private set; }
-        public SimpleCommand CreateNewDiagramCommand { get; private set; }
-        public SimpleCommand SaveDiagramCommand { get; private set; }
-        public SimpleCommand GroupCommand { get; private set; }
-        public SimpleCommand LoadDiagramCommand { get; private set; }
+        public ICommand DeleteSelectedItemsCommand { get; private set; }
+        public ICommand CreateNewDiagramCommand { get; private set; }
+        public ICommand SaveDiagramCommand { get; private set; }
+        public ICommand GroupCommand { get; private set; }
+        public ICommand LoadDiagramCommand { get; private set; }
         public ToolBoxViewModel ToolBoxViewModel { get; private set; }
 
 
@@ -65,10 +65,10 @@ namespace DemoApp
           
         }
  
-        private void ExecuteDeleteSelectedItemsCommand(object parameter)=> Diagram.DeleteSelectedItems();
+        private void ExecuteDeleteSelectedItemsCommand()=> Diagram.DeleteSelectedItems();
 
 
-        private void ExecuteCreateNewDiagramCommand(object parameter)
+        private void ExecuteCreateNewDiagramCommand( )
         {
             //ensure that itemsToRemove is cleared ready for any new changes within a session
             _itemsToRemove = new List<VisualElement>();
@@ -88,7 +88,15 @@ namespace DemoApp
                 if (connectors.GroupBy(x => x.LineType).Count() > 1) return null;
                 return connectors.First().LineType;
             }
+            set
+            {
+                if (value != null)
+                    this.Diagram.SelectedItems.OfType<Connector>().ToList().ForEach(x =>
+                    {
+                        x.LineType = value.Value;
+                    });
+            }
         }
-        
+ 
     }
 }

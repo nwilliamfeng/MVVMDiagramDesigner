@@ -13,11 +13,11 @@ namespace DiagramDesigner
 
         public Diagram()
         {
-            AddItemCommand = new SimpleCommand(ExecuteAddItemCommand);
+            AddItemCommand = new InnerCommand(ExecuteAddItemCommand);
             
-            ClearSelectedItemsCommand = new SimpleCommand(ExecuteClearSelectedItemsCommand);
-            CreateNewDiagramCommand = new SimpleCommand(ExecuteCreateNewDiagramCommand);
-            RemoveItemCommand= new SimpleCommand(ExecuteRemoveItemCommand);
+            ClearSelectedItemsCommand = new InnerCommand(ExecuteClearSelectedItemsCommand);
+            CreateNewDiagramCommand = new InnerCommand(ExecuteCreateNewDiagramCommand);
+            RemoveItemCommand= new InnerCommand(ExecuteRemoveItemCommand);
             Mediator.Instance.Register(this);
         }
 

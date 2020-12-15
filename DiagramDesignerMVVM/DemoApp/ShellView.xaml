@@ -15,12 +15,18 @@
     </Window.InputBindings>
 	
 	<DockPanel Margin="0">
+        <DockPanel.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </DockPanel.Resources>
 		<ToolBar Height="35" DockPanel.Dock="Top">
 			<Button ToolTip="New"
                     Content="New"
 					Margin="8,0,3,0"
                     Command="{Binding CreateNewDiagramCommand}"/>
-          
+
+            <ComboBox SelectedItem="{Binding  LineType}" ItemsSource="{Binding Source={StaticResource lineTypes}}" Margin="5,0" MinWidth="100"/>
         </ToolBar>
 		
 		<Grid Margin="0,5,0,0">
@@ -37,17 +43,10 @@
 						  VerticalAlignment="Stretch"
 						  Background="Transparent"
 						  Width="3" />
-        
-            <!-- Diagram Control -->
-            <s:MyDiagramControl Grid.Column="1" 
-                                  DataContext="{Binding DiagramViewModel}"
-                                  Margin="3,1,0,0" Visibility="Collapsed" />
-
-            <control:DesignerElementControl Content="abdfafasdfsadfc" Grid.Column="1" VerticalAlignment="Center"  Visibility="Collapsed" />
-
+          
             <control:DiagramControl Grid.Column="1" 
                                   DataContext="{Binding Diagram}"
-                                    ItemsSource="{Binding Items}"
+                                  ItemsSource="{Binding Items}"
                                   Margin="3,1,0,0" />
 
         </Grid>

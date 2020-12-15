@@ -6,7 +6,7 @@ namespace DiagramDesigner
 {
 
     /// <summary>
-    /// 元件设计项基类
+    /// 元件设计项基类，所有的自定义元件实现必须继承此类
     /// </summary>
     public abstract class DesignerElement : VisualElement
     {
@@ -98,12 +98,18 @@ namespace DiagramDesigner
             }
         }
 
+        /// <summary>
+        /// 对应Canvas的Left
+        /// </summary>
         public double Left
         {
             get => _left;
             set => this.Set(ref _left, value);          
         }
 
+        /// <summary>
+        /// 对应Canvas的Top
+        /// </summary>
         public double Top
         {
             get => _top;

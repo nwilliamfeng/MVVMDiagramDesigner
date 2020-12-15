@@ -22,11 +22,14 @@
                                 <Setter.Value>
                                     <DataTemplate>
                                         <c:DesignerElementControl ShowConnectors="{Binding ShowConnectors}" 
-                                                               LeftConnector="{Binding LeftConnector}"
+                                                               LeftConnector="{Binding LeftConnector}"                                                            
                                                                RightConnector="{Binding RightConnector}"
                                                                TopConnector="{Binding TopConnector}"
-                                                               BottomConnector="{Binding BottomConnector}"                                                               
-                                                               Content="{Binding}"/>
+                                                               BottomConnector="{Binding BottomConnector}"   
+                                                               DoubleClickCommand="{Binding DoubleClickCommand}"
+                                                               DoubleClickCommandParameter="{Binding DoubleClickCommandParameter}"
+                                                               Content="{Binding}">
+                                        </c:DesignerElementControl>
                                     </DataTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -40,14 +43,16 @@
                             <Setter Property="ContentTemplate">
                                 <Setter.Value>
                                     <DataTemplate>
-                                        <c:ConnectorControl  IsSelected="{Binding IsSelected }" 
+                                        <c:ConnectorControl IsSelected="{Binding IsSelected }" 
                                                             ShowArrow="{Binding ShowArrow}"
                                                             LineThickness="{Binding LineThickness}"
                                                             LineType="{Binding LineType}"
                                                             Points="{Binding ConnectionPoints}"
                                                             EndPoint="{Binding EndPoint}"
                                                             ArrowOrientation="{Binding SinkConnectorInfo.Orientation}"
-                                                            />
+                                                           >
+                                           
+                                        </c:ConnectorControl>
                                     </DataTemplate>
                                 </Setter.Value>
                             </Setter>
@@ -66,14 +71,10 @@
         </Border>
     </ControlTemplate>
 
-     
+
     <Style TargetType="{x:Type c:DiagramControl}">
-       
         <Setter Property="SnapsToDevicePixels"  Value="true" />
         <Setter Property="Template" Value="{StaticResource DiagramControlTemplate}"/>
-
     </Style>
-
-
 
 </ResourceDictionary>

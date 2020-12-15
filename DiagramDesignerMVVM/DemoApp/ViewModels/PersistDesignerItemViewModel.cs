@@ -31,7 +31,7 @@ namespace DemoApp
         public String HostUrl { get; set; }
         public ICommand ShowDataChangeWindowCommand { get; private set; }
 
-        public void ExecuteShowDataChangeWindowCommand(object parameter)
+        public void ExecuteShowDataChangeWindowCommand( )
         {
             PersistDesignerItemData data = new PersistDesignerItemData(HostUrl);
             if (visualiserService.ShowDialog(data) == true)
@@ -40,11 +40,16 @@ namespace DemoApp
             }
         }
 
+        protected override void OnDoubleClick()
+        {
+            ExecuteShowDataChangeWindowCommand();
+        }
+
 
         private void Init()
         {
             visualiserService = ApplicationServicesProvider.Instance.Provider.VisualizerService;
-            ShowDataChangeWindowCommand = new SimpleCommand(ExecuteShowDataChangeWindowCommand);
+            ShowDataChangeWindowCommand = new RelayCommand(ExecuteShowDataChangeWindowCommand);
             this.ShowConnectors = false;
 
         }
