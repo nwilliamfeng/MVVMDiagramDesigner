@@ -11,8 +11,6 @@ namespace DemoApp
     public class GroupingDesignerItemViewModel : DesignerElement, IDiagram
     {
 
-       
-
         public GroupingDesignerItemViewModel(int id, IDiagram parent, double left, double top)
             : base(id, parent, left, top)
         {

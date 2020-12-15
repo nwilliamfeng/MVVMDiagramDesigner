@@ -8,6 +8,7 @@ using Caliburn.Micro;
 using System.Threading.Tasks;
 using System.Windows;
 using System.ComponentModel.Composition;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace DemoApp
@@ -47,6 +48,9 @@ namespace DemoApp
             Diagram.Items.Add(item2);
 
             item1.Connect(item2, ConnectorOrientation.Right, ConnectorOrientation.Left);
+
+            this.Tools.Add(new SettingsDesignerItemViewModel());
+            this.Tools.Add(new PersistDesignerItemViewModel());
         }
 
 
@@ -115,6 +119,8 @@ namespace DemoApp
                 this.Set(ref _showLineArrow, value);
             }
         }
+
+        public ObservableCollection<DesignerElement> Tools { get; private set; } = new ObservableCollection<DesignerElement>();
  
     }
 }
