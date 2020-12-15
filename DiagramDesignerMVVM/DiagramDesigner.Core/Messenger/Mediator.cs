@@ -85,11 +85,7 @@ namespace DiagramDesigner
         #endregion
 
         #region Ctor
-        static Mediator()
-        {
-
-        }
-
+     
         private Mediator()
         {
 

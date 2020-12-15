@@ -102,6 +102,14 @@ namespace DiagramDesigner.Controls
             this.MouseEnter += DesignerItemControl_MouseEnter;
             this.MouseDoubleClick -= DesignerElementControl_MouseDoubleClick;
             this.MouseDoubleClick += DesignerElementControl_MouseDoubleClick;
+            this.MouseRightButtonUp -= DesignerElementControl_MouseRightButtonUp;
+            this.MouseRightButtonUp += DesignerElementControl_MouseRightButtonUp;
+        }
+
+        private void DesignerElementControl_MouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (this.ContextMenu != null && this.ContextMenu.Items.Count>0)
+                this.ContextMenu.IsOpen = true;
         }
 
         private void DesignerElementControl_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)

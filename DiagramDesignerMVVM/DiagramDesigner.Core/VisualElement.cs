@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using System.Collections.ObjectModel;
 
 namespace DiagramDesigner
 {
@@ -19,9 +20,11 @@ namespace DiagramDesigner
             this.Parent = parent;           
         }
 
+        public ObservableCollection<DesignerMenuItem> MenuItems { get; private set; } = new ObservableCollection<DesignerMenuItem>();
+
         protected VisualElement()
         {
-            SelectItemCommand = new InnerCommand(ExecuteSelectItemCommand);
+            SelectItemCommand = new InnerCommand(x => SelectItem((bool)x, !IsSelected));
             DoubleClickCommand = new InnerCommand(x => OnDoubleClick());
         }
 
@@ -68,11 +71,7 @@ namespace DiagramDesigner
             
         }
 
-        private void ExecuteSelectItemCommand(object param)
-        {
-            SelectItem((bool)param, !IsSelected);
-        }
-        
+      
         private void SelectItem(bool newselect, bool select)
         {
             if (newselect)

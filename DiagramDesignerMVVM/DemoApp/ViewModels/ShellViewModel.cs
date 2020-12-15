@@ -70,9 +70,7 @@ namespace DemoApp
 
         private void ExecuteCreateNewDiagramCommand( )
         {
-            //ensure that itemsToRemove is cleared ready for any new changes within a session
-            _itemsToRemove = new List<VisualElement>();
-           
+            _itemsToRemove = new List<VisualElement>();          
             Diagram.CreateNewDiagramCommand.Execute(null);
         }
 
@@ -95,6 +93,26 @@ namespace DemoApp
                     {
                         x.LineType = value.Value;
                     });
+            }
+        }
+
+        private bool _showLineArrow;
+        public bool ShowLineArrow
+        {
+            get
+            {           
+                return _showLineArrow;
+            }
+            set
+            {
+       
+                this.Diagram.SelectedItems.OfType<Connector>().ToList()
+                    .ForEach(x=>
+                    {
+                        x.ShowArrow = value;
+                    });
+                
+                this.Set(ref _showLineArrow, value);
             }
         }
  

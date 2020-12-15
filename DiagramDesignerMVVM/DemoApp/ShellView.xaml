@@ -26,7 +26,8 @@
 					Margin="8,0,3,0"
                     Command="{Binding CreateNewDiagramCommand}"/>
 
-            <ComboBox SelectedItem="{Binding  LineType}" ItemsSource="{Binding Source={StaticResource lineTypes}}" Margin="5,0" MinWidth="100"/>
+            <ComboBox SelectedItem="{Binding  LineType}" ItemsSource="{Binding Source={StaticResource lineTypes}}" Margin="10,0" MinWidth="100"/>
+            <CheckBox Content="显示箭头" IsChecked="{Binding ShowLineArrow}"/>
         </ToolBar>
 		
 		<Grid Margin="0,5,0,0">

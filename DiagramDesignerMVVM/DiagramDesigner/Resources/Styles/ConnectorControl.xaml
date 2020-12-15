@@ -38,6 +38,7 @@
         <ControlTemplate.Triggers>
             <Trigger Value="True" Property="IsSelected">
                 <Setter TargetName="poly"  Property="Stroke" Value="{Binding Foreground,RelativeSource={RelativeSource AncestorType=c:ConnectorControl}}" />
+                <Setter TargetName="arrow" Property="Fill" Value="{Binding Foreground,RelativeSource={RelativeSource AncestorType=c:ConnectorControl}}"/>
                 <Setter TargetName="arrow" Property="Stroke" Value="{Binding Foreground,RelativeSource={RelativeSource AncestorType=c:ConnectorControl}}"/>
             </Trigger>
             <Trigger Property="LineType" Value="Dash">

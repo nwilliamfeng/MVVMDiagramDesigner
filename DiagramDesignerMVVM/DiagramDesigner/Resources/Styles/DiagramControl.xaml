@@ -29,6 +29,18 @@
                                                                DoubleClickCommand="{Binding DoubleClickCommand}"
                                                                DoubleClickCommandParameter="{Binding DoubleClickCommandParameter}"
                                                                Content="{Binding}">
+                                            <c:DesignerElementControl.ContextMenu>
+                                                <ContextMenu ItemsSource="{Binding MenuItems}">
+                                                    <ContextMenu.ItemContainerStyle>
+                                                        <Style TargetType="MenuItem">
+                                                            <Setter Property="ItemsSource" Value="{Binding Items}"/>
+                                                            <Setter Property="Header" Value="{Binding Name}"/>
+                                                            <Setter Property="Command" Value="{Binding Command}"/>
+                                                            <Setter Property="CommandParameter" Value="{Binding CommandParameter}"/>
+                                                        </Style> 
+                                                    </ContextMenu.ItemContainerStyle>
+                                                </ContextMenu>
+                                            </c:DesignerElementControl.ContextMenu>
                                         </c:DesignerElementControl>
                                     </DataTemplate>
                                 </Setter.Value>
@@ -51,7 +63,6 @@
                                                             EndPoint="{Binding EndPoint}"
                                                             ArrowOrientation="{Binding SinkConnectorInfo.Orientation}"
                                                            >
-                                           
                                         </c:ConnectorControl>
                                     </DataTemplate>
                                 </Setter.Value>
@@ -61,7 +72,11 @@
                     </ItemsControl.Resources>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <c:DesignerCanvas MinHeight="800" MinWidth="1000" Background="White" AllowDrop="True" IsItemsHost="True"/>
+                            <c:DesignerCanvas MinHeight="800" 
+                                              MinWidth="1000" 
+                                              Background="White" 
+                                              AllowDrop="True" 
+                                              IsItemsHost="True"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>

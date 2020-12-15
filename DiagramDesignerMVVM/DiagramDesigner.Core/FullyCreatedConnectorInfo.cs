@@ -7,6 +7,7 @@ using System.Windows;
 namespace DiagramDesigner
 {
     /// <summary>
+    ///  用于DesignerElement 端口连接
     ///  we use when we know the actual associated diagram item associated with the Connector, and provides the full set of data 
     ///  required to represent an end of a connection to an actual diagram item Connector.
     /// </summary>

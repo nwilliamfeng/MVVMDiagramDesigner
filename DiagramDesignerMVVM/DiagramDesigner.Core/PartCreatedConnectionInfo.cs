@@ -6,6 +6,9 @@ using System.Windows;
 
 namespace DiagramDesigner
 {
+    /// <summary>
+    /// 当一个DesignerElement尝试连接另外一个时将会创建此类
+    /// </summary>
     public class PartCreatedConnectionInfo : ConnectorInfoBase
     {
         public Point CurrentLocation { get; private set; }

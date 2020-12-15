@@ -9,7 +9,7 @@ namespace DiagramDesigner
     // Wraps info of the dragged object into a class
      class DragObject
     {
-        public Size? DesiredSize { get; set; }
+       // public Size? DesiredSize { get; set; }
         public Type ContentType { get; set; }
 
     }
