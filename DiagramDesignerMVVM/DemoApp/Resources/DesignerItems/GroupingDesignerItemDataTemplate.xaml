@@ -20,8 +20,8 @@
 
             <Rectangle 
                     Stretch="Fill"
-                       Width="{Binding ItemWidth}"
-                       Height="{Binding ItemHeight}"
+                       Width="{Binding Width}"
+                       Height="{Binding Height}"
                     Style="{StaticResource Grouping}"
                     Tag="Group" />
 

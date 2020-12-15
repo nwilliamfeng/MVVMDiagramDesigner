@@ -18,14 +18,14 @@ namespace DiagramDesigner
         private double _itemWidth = 65;
         private double _itemHeight = 65;
 
-        public DesignerElement(int id, IDiagram parent, double left, double top) : base(id, parent)
+        protected DesignerElement(int id, IDiagram parent, double left, double top) : base(id, parent)
         {
             this._left = left;
             this._top = top;
             Init();
         }
 
-        public DesignerElement(int id, IDiagram parent, double left, double top, double itemWidth, double itemHeight) : base(id, parent)
+        protected DesignerElement(int id, IDiagram parent, double left, double top, double itemWidth, double itemHeight) : base(id, parent)
         {
             this._left = left;
             this._top = top;
@@ -34,18 +34,18 @@ namespace DiagramDesigner
             Init();
         }
 
-        public DesignerElement() : base()
+        protected DesignerElement() : base()
         {
             Init();
         }
 
-        public double ItemWidth
+        public double Width
         {
             get => _itemWidth;
             set => this.Set(ref _itemWidth, value);
         }
 
-        public double ItemHeight
+        public double Height
         {
             get => _itemHeight;
             set => this.Set(ref _itemHeight, value);

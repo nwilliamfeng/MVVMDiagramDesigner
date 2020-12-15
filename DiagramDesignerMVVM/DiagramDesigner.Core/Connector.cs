@@ -128,7 +128,7 @@ namespace DiagramDesigner
             new ConnectorInfoMeta()
             {
                 Orientation = orientation,
-                DesignerItemSize = new Size(_sourceConnectorInfo.DataItem.ItemWidth, _sourceConnectorInfo.DataItem.ItemHeight),
+                DesignerItemSize = new Size(_sourceConnectorInfo.DataItem.Width, _sourceConnectorInfo.DataItem.Height),
                 DesignerItemLeft = left,
                 DesignerItemTop = top,
                 Position = position
@@ -211,8 +211,8 @@ namespace DiagramDesigner
         {
             switch (e.PropertyName)
             {
-                case nameof(DesignerElement.ItemHeight):
-                case nameof(DesignerElement.ItemWidth):
+                case nameof(DesignerElement.Height):
+                case nameof(DesignerElement.Width):
                 case nameof(DesignerElement.Left):
                 case nameof(DesignerElement.Top):
                     SourceA = PointHelper.GetPointForConnector(this.SourceConnectorInfo);

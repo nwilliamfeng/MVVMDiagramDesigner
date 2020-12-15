@@ -19,8 +19,8 @@
                             <Setter Property="Canvas.Left" Value="{Binding Left}" />
                             <Setter Property="s:SelectionProps.EnabledForSelection" Value="True" />
                             <Setter Property="s:ItemConnectProps.EnabledForConnection" Value="True" />
-                            <Setter Property="Width" Value="{Binding ItemWidth}"/>
-                            <Setter Property="Height" Value="{Binding ItemHeight}"/>
+                            <Setter Property="Width" Value="{Binding  Width}"/>
+                            <Setter Property="Height" Value="{Binding  Height}"/>
                             <Setter Property="SnapsToDevicePixels" Value="True" />
                             <Setter Property="ContentTemplate">
                                 <Setter.Value>

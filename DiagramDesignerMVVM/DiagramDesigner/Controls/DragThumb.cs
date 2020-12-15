@@ -43,8 +43,8 @@ namespace DiagramDesigner.Controls
                     if (item.Parent is IDiagram && item.Parent is DesignerElement)
                     {
                         DesignerElement groupItem = (DesignerElement)item.Parent;
-                        if (item.Left + item.ItemWidth >= groupItem.ItemWidth) item.Left = groupItem.ItemWidth - item.ItemWidth;
-                        if (item.Top + item.ItemHeight >= groupItem.ItemHeight) item.Top = groupItem.ItemHeight - item.ItemHeight;
+                        if (item.Left + item.Width >= groupItem.Width) item.Left = groupItem.Width - item.Width;
+                        if (item.Top + item.Height >= groupItem.Height) item.Top = groupItem.Height - item.Height;
                     }
 
                 }

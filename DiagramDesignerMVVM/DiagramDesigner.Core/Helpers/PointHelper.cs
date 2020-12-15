@@ -26,16 +26,16 @@ namespace DiagramDesigner
             switch (connector.Orientation)
             {
                 case ConnectorOrientation.Top:
-                    point = new Point(connector.DataItem.Left + (connector.DataItem.ItemWidth / 2), connector.DataItem.Top - (ConnectorSize.Height));
+                    point = new Point(connector.DataItem.Left + (connector.DataItem.Width / 2), connector.DataItem.Top - (ConnectorSize.Height));
                     break;
                 case ConnectorOrientation.Bottom:
-                    point = new Point(connector.DataItem.Left + (connector.DataItem.ItemWidth / 2), (connector.DataItem.Top + connector.DataItem.ItemHeight) + (ConnectorSize.Height / 2));
+                    point = new Point(connector.DataItem.Left + (connector.DataItem.Width / 2), (connector.DataItem.Top + connector.DataItem.Height) + (ConnectorSize.Height / 2));
                     break;
                 case ConnectorOrientation.Right:
-                    point = new Point(connector.DataItem.Left + connector.DataItem.ItemWidth + (ConnectorSize.Width), connector.DataItem.Top + (connector.DataItem.ItemHeight / 2));
+                    point = new Point(connector.DataItem.Left + connector.DataItem.Width + (ConnectorSize.Width), connector.DataItem.Top + (connector.DataItem.Height / 2));
                     break;
                 case ConnectorOrientation.Left:
-                    point = new Point(connector.DataItem.Left - ConnectorSize.Width, connector.DataItem.Top + (connector.DataItem.ItemHeight / 2));
+                    point = new Point(connector.DataItem.Left - ConnectorSize.Width, connector.DataItem.Top + (connector.DataItem.Height / 2));
                     break;
             }
 

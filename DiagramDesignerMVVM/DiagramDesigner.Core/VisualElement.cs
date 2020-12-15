@@ -13,7 +13,7 @@ namespace DiagramDesigner
     {
         private bool _isSelected;
 
-        public VisualElement(int id, IDiagram parent):this()
+        protected VisualElement(int id, IDiagram parent):this()
         {
             this.Id = id;
             this.Parent = parent;           

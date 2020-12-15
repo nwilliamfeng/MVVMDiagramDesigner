@@ -193,8 +193,8 @@ namespace DiagramDesigner.Controls
                 (DataContext as IDiagram).ClearSelectedItemsCommand.Execute(null);
                 Point position = e.GetPosition(this);
                 DesignerElement itemBase = (DesignerElement)Activator.CreateInstance(dragObject.ContentType);
-                itemBase.Left = Math.Max(0, position.X - itemBase.ItemWidth / 2);
-                itemBase.Top = Math.Max(0, position.Y - itemBase.ItemHeight / 2);
+                itemBase.Left = Math.Max(0, position.X - itemBase.Width / 2);
+                itemBase.Top = Math.Max(0, position.Y - itemBase.Height / 2);
                 itemBase.IsSelected = true;
                 (DataContext as IDiagram).AddItemCommand.Execute(itemBase);
             }
