@@ -26,7 +26,7 @@ namespace DemoApp
         public ShellViewModel()
         {
             _messageBoxService = ApplicationServicesProvider.Instance.Provider.MessageBoxService;     
-            ToolBoxViewModel = new ToolBoxViewModel();
+       
             Diagram = new Diagram();
             
             DeleteSelectedItemsCommand = new RelayCommand(ExecuteDeleteSelectedItemsCommand);
@@ -59,8 +59,7 @@ namespace DemoApp
         public ICommand SaveDiagramCommand { get; private set; }
         public ICommand GroupCommand { get; private set; }
         public ICommand LoadDiagramCommand { get; private set; }
-        public ToolBoxViewModel ToolBoxViewModel { get; private set; }
-
+       
 
         public Diagram Diagram
         {

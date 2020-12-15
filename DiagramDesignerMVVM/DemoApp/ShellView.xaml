@@ -32,13 +32,31 @@
 		
 		<Grid Margin="0,5,0,0">
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="230" />
+				<ColumnDefinition  Width="130" />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 
             <!-- ToolBox Control -->
-            <local:ToolBoxControl Grid.Column="0"   DataContext="{Binding ToolBoxViewModel}" />
-
+            <!--<local:ToolBoxControl Grid.Column="0"   DataContext="{Binding ToolBoxViewModel}" />-->
+            <ListBox ItemsSource="{Binding Tools}">
+               
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <ContentControl Height="50" Width="50" Content="{Binding}"/>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                        <Setter Property="ToolTip" Value="{Binding ToolTip}" />
+                        <Setter Property="s:DragAndDropProps.EnabledForDrag"   Value="True" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
             <GridSplitter Grid.Column="1"
 						  HorizontalAlignment="Left"
 						  VerticalAlignment="Stretch"
