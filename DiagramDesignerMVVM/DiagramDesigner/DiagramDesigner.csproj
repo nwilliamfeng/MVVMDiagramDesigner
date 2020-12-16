@@ -79,7 +79,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttachedProperties\ItemConnectProps.cs" />
     <Compile Include="AttachedProperties\DragAndDropProps.cs" />
     <Compile Include="AttachedProperties\SelectionProps.cs" />
     <Compile Include="Controls\ConnectorControl.cs" />
@@ -89,9 +88,6 @@
     <Compile Include="Helper\DragObject.cs" />
     <Compile Include="Converters\ImageUrlConverter.cs" />
     <Compile Include="StyleSelectors\DesignerItemsControlItemStyleSelector.cs" />
-    <Compile Include="UserControls\MyDiagramControl.xaml.cs">
-      <DependentUpon>MyDiagramControl.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ConnectorPort.cs" />
@@ -167,10 +163,6 @@
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Resources\Styles\DragThumb.xaml">
-      <SubType>Designer</SubType>
-      <Generator>XamlIntelliSenseFileGenerator</Generator>
-    </Page>
-    <Page Include="UserControls\MyDiagramControl.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>

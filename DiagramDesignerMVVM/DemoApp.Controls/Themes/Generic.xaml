@@ -4,7 +4,7 @@
     xmlns:local="clr-namespace:DemoApp.Controls">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Fan.xaml" />
-       
+        <ResourceDictionary Source="Light.xaml" />
     </ResourceDictionary.MergedDictionaries>
    
 </ResourceDictionary>

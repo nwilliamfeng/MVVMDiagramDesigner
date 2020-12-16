@@ -52,6 +52,7 @@ namespace DemoApp
             this.Tools.Add(new SettingsDesignerItemViewModel());
             this.Tools.Add(new PersistDesignerItemViewModel());
             this.Tools.Add(new FanViewModel());
+            this.Tools.Add(new LightViewModel());
         }
 
 
@@ -118,6 +119,15 @@ namespace DemoApp
                 
                 this.Set(ref _showLineArrow, value);
             }
+        }
+
+
+        private bool _showGridLines;
+
+        public bool ShowGridLines
+        {
+            get => _showGridLines;
+            set => this.Set(ref _showGridLines, value);
         }
 
         public ObservableCollection<DesignerElement> Tools { get; private set; } = new ObservableCollection<DesignerElement>();

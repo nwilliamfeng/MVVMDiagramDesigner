@@ -28,6 +28,7 @@
 
             <ComboBox SelectedItem="{Binding  LineType}" ItemsSource="{Binding Source={StaticResource lineTypes}}" Margin="10,0" MinWidth="100"/>
             <CheckBox Content="显示箭头" IsChecked="{Binding ShowLineArrow}"/>
+            <CheckBox Content="显示网格" IsChecked="{Binding ShowGridLines}" Margin="10,0"/>
         </ToolBar>
 		
 		<Grid Margin="0,5,0,0">
@@ -63,11 +64,18 @@
 						  VerticalAlignment="Stretch"
 						  Background="Transparent"
 						  Width="3" />
-          
+
             <control:DiagramControl Grid.Column="1" 
+                            
                                   DataContext="{Binding Diagram}"
                                   ItemsSource="{Binding Items}"
-                                  Margin="3,1,0,0" />
+                                  Margin="3,1,0,0" >
+                <control:DiagramControl.Style>
+                    <Style TargetType="control:DiagramControl" BasedOn="{StaticResource {x:Type control:DiagramControl} }">
+                        <Setter Property="ShowGridLines" Value="{Binding DataContext.ShowGridLines,RelativeSource={RelativeSource AncestorType=Window}}"/>
+                    </Style>
+                </control:DiagramControl.Style>
+            </control:DiagramControl>
 
         </Grid>
 	</DockPanel>    

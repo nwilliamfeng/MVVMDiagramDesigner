@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:DemoApp.Controls">
+    
+    <Style TargetType="local:Light">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:Light">
+                    <Border Padding="{TemplateBinding Padding}" Background="Transparent" >
+                        <Path Fill="{TemplateBinding Foreground}" Stretch="Uniform"  Stroke="Gray" StrokeThickness="1" x:Name="path"
+                        Data="M512 0C323.79 0 170.67 153.12 170.67 341.33c0 112.81 56.64 218.65 149.33 281.9V768c0 70.58 57.42 128 128 128h128c70.58 0 128-57.42 128-128V623.23c92.7-63.25 149.33-169.08 149.33-281.9C853.33 153.12 700.21 0 512 0z m106.67 768c0 23.52-19.14 42.67-42.67 42.67H448c-23.53 0-42.67-19.15-42.67-42.67v-42.67h213.33V768z m21.28-205.21l-21.28 12.31V640H405.33v-64.9l-21.28-12.31C305.06 517.04 256 432.19 256 341.33c0-141.17 114.84-256 256-256s256 114.83 256 256c0 90.86-49.06 175.71-128.05 221.46zM384 938.67h256V1024H384z" >
+                           
+                        </Path>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsOpen" Value="True">
+                            <Setter Property="Fill" TargetName="path" Value="Yellow"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

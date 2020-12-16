@@ -35,7 +35,11 @@
             <DataTemplate DataType="{x:Type local:FanViewModel}">
                 <controls:Fan IsRunning="{Binding IsStart,Mode=OneWay}" IsHitTestVisible="false"/>
             </DataTemplate>
-           
+
+            <DataTemplate DataType="{x:Type local:LightViewModel}">
+                <controls:Light IsOpen="{Binding IsOpen,Mode=OneWay}" IsHitTestVisible="false"/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
