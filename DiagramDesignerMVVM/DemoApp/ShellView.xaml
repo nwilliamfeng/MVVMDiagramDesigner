@@ -4,7 +4,7 @@
         xmlns:s="clr-namespace:DiagramDesigner;assembly=DiagramDesigner"
         xmlns:control="clr-namespace:DiagramDesigner.Controls;assembly=DiagramDesigner"
         xmlns:local="clr-namespace:DemoApp"
-       
+       xmlns:controls="clr-namespace:DemoApp.Controls;assembly=DemoApp.Controls"
         SnapsToDevicePixels="True"
 		Title="Diagram Designer"        
 		Height="400" Width="600">
@@ -57,6 +57,7 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
+             
             <GridSplitter Grid.Column="1"
 						  HorizontalAlignment="Left"
 						  VerticalAlignment="Stretch"

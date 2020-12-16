@@ -52,7 +52,7 @@
     <Compile Include="Helpers\PointHelper.cs" />
     <Compile Include="Helpers\WeakPropertyEventHandler.cs" />
     <Compile Include="IDiagram.cs" />
-    <Compile Include="DesignerMenuItem.cs" />
+    <Compile Include="ActionItem.cs" />
     <Compile Include="Messenger\Mediator.cs" />
     <Compile Include="Messenger\MediatorMessageSinkAttribute.cs" />
     <Compile Include="NotifyObject.cs" />

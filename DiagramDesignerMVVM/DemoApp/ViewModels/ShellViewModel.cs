@@ -51,6 +51,7 @@ namespace DemoApp
 
             this.Tools.Add(new SettingsDesignerItemViewModel());
             this.Tools.Add(new PersistDesignerItemViewModel());
+            this.Tools.Add(new FanViewModel());
         }
 
 

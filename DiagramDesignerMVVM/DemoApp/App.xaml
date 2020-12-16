@@ -4,22 +4,18 @@
              xmlns:local="clr-namespace:DemoApp"
              xmlns:core="clr-namespace:DiagramDesigner;assembly=DiagramDesigner.Core"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:controls="clr-namespace:DemoApp.Controls;assembly=DemoApp.Controls"
              >
     <Application.Resources>
         <ResourceDictionary>
-            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="lineTypes">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="core:ConnectorLineType"/>
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
                     <local:MefBootstrapper x:Key="bootstrapper"/>
                 </ResourceDictionary>
                 <!-- DiagramDesigner Dll resources, you need all of these -->
-              
-                <ResourceDictionary Source="pack://application:,,,/DiagramDesigner;component/Resources/Styles.xaml" />
 
+                <ResourceDictionary Source="pack://application:,,,/DiagramDesigner;component/Resources/Styles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/DemoApp.Controls;component/Themes/Generic.xaml" />
                 <!-- Common DemoApp Styles -->
                 <ResourceDictionary Source="Resources/Styles.xaml" />
 
@@ -27,7 +23,19 @@
                 <ResourceDictionary Source="Resources/DesignerItems/SettingsDesignerItemDataTemplate.xaml" />
                 <ResourceDictionary Source="Resources/DesignerItems/PersistDesignerItemDataTemplate.xaml" />
                 <ResourceDictionary Source="Resources/DesignerItems/GroupingDesignerItemDataTemplate.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
+            
+            <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="lineTypes">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="core:ConnectorLineType"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+
+            <DataTemplate DataType="{x:Type local:FanViewModel}">
+                <controls:Fan IsRunning="{Binding IsStart,Mode=OneWay}" IsHitTestVisible="false"/>
+            </DataTemplate>
+           
         </ResourceDictionary>
     </Application.Resources>
 </Application>

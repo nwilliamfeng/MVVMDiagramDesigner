@@ -8,7 +8,7 @@
         <Grid >
 
             <Image IsHitTestVisible="false"
-                   x:Name="ddd"
+                
                    Stretch="Fill"
                    Source="../../Images/Persist.png"
                    Tag="setting" >

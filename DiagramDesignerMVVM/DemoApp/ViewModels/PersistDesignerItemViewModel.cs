@@ -52,12 +52,12 @@ namespace DemoApp
             visualiserService = ApplicationServicesProvider.Instance.Provider.VisualizerService;
             ShowDataChangeWindowCommand = new RelayCommand(ExecuteShowDataChangeWindowCommand);
             this.ShowConnectors = false;
-            DesignerMenuItem menuItem1 = new DesignerMenuItem { Name = "aaa" };
-            menuItem1.Items.Add(new DesignerMenuItem { Name = "a2", Command = new RelayCommand(() =>
+            ActionItem menuItem1 = new ActionItem { Name = "aaa" };
+            menuItem1.Items.Add(new ActionItem { Name = "a2", Command = new RelayCommand(() =>
                  {
                      MessageBox.Show("a2 click");
                  }) });
-            var menuItem2 = new DesignerMenuItem
+            var menuItem2 = new ActionItem
             {
                 Name = "bbb",
                 Command = new RelayCommand(() => MessageBox.Show("bbb click") )

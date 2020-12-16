@@ -11,8 +11,24 @@ namespace DiagramDesigner
     /// <summary>
     /// 设计器菜单项
     /// </summary>
-    public class DesignerMenuItem:NotifyObject
+    public class ActionItem:NotifyObject
     {
+        private bool _isChecked;
+
+        public bool IsChecked
+        {
+            get => _isChecked;
+            set => this.Set(ref _isChecked, value);
+        }
+
+        private bool _checkable;
+
+        public bool IsCheckable
+        {
+            get => _checkable;
+            set => this.Set(ref _checkable, value);
+        }
+
         /// <summary>
         /// 标识Id
         /// </summary>
@@ -26,7 +42,7 @@ namespace DiagramDesigner
             set => this.Set(ref _name, value);
         }
 
-        public ObservableCollection<DesignerMenuItem> Items { get; private set; } = new ObservableCollection<DesignerMenuItem>();
+        public ObservableCollection<ActionItem> Items { get; private set; } = new ObservableCollection<ActionItem>();
 
         public ICommand Command { get; set; }
 
@@ -39,7 +55,7 @@ namespace DiagramDesigner
 
         public override bool Equals(object obj)
         {
-            if (!(obj is DesignerMenuItem other)) return false;
+            if (!(obj is ActionItem other)) return false;
             return this.Id == other.Id;
         }
 

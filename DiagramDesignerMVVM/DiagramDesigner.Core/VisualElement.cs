@@ -20,7 +20,7 @@ namespace DiagramDesigner
             this.Parent = parent;           
         }
 
-        public ObservableCollection<DesignerMenuItem> MenuItems { get; private set; } = new ObservableCollection<DesignerMenuItem>();
+        public ObservableCollection<ActionItem> MenuItems { get; private set; } = new ObservableCollection<ActionItem>();
 
         protected VisualElement()
         {

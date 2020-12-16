@@ -82,6 +82,7 @@
     <Compile Include="Services\ApplicationServicesProvider.cs" />
     <Compile Include="Services\Implentation\WPFMessageBoxService.cs" />
     <Compile Include="Services\Implentation\WPFUIVisualizerService.cs" />
+    <Compile Include="ViewModels\FanViewModel.cs" />
     <Compile Include="ViewModels\GroupingDesignerItemViewModel.cs" />
     <Compile Include="Common\MefBootstrapperBase.cs" />
     <Compile Include="ViewModels\SettingsDesignerItemData.cs" />
@@ -124,6 +125,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DemoApp.Controls\DemoApp.Controls.csproj">
+      <Project>{befb44e6-3947-4d64-bdfd-3bd19f176e61}</Project>
+      <Name>DemoApp.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DiagramDesigner.Core\DiagramDesigner.Core.csproj">
       <Project>{c8cf3279-25c1-43b1-b054-e61595d4373b}</Project>
       <Name>DiagramDesigner.Core</Name>

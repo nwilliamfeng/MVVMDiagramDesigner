@@ -35,6 +35,8 @@
                                                         <Style TargetType="MenuItem">
                                                             <Setter Property="ItemsSource" Value="{Binding Items}"/>
                                                             <Setter Property="Header" Value="{Binding Name}"/>
+                                                            <Setter Property="IsCheckable" Value="{Binding IsCheckable}"/>
+                                                            <Setter Property="IsChecked" Value="{Binding IsChecked,Mode=TwoWay}"/>
                                                             <Setter Property="Command" Value="{Binding Command}"/>
                                                             <Setter Property="CommandParameter" Value="{Binding CommandParameter}"/>
                                                         </Style> 
