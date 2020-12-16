@@ -21,7 +21,8 @@
                             <Setter Property="ContentTemplate">
                                 <Setter.Value>
                                     <DataTemplate>
-                                        <c:DesignerElementControl ShowConnectors="{Binding ShowConnectors}" 
+                                        <c:DesignerElementControl x:Name="dec"
+                                                               ShowConnectors="{Binding ShowConnectors}" 
                                                                LeftConnector="{Binding LeftConnector}"                                                            
                                                                RightConnector="{Binding RightConnector}"
                                                                TopConnector="{Binding TopConnector}"
@@ -30,7 +31,7 @@
                                                                DoubleClickCommandParameter="{Binding DoubleClickCommandParameter}"
                                                                Content="{Binding}">
                                             <c:DesignerElementControl.ContextMenu>
-                                                <ContextMenu ItemsSource="{Binding MenuItems}">
+                                                <ContextMenu ItemsSource="{Binding MenuItems}" x:Name="cm">
                                                     <ContextMenu.ItemContainerStyle>
                                                         <Style TargetType="MenuItem">
                                                             <Setter Property="ItemsSource" Value="{Binding Items}"/>
@@ -44,6 +45,11 @@
                                                 </ContextMenu>
                                             </c:DesignerElementControl.ContextMenu>
                                         </c:DesignerElementControl>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding MenuItems.Count}" Value="0">
+                                                <Setter Property="Visibility" TargetName="cm" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
                                     </DataTemplate>
                                 </Setter.Value>
                             </Setter>
