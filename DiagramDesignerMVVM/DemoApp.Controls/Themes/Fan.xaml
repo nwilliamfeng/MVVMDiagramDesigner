@@ -2,16 +2,18 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:DemoApp.Controls">
     <Style TargetType="local:Fan">
+        <Setter Property="Padding" Value="5"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:Fan">
-                    <Border Padding="{TemplateBinding Padding}" Background="Transparent"  >
-                        <Path Fill="{TemplateBinding Foreground}" Stretch="Uniform"    x:Name="path"
+                    <Border Padding="{TemplateBinding Padding}" Background="Transparent" 
+                            Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+                        <Path Fill="{TemplateBinding Foreground}" Stretch="Uniform"     x:Name="path" RenderTransformOrigin="0.5,0.5"
                         Data="M512 469.333333a42.666667 42.666667 0 0 0-42.666667 42.666667 42.666667 42.666667 0 0 0 42.666667 42.666667 42.666667 42.666667 0 0 0 42.666667-42.666667 42.666667 42.666667 0 0 0-42.666667-42.666667m21.333333-384c192 0 196.693333 152.32 96 202.666667-42.24 20.906667-61.013333 65.706667-69.12 105.386667 20.48 8.533333 38.4 21.76 52.053334 38.826666 157.866667-85.333333 327.68-51.626667 327.68 101.12 0 192-152.32 196.266667-202.666667 95.146667-21.333333-42.24-66.56-61.013333-106.24-69.12-8.533333 20.48-21.76 37.973333-38.826667 52.48 84.906667 157.44 51.2 326.826667-101.546666 326.826667-192 0-195.84-152.746667-95.146667-203.093334 41.813333-20.906667 60.586667-65.28 69.12-104.533333-20.906667-8.533333-39.253333-22.186667-52.906667-39.253333C254.293333 676.266667 85.333333 642.986667 85.333333 490.666667 85.333333 298.666667 237.226667 293.973333 287.573333 395.093333c21.333333 42.24 66.133333 60.586667 105.813334 68.693334 8.106667-20.48 21.76-38.4 39.253333-52.053334C347.733333 254.293333 381.44 85.333333 533.333333 85.333333z"
               >
-                            <Path.LayoutTransform>
-                                <RotateTransform Angle="0"/>
-                            </Path.LayoutTransform>
+                            <Path.RenderTransform>
+                                <RotateTransform Angle="0" />
+                            </Path.RenderTransform>
                         </Path>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -21,7 +23,7 @@
                                     <BeginStoryboard.Storyboard>
                                         <Storyboard RepeatBehavior="Forever"   
                                                     Storyboard.TargetName="path"
-                                                    Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(RotateTransform.Angle)">
+                                                    Storyboard.TargetProperty="(FrameworkElement.RenderTransform).(RotateTransform.Angle)">
                                             <DoubleAnimation From="0" To="360" Duration="0:0:1"  />
                                         </Storyboard>
                                     </BeginStoryboard.Storyboard>

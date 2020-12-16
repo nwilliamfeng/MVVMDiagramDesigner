@@ -58,7 +58,22 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
-             
+
+            
+            <!--<Grid x:Name="LayoutRoot" Background="White">
+                <Ellipse x:Name="Ellipse"
+                 Width="100"
+                 Height="100"
+                 
+                         Fill="Red"
+              
+                 Stretch="Fill" Stroke="Black">
+                    <Ellipse.Clip>
+                        <RectangleGeometry Rect="0,0,30,100"/>
+                    </Ellipse.Clip>
+                </Ellipse>
+            </Grid>-->
+
             <GridSplitter Grid.Column="1"
 						  HorizontalAlignment="Left"
 						  VerticalAlignment="Stretch"
