@@ -53,6 +53,7 @@ namespace DemoApp
             this.Tools.Add(new PersistDesignerItemViewModel());
             this.Tools.Add(new FanViewModel());
             this.Tools.Add(new LightViewModel());
+            this.Tools.Add(new TankViewModel {  Percent=20});
         }
 
 

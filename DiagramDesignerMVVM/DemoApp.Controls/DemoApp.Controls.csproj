@@ -51,10 +51,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Tank.cs" />
     <Compile Include="Light.cs" />
     <Compile Include="Fan.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Themes\Tank.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Themes\Light.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

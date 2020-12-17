@@ -40,7 +40,6 @@
             <!-- ToolBox Control -->
             <!--<local:ToolBoxControl Grid.Column="0"   DataContext="{Binding ToolBoxViewModel}" />-->
             <ListBox ItemsSource="{Binding Tools}">
-               
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="ContentTemplate">
@@ -59,20 +58,7 @@
                 </ListBox.ItemContainerStyle>
             </ListBox>
 
-            
-            <!--<Grid x:Name="LayoutRoot" Background="White">
-                <Ellipse x:Name="Ellipse"
-                 Width="100"
-                 Height="100"
-                 
-                         Fill="Red"
-              
-                 Stretch="Fill" Stroke="Black">
-                    <Ellipse.Clip>
-                        <RectangleGeometry Rect="0,0,30,100"/>
-                    </Ellipse.Clip>
-                </Ellipse>
-            </Grid>-->
+             
 
             <GridSplitter Grid.Column="1"
 						  HorizontalAlignment="Left"
@@ -80,8 +66,7 @@
 						  Background="Transparent"
 						  Width="3" />
 
-            <control:DiagramControl Grid.Column="1" 
-                            
+            <control:DiagramControl Grid.Column="1"                            
                                   DataContext="{Binding Diagram}"
                                   ItemsSource="{Binding Items}"
                                   Margin="3,1,0,0" >

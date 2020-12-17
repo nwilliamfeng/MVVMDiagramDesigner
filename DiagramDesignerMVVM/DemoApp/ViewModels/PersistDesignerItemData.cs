@@ -14,26 +14,22 @@ namespace DemoApp
     /// </summary>
     public class PersistDesignerItemData: NotifyObject
     {
-        private string hostUrl = "";
+        private string _hostUrl = "";
 
         public PersistDesignerItemData(string currentHostUrl)
         {
-            hostUrl = currentHostUrl;
+            _hostUrl = currentHostUrl;
         }
 
         public string HostUrl
         {
             get
             {
-                return hostUrl;
+                return _hostUrl;
             }
             set
             {
-                if (hostUrl != value)
-                {
-                    hostUrl = value;
-                    NotifyOfPropertyChange("HostUrl");
-                }
+                this.Set(ref _hostUrl, value);
             }
         }
     }

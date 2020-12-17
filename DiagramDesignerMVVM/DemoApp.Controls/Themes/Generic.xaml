@@ -5,6 +5,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Fan.xaml" />
         <ResourceDictionary Source="Light.xaml" />
+        <ResourceDictionary Source="Tank.xaml" />
     </ResourceDictionary.MergedDictionaries>
    
 </ResourceDictionary>
