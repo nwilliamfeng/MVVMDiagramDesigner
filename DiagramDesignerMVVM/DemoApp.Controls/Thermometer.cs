@@ -54,12 +54,11 @@ namespace DemoApp.Controls
         }
 
         private void UpdateWithValueChange()
-        {
-            return;
+        {       
             if (!(this.GetTemplateChild(PART_Path) is Path path)) return;
 
-            var full = this.ActualWidth > this.ActualHeight ? this.ActualWidth : this.ActualHeight;
-            var percent = (double)(100-this.Value) * full / 100;
+            var full = this.ActualWidth < this.ActualHeight ? this.ActualWidth : this.ActualHeight;        
+            double percent = (100 - Value) * full / 100;
             if (percent < 0) percent=0;
             if (percent > 100) percent = 100;
             path.Clip = new RectangleGeometry(new Rect(0, percent, full, full));

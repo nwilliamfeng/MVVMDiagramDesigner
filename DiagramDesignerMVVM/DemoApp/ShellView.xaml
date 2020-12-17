@@ -58,7 +58,7 @@
                 </ListBox.ItemContainerStyle>
             </ListBox>
 
-            <controls:Thermometer Height="60" Width="20" VerticalAlignment="Center"/>
+            <controls:Thermometer Height="60" Width="40" VerticalAlignment="Center" Value="8"/>
 
             <GridSplitter Grid.Column="1"
 						  HorizontalAlignment="Left"
