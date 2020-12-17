@@ -6,6 +6,7 @@
         <ResourceDictionary Source="Fan.xaml" />
         <ResourceDictionary Source="Light.xaml" />
         <ResourceDictionary Source="Tank.xaml" />
+        <ResourceDictionary Source="Thermometer.xaml" />
     </ResourceDictionary.MergedDictionaries>
    
 </ResourceDictionary>
