@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using DiagramDesigner;
 using System.Windows.Input;
-
+using System.ComponentModel;
 
 namespace DemoApp
 {
+    [Description("设置器")]
     public class SettingsDesignerItemViewModel : DesignerElement, ISupportDataChanges
     {
         private IUIVisualizerService visualiserService;

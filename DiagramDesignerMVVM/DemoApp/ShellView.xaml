@@ -44,12 +44,21 @@
                         <Setter Property="ContentTemplate">
                             <Setter.Value>
                                 <DataTemplate>
-                                    <ContentControl Height="50" Width="50" Content="{Binding}"/>
+                                    <Grid HorizontalAlignment="Stretch">
+                                        <ContentControl Margin="10" Width="50" Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="{Binding}"/>
+                                        <TextBlock Background="Orange" 
+                                                   Text="{Binding Path=.,Converter={StaticResource elementConverter}}"
+                                                   Foreground="White"  
+                                                   VerticalAlignment="Top"
+                                                   HorizontalAlignment="Left"/>
+
+                                    </Grid>
+                                    
                                 </DataTemplate>
                             </Setter.Value>
                         </Setter>
-                        <Setter Property="Padding" Value="10" />
-                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         <Setter Property="VerticalContentAlignment" Value="Center" />
                         <Setter Property="ToolTip" Value="{Binding ToolTip}" />
                         <Setter Property="s:DragAndDropProps.EnabledForDrag"   Value="True" />

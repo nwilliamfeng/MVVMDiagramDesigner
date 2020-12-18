@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using DiagramDesigner;
 using System.Windows.Input;
+using System.ComponentModel;
 
 namespace DemoApp
 {
+    [Description("温度计")]
     public class ThermometerViewModel : DesignerElement
     {
 

@@ -72,6 +72,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\MefBootstrapper.cs" />
+    <Compile Include="Converters\DesignerElementConverter.cs" />
     <Compile Include="Popups\PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>

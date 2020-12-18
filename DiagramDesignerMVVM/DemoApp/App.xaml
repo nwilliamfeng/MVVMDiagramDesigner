@@ -26,6 +26,7 @@
 
             </ResourceDictionary.MergedDictionaries>
             <BooleanToVisibilityConverter x:Key="boolToVisibleConverter"/>
+            <local:DesignerElementConverter x:Key="elementConverter"/>
 
             <ObjectDataProvider MethodName="GetValues" ObjectType="{x:Type sys:Enum}" x:Key="lineTypes">
                 <ObjectDataProvider.MethodParameters>

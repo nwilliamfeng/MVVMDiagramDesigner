@@ -5,9 +5,11 @@ using System.Text;
 using DiagramDesigner;
 using System.Windows.Input;
 using System.Windows;
+using System.ComponentModel;
 
 namespace DemoApp
 {
+    [Description("数据库")]
     public class PersistDesignerItemViewModel : DesignerElement, ISupportDataChanges
     {
         private IUIVisualizerService visualiserService;

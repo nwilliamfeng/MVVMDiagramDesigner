@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using DiagramDesigner;
 using System.Windows.Input;
+using System.ComponentModel;
 
 namespace DemoApp
 {
+    [Description("液罐")]
     public class TankViewModel:DesignerElement
     {
 
