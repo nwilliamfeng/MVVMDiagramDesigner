@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Media;
  
 namespace DiagramDesigner
 {
@@ -14,9 +15,9 @@ namespace DiagramDesigner
     {
         private const int margin = 20;
 
-        public List<Point> GetConnectionLine(ConnectorInfoMeta source, ConnectorInfoMeta sink, bool showLastLine)
+        public PointCollection GetConnectionLine(ConnectorInfoMeta source, ConnectorInfoMeta sink, bool showLastLine)
         {
-            List<Point> linePoints = new List<Point>();
+            var linePoints = new PointCollection();
 
             Rect rectSource = GetRectWithMargin(source, margin);
             Rect rectSink = GetRectWithMargin(sink, margin);
@@ -205,9 +206,9 @@ namespace DiagramDesigner
             return linePoints;
         }
 
-        public List<Point> GetConnectionLine(ConnectorInfoMeta source, Point sinkPoint, ConnectorOrientation preferredOrientation)
+        public PointCollection GetConnectionLine(ConnectorInfoMeta source, Point sinkPoint, ConnectorOrientation preferredOrientation)
         {
-            List<Point> linePoints = new List<Point>();
+            var linePoints = new PointCollection();
             Rect rectSource = GetRectWithMargin(source, 10);
             Point startPoint = GetOffsetPoint(source, rectSource);
             Point endPoint = sinkPoint;
@@ -262,9 +263,9 @@ namespace DiagramDesigner
             return linePoints;
         }
 
-        private static List<Point> OptimizeLinePoints(List<Point> linePoints, Rect[] rectangles, ConnectorOrientation sourceOrientation, ConnectorOrientation sinkOrientation)
+        private static PointCollection OptimizeLinePoints(PointCollection linePoints, Rect[] rectangles, ConnectorOrientation sourceOrientation, ConnectorOrientation sinkOrientation)
         {
-            List<Point> points = new List<Point>();
+            var points = new PointCollection();
             int cut = 0;
 
             for (int i = 0; i < linePoints.Count; i++)
@@ -571,7 +572,7 @@ namespace DiagramDesigner
             return offsetPoint;
         }
 
-        private static void CheckPathEnd(ConnectorInfoMeta source, ConnectorInfoMeta sink, bool showLastLine, List<Point> linePoints)
+        private static void CheckPathEnd(ConnectorInfoMeta source, ConnectorInfoMeta sink, bool showLastLine, PointCollection linePoints)
         {
             if (showLastLine)
             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using DiagramDesigner.Helpers;
 
 namespace DiagramDesigner
@@ -16,7 +17,7 @@ namespace DiagramDesigner
         private ConnectorInfoBase _sinkConnectorInfo;
         private Point _sourceB;
         private Point _sourceA;
-        private List<Point> _connectionPoints;
+        private PointCollection _connectionPoints;
         private Point _endPoint;
         private Rect _area;
         private double _lineThickness=3;
@@ -98,7 +99,7 @@ namespace DiagramDesigner
             }
         }
 
-        public List<Point> ConnectionPoints
+        public PointCollection ConnectionPoints
         {
             get => _connectionPoints;
             private set => this.Set(ref _connectionPoints, value);          
@@ -179,7 +180,7 @@ namespace DiagramDesigner
 
         private void UpdateConnectionPoints()
         {
-            ConnectionPoints = new List<Point>()
+            ConnectionPoints = new PointCollection()
                                    {                                       
                                        new Point( SourceA.X  <  SourceB.X ? 0d : Area.Width, SourceA.Y  <  SourceB.Y ? 0d : Area.Height ), 
                                        new Point(SourceA.X  >  SourceB.X ? 0d : Area.Width, SourceA.Y  >  SourceB.Y ? 0d : Area.Height)

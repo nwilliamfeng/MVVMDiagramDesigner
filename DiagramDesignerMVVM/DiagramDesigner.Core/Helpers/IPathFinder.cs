@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Media;
 
 namespace DiagramDesigner
 {
      interface IPathFinder
     {
-        List<Point> GetConnectionLine(ConnectorInfoMeta source, ConnectorInfoMeta sink, bool showLastLine);
-        List<Point> GetConnectionLine(ConnectorInfoMeta source, Point sinkPoint, ConnectorOrientation preferredOrientation);
+        PointCollection GetConnectionLine(ConnectorInfoMeta source, ConnectorInfoMeta sink, bool showLastLine);
+        PointCollection GetConnectionLine(ConnectorInfoMeta source, Point sinkPoint, ConnectorOrientation preferredOrientation);
     }
 }

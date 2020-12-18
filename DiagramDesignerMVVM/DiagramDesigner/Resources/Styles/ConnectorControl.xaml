@@ -12,7 +12,7 @@
                 VerticalAlignment="Stretch"
                 >
             <Polyline x:Name="poly"                                      
-                      Points="{TemplateBinding Points, Converter={x:Static s:ConnectionPathConverter.Instance}}"                        
+                      Points="{TemplateBinding Points}"                        
                       StrokeThickness="{TemplateBinding LineThickness}" >
                 <Polyline.Stroke>
                     <SolidColorBrush Color="Gray" />

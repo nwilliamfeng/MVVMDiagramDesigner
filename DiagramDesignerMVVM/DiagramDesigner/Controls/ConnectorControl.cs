@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace DiagramDesigner.Controls
 {
@@ -16,8 +17,8 @@ namespace DiagramDesigner.Controls
 
 
         public static readonly DependencyProperty PointsProperty = DependencyProperty.Register(nameof(Points)
-        , typeof(List<Point>)
-        , typeof(ConnectorControl), new PropertyMetadata(default(List<Point>)));
+        , typeof(PointCollection)
+        , typeof(ConnectorControl), new PropertyMetadata(default(PointCollection)));
 
       
         public static readonly DependencyProperty EndPointProperty = DependencyProperty.Register(nameof(EndPoint)
@@ -98,9 +99,9 @@ namespace DiagramDesigner.Controls
         }
 
 
-        public List<Point> Points
+        public PointCollection Points
         {
-            get => (List<Point>)this.GetValue(PointsProperty);
+            get => (PointCollection)this.GetValue(PointsProperty);
             set => this.SetValue(PointsProperty, value);
         }
 

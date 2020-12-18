@@ -84,9 +84,7 @@
     <Compile Include="Controls\ConnectorControl.cs" />
     <Compile Include="Controls\DesignerElementControl.cs" />
     <Compile Include="Controls\DiagramControl.cs" />
-    <Compile Include="Converters\ConnectionPathConverter.cs" />
     <Compile Include="Helper\DragObject.cs" />
-    <Compile Include="Converters\ImageUrlConverter.cs" />
     <Compile Include="StyleSelectors\DesignerItemsControlItemStyleSelector.cs" />
   </ItemGroup>
   <ItemGroup>
