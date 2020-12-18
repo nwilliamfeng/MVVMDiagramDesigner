@@ -24,7 +24,7 @@
             <DataTrigger Value="True" Binding="{Binding IsSelected}">
                 <Setter TargetName="selectedGrid" Property="Effect">
                     <Setter.Value>
-                        <DropShadowEffect BlurRadius="5" ShadowDepth="2" Color="Black"  />
+                        <DropShadowEffect BlurRadius="2" ShadowDepth="1" Color="Black"  />
                     </Setter.Value>
                 </Setter>
             </DataTrigger>

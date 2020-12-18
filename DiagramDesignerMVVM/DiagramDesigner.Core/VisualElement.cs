@@ -39,7 +39,7 @@ namespace DiagramDesigner
         /// <summary>
         /// 获取Diagram的所有项
         /// </summary>
-        public List<VisualElement> SelectedItems=> Parent.SelectedItems;
+        public List<VisualElement> SelectedItems => Parent == null ? new List<VisualElement>() : Parent.SelectedItems;
         
 
         public IDiagram Parent { get; set; }

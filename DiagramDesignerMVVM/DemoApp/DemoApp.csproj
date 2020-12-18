@@ -82,6 +82,7 @@
     <Compile Include="Services\ApplicationServicesProvider.cs" />
     <Compile Include="Services\Implentation\WPFMessageBoxService.cs" />
     <Compile Include="Services\Implentation\WPFUIVisualizerService.cs" />
+    <Compile Include="ViewModels\ThermometerViewModel.cs" />
     <Compile Include="ViewModels\TankViewModel.cs" />
     <Compile Include="ViewModels\LightViewModel.cs" />
     <Compile Include="ViewModels\FanViewModel.cs" />

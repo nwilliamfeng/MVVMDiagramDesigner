@@ -8,20 +8,15 @@ using System.Windows.Input;
 namespace DiagramDesigner
 {
     public class Diagram : NotifyObject, IDiagram
-    {
-        private ObservableCollection<VisualElement> items = new ObservableCollection<VisualElement>();
-
+    { 
         public Diagram()
         {
-            AddItemCommand = new InnerCommand(ExecuteAddItemCommand);
-            
+            AddItemCommand = new InnerCommand(ExecuteAddItemCommand);           
             ClearSelectedItemsCommand = new InnerCommand(ExecuteClearSelectedItemsCommand);
             CreateNewDiagramCommand = new InnerCommand(ExecuteCreateNewDiagramCommand);
             RemoveItemCommand= new InnerCommand(ExecuteRemoveItemCommand);
             Mediator.Instance.Register(this);
         }
-
-
 
         [MediatorMessageSink("DoneDrawingMessage")]
         public void OnDoneDrawingMessage(bool dummy)
@@ -32,6 +27,8 @@ namespace DiagramDesigner
             }
         }
 
+        ~Diagram() => Mediator.Instance.Unregister(this);
+
         public ICommand RemoveItemCommand { get; private set; }
 
         public ICommand AddItemCommand { get; private set; }
@@ -39,10 +36,8 @@ namespace DiagramDesigner
         public ICommand ClearSelectedItemsCommand { get; private set; }
         public ICommand CreateNewDiagramCommand { get; private set; }
 
-        public ObservableCollection<VisualElement> Items
-        {
-            get { return items; }
-        }
+        public ObservableCollection<VisualElement> Items { get; private set; } = new ObservableCollection<VisualElement>();
+      
 
         public List<VisualElement> SelectedItems
         {
@@ -55,7 +50,7 @@ namespace DiagramDesigner
             {
                 VisualElement item = (VisualElement)parameter;
                 item.Parent = this;
-                items.Add(item);
+                Items.Add(item);
             }
         }
 
@@ -64,7 +59,7 @@ namespace DiagramDesigner
             if (parameter is VisualElement)
             {
                 VisualElement item = (VisualElement)parameter;
-                items.Remove(item);
+                Items.Remove(item);
             }
         }
 

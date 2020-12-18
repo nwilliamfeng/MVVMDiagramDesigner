@@ -11,6 +11,9 @@ using System.Linq;
 
 namespace DiagramDesigner.Controls
 {
+    /// <summary>
+    /// 设计器画布
+    /// </summary>
     public class DesignerCanvas : Canvas
     {
 
@@ -24,6 +27,8 @@ namespace DiagramDesigner.Controls
             this.AllowDrop = true;
             Mediator.Instance.Register(this);
         }
+
+        ~DesignerCanvas() => Mediator.Instance.Unregister(this);
 
 
         public ConnectorPort SourceConnector

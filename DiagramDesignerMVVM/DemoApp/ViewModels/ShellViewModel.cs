@@ -54,6 +54,7 @@ namespace DemoApp
             this.Tools.Add(new FanViewModel());
             this.Tools.Add(new LightViewModel());
             this.Tools.Add(new TankViewModel {  Percent=20});
+            this.Tools.Add(new ThermometerViewModel { Value = 50 });
         }
 
 
